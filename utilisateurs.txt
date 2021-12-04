@@ -1,0 +1,6 @@
+admin admin admin
+user user Responsable_Hebergement
+f 1 etudiant
+emna 123 Responsable_nutritions
+f 01234567 etudiant
+asdsa 98765432 etudiant

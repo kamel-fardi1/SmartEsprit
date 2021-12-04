@@ -2311,9 +2311,9 @@ create_kamel_fardi_dash_board_window (void)
   g_signal_connect ((gpointer) kamel_fardi_dash_board_fixed_logout_button, "clicked",
                     G_CALLBACK (on_kamel_fardi_dash_board_fixed_logout_button_clicked),
                     NULL);
-  g_signal_connect ((gpointer) kamel_fardi_dash_board_fixed_logout_button_nombreetudiant, "clicked",
-                    G_CALLBACK (on_nombreetudiant_clicked),
-                    NULL);
+  //g_signal_connect ((gpointer) kamel_fardi_dash_board_fixed_logout_button_nombreetudiant, "clicked",
+                    //G_CALLBACK (on_nombreetudiant_clicked),
+                   // NULL);
   g_signal_connect ((gpointer) kamel_fardi_dash_board_fixed_logout_button_nombreetudiant, "clicked",
                     G_CALLBACK (on_kamel_fardi_dash_board_fixed_logout_button_nombreetudiant_clicked),
                     NULL);

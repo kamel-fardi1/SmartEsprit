@@ -44,7 +44,7 @@ main (int argc, char *argv[])
    */
   authentification = create_authentification ();
   gtk_widget_show (authentification);
-  admin = create_admin ();
+  /*admin = create_admin ();
   gtk_widget_show (admin);
   kamel_fardi_etudiant_window = create_kamel_fardi_etudiant_window ();
   gtk_widget_show (kamel_fardi_etudiant_window);
@@ -61,7 +61,7 @@ main (int argc, char *argv[])
   kamel_fardi_dash_board_window = create_kamel_fardi_dash_board_window ();
   gtk_widget_show (kamel_fardi_dash_board_window);
   kamel_fardi_bien_ajoutee_window = create_kamel_fardi_bien_ajoutee_window ();
-  gtk_widget_show (kamel_fardi_bien_ajoutee_window);
+  gtk_widget_show (kamel_fardi_bien_ajoutee_window);*/
 
   gtk_main ();
   return 0;
