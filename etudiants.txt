@@ -1,5 +1,4 @@
 02316583 lotfi fardi 3A1 masculin paris hoc@esprit.tn 1 11 2021 24153206 1 12 2021 102 hebergement+restaurant /home/kamel/Desktop/SE/pixmaps/farmer.jpg
-09717529 lotfi fardi 1EM1 masculin paris hoc@esprit.tn 1 11 2021 24153206 1 12 2021 102 hebergement /home/kamel/Desktop/SE/pixmaps/farmer.jpg
 09717520 kamel fardi 1A1 male tozr k@k 1 11 2021 50195490 1 12 2021 120 hebergement+restaurant /home/kamel/Desktop/SE/pixmaps/farmer.jpg
 02316581 lotfi fardi 3A1 masculin paris hoc@esprit.tn 1 11 2021 24153206 1 12 2021 102 hebergement+restaurant /home/kamel/Desktop/SE/pixmaps/farmer.jpg
 09717521 3ezdine fardi 3EM1 masculin tozr k@k 1 11 2002 50195490 1 12 2021 120 hebergement+restaurant /home/kamel/Desktop/SE/pixmaps/dashboardblue
