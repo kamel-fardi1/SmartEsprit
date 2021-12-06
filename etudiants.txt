@@ -1,6 +1,8 @@
 02316583 lotfi fardi 2EM1 masculin paris hoc@esprit.tn 1 11 2002 24153206 1 12 2021 102 hebergement /usr/share/icons/Humanity/actions/24/gtk-media-play-ltr.svg
 09717529 lotfi fardi 1EM1 masculin paris hoc@esprit.tn 1 11 2021 24153206 1 12 2021 102 hebergement /home/kamel/Desktop/SE/pixmaps/farmer.jpg
 09717520 kamel fardi 2EM1 masculin tozr k@k 1 1 1999 50195490 1 12 2021 120 hebergement+restaurant+piscine /home/kamel/Desktop/ES/pixmaps/EDIT-BACKGROUNdfinal.png
+02316583 lotfi fardi 3A1 masculin paris hoc@esprit.tn 1 11 2021 24153206 1 12 2021 102 hebergement+restaurant /home/kamel/Desktop/SE/pixmaps/farmer.jpg
+09717520 kamel fardi 1A1 male tozr k@k 1 11 2021 50195490 1 12 2021 120 hebergement+restaurant /home/kamel/Desktop/SE/pixmaps/farmer.jpg
 02316581 lotfi fardi 3A1 masculin paris hoc@esprit.tn 1 11 2021 24153206 1 12 2021 102 hebergement+restaurant /home/kamel/Desktop/SE/pixmaps/farmer.jpg
 09717521 3ezdine fardi 3EM1 masculin tozr k@k 1 11 2002 50195490 1 12 2021 120 hebergement+restaurant /home/kamel/Desktop/SE/pixmaps/dashboardblue
 96385274 f f 1GC1 masculin f f 5 11 2003 f 5 12 2021 f hebergement+restaurant /home/kamel/Desktop/ES/pixmaps/red.png
