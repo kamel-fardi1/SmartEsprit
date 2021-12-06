@@ -18,7 +18,7 @@
 #include "callbacks.h"
 #include "interface.h"
 #include "support.h"
-
+#include "etudiant.h"
 #define GLADE_HOOKUP_OBJECT(component,widget,name) \
   g_object_set_data_full (G_OBJECT (component), name, \
     gtk_widget_ref (widget), (GDestroyNotify) gtk_widget_unref)
@@ -754,7 +754,7 @@ create_kamel_fardi_etudiant_window (void)
   kamel_fardi_etudiant_window_dt_heberg_en_label = gtk_label_new ("");
   gtk_widget_show (kamel_fardi_etudiant_window_dt_heberg_en_label);
   gtk_fixed_put (GTK_FIXED (kamel_fardi_fiche_etudiant_fixed), kamel_fardi_etudiant_window_dt_heberg_en_label, 320, 517);
-  gtk_widget_set_size_request (kamel_fardi_etudiant_window_dt_heberg_en_label, 300, 40);
+  gtk_widget_set_size_request (kamel_fardi_etudiant_window_dt_heberg_en_label, 200, 40);
   gtk_label_set_use_markup (GTK_LABEL (kamel_fardi_etudiant_window_dt_heberg_en_label), TRUE);
   gtk_misc_set_alignment (GTK_MISC (kamel_fardi_etudiant_window_dt_heberg_en_label), 0, 0.5);
 
@@ -1270,8 +1270,8 @@ create_kamel_fardi_ajout_etudiant_window1 (void)
   gtk_widget_show (kamel_fardi_ajout_window_retour_button_button_hbox);
   gtk_container_add (GTK_CONTAINER (kamel_fardi_ajout_window_retour_button_button_alignment), kamel_fardi_ajout_window_retour_button_button_hbox);
 
-  kamel_fardi_ajouter_retourn_button_image = gtk_image_new_from_icon_name ("gtk-close", GTK_ICON_SIZE_BUTTON);
-  gtk_image_set_pixel_size (kamel_fardi_ajouter_retourn_button_image, 25);
+  kamel_fardi_ajouter_retourn_button_image = gtk_image_new_from_icon_name ("go-previous", GTK_ICON_SIZE_BUTTON);
+  gtk_image_set_pixel_size (kamel_fardi_ajouter_retourn_button_image, 24);
   gtk_widget_show (kamel_fardi_ajouter_retourn_button_image);
   gtk_box_pack_start (GTK_BOX (kamel_fardi_ajout_window_retour_button_button_hbox), kamel_fardi_ajouter_retourn_button_image, FALSE, FALSE, 0);
 
@@ -2026,7 +2026,7 @@ create_kamel_fardi_ajout_hint_window (void)
 
   kamel_fardi_ajout_hint_window = gtk_window_new (GTK_WINDOW_POPUP);
   gtk_widget_set_size_request (kamel_fardi_ajout_hint_window, 1000, 800);
-  gtk_window_set_title (GTK_WINDOW (kamel_fardi_ajout_hint_window), _("error"));
+  gtk_window_set_title (GTK_WINDOW (kamel_fardi_ajout_hint_window), _(""));
   gtk_window_set_position (GTK_WINDOW (kamel_fardi_ajout_hint_window), GTK_WIN_POS_CENTER);
   gtk_window_set_resizable (GTK_WINDOW (kamel_fardi_ajout_hint_window), FALSE);
   gtk_window_set_icon_name (GTK_WINDOW (kamel_fardi_ajout_hint_window), "gtk-stop");
@@ -2037,12 +2037,12 @@ create_kamel_fardi_ajout_hint_window (void)
   gtk_container_add (GTK_CONTAINER (kamel_fardi_ajout_hint_window), kamel_fardi_ajout_hint_fixed);
   gtk_widget_set_size_request (kamel_fardi_ajout_hint_fixed, 350, 257);
 
-  kamel_fardi_ajout_hint_fixedimage = create_pixmap (kamel_fardi_ajout_hint_window, "red_back.png");
+  kamel_fardi_ajout_hint_fixedimage = create_pixmap (kamel_fardi_ajout_hint_window, kfbackground);
   gtk_widget_show (kamel_fardi_ajout_hint_fixedimage);
   gtk_fixed_put (GTK_FIXED (kamel_fardi_ajout_hint_fixed), kamel_fardi_ajout_hint_fixedimage, 0, 0);
   gtk_widget_set_size_request (kamel_fardi_ajout_hint_fixedimage, 1000, 800);
 
-  kamel_fardi_ajout_hint_fixed_label = gtk_label_new (_("ce cin est deja existe !!!!"));
+  kamel_fardi_ajout_hint_fixed_label = gtk_label_new (_(""));
   gtk_widget_show (kamel_fardi_ajout_hint_fixed_label);
   gtk_fixed_put (GTK_FIXED (kamel_fardi_ajout_hint_fixed), kamel_fardi_ajout_hint_fixed_label, 288, 200);
   gtk_widget_set_size_request (kamel_fardi_ajout_hint_fixed_label, 416, 224);
@@ -2061,13 +2061,13 @@ create_kamel_fardi_ajout_hint_window (void)
   gtk_widget_show (kamel_fardi_ajout_hint_fixed_retour_hbox);
   gtk_container_add (GTK_CONTAINER (kamel_fardi_ajout_hint_fixed_retour_alignment), kamel_fardi_ajout_hint_fixed_retour_hbox);
 
-  kamel_fardi_ajout_hint_fixed_retour_image = gtk_image_new_from_icon_name ("gtk-stop", GTK_ICON_SIZE_BUTTON);
+  kamel_fardi_ajout_hint_fixed_retour_image = gtk_image_new_from_icon_name (kflogo, GTK_ICON_SIZE_BUTTON);
   gtk_image_set_pixel_size (kamel_fardi_ajout_hint_fixed_retour_image, 50);
   gtk_widget_show (kamel_fardi_ajout_hint_fixed_retour_image);
   gtk_box_pack_start (GTK_BOX (kamel_fardi_ajout_hint_fixed_retour_hbox), kamel_fardi_ajout_hint_fixed_retour_image, FALSE, FALSE, 0);
   gtk_widget_set_size_request (kamel_fardi_ajout_hint_fixed_retour_image, 88, 64);
 
-  kamel_fardi_ajout_hint_fixed_retour_label = gtk_label_new_with_mnemonic (_("<span font-size=\"30000\"color=\"red\"><b>Retour</b></span>"));
+  kamel_fardi_ajout_hint_fixed_retour_label = gtk_label_new_with_mnemonic (_(kfbuttonlabel));
   gtk_widget_show (kamel_fardi_ajout_hint_fixed_retour_label);
   gtk_box_pack_start (GTK_BOX (kamel_fardi_ajout_hint_fixed_retour_hbox), kamel_fardi_ajout_hint_fixed_retour_label, FALSE, FALSE, 0);
   GTK_WIDGET_SET_FLAGS (kamel_fardi_ajout_hint_fixed_retour_label, GTK_CAN_FOCUS);

@@ -16,15 +16,7 @@ int
 main (int argc, char *argv[])
 {
   GtkWidget *authentification;
-  GtkWidget *admin;
-  GtkWidget *kamel_fardi_etudiant_window;
-  GtkWidget *kamel_fardi_ajout_etudiant_window1;
-  GtkWidget *kamel_fardi_modifier_window;
-  GtkWidget *kamel_fardi_afficher_window;
-  GtkWidget *kamel_fardi_ajout_hint_window;
-  GtkWidget *kamel_fardi_rechercher_faild_window;
-  GtkWidget *kamel_fardi_dash_board_window;
-  GtkWidget *kamel_fardi_bien_ajoutee_window;
+
 
 #ifdef ENABLE_NLS
   bindtextdomain (GETTEXT_PACKAGE, PACKAGE_LOCALE_DIR);
@@ -44,25 +36,6 @@ main (int argc, char *argv[])
    */
   authentification = create_authentification ();
   gtk_widget_show (authentification);
-  /*admin = create_admin ();
-  gtk_widget_show (admin);
-  kamel_fardi_etudiant_window = create_kamel_fardi_etudiant_window ();
-  gtk_widget_show (kamel_fardi_etudiant_window);
-  kamel_fardi_ajout_etudiant_window1 = create_kamel_fardi_ajout_etudiant_window1 ();
-  gtk_widget_show (kamel_fardi_ajout_etudiant_window1);
-  kamel_fardi_modifier_window = create_kamel_fardi_modifier_window ();
-  gtk_widget_show (kamel_fardi_modifier_window);
-  kamel_fardi_afficher_window = create_kamel_fardi_afficher_window ();
-  gtk_widget_show (kamel_fardi_afficher_window);
-  kamel_fardi_ajout_hint_window = create_kamel_fardi_ajout_hint_window ();
-  gtk_widget_show (kamel_fardi_ajout_hint_window);
-  kamel_fardi_rechercher_faild_window = create_kamel_fardi_rechercher_faild_window ();
-  gtk_widget_show (kamel_fardi_rechercher_faild_window);
-  kamel_fardi_dash_board_window = create_kamel_fardi_dash_board_window ();
-  gtk_widget_show (kamel_fardi_dash_board_window);
-  kamel_fardi_bien_ajoutee_window = create_kamel_fardi_bien_ajoutee_window ();
-  gtk_widget_show (kamel_fardi_bien_ajoutee_window);*/
-
   gtk_main ();
   return 0;
 }

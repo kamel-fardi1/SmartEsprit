@@ -2,6 +2,8 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include "support.h"
+#include "interface.h"
 #include <gtk/gtk.h>
 enum
 {
@@ -157,7 +159,7 @@ int nombres_des_etudiant(char file_etudiants[],char nv){
         fclose(f);
     return nb_etd;
     }
-int verif_cin(char c[],char file[]){
+int verif_cin(gchar *c,char file[]){
     FILE *f;
     Etudiant etd;
     f=fopen(file,"r");
@@ -327,7 +329,7 @@ void afficher_responsables(GtkWidget *liste,char file[])
     g_object_unref(store);
     fclose(f);
 }
-int login(char username[],char pswrd[],char file[]){
+int login(char username[],char pswrd[],char *file){
     FILE *f;
     char user[20],pwd[20],role[20];
     f=fopen(file,"r");
@@ -377,7 +379,7 @@ void ajouter_utilisateur(char nom[],char mot_de_passe[],char role[],char fichier
     fclose(f);
 
 }
-Etudiant chercher_etudiant(char cin_cher[],char file[])
+Etudiant chercher_etudiant(gchar *cin_cher,char file[])
 {
     FILE *f;
     Etudiant find;
@@ -471,3 +473,37 @@ void modif_etud(char un[],char pswd[],char file[]){
     remove(file);
     rename("temp.txt",file);   
 }   
+void set_text(char size[],char color[],char text[],int ajt_sup){
+          GtkWidget *hint,*hintlabel,*fixed1,*kamel_fardi_ajout_hint_fixed,*kamel_fardi_ajout_hint_fixedimage;
+
+
+          
+        
+      if(ajt_sup==1){
+          strcpy(kfbackground,"bienajouter.png");
+          strcpy(kflogo,"gtk-apply");
+          strcpy(kfbuttonlabel,"<span font-size=\"30000\"color=\"green\"><b>OK</b></span>");
+      }
+      else{
+          strcpy(kfbackground,"red_back.png");
+          strcpy(kflogo,"gtk-stop");
+          strcpy(kfbuttonlabel,"<span font-size=\"30000\"color=\"red\"><b>Retour</b></span>");
+      }
+
+      hint = create_kamel_fardi_ajout_hint_window ();
+      hintlabel=lookup_widget(hint,"kamel_fardi_ajout_hint_fixed_label");
+      fixed1=lookup_widget(hint,"kamel_fardi_ajout_hint_fixed");
+      kamel_fardi_ajout_hint_fixed=lookup_widget(hint,"kamel_fardi_ajout_hint_fixed");
+      sprintf(kfchaine, "%s%s%s%s%s%s%s","<span font-size=\"",size,"\" color=\"",color,"\"><b>",text,"</b></span>" );
+      hintlabel = gtk_label_new (_(kfchaine));
+      gtk_widget_show (hintlabel);
+      gtk_fixed_put (GTK_FIXED (fixed1), hintlabel, 100, 300);
+      gtk_widget_set_size_request (hintlabel, 800, 100);
+      gtk_label_set_use_markup (GTK_LABEL (hintlabel), TRUE);
+      gtk_widget_show (hint);
+        }
+/*void set_text(char span[],char text[]){
+strcpy(chaine,span);
+strcat(chaine,text);
+strcat(chaine,"</span>");
+}*/

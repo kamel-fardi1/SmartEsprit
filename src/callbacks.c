@@ -7,7 +7,7 @@
 #include "callbacks.h"
 #include "interface.h"
 #include "support.h"
-#include "support.h"
+
 #include "etudiant.h"
 #include <time.h>
 int pisc=0;
@@ -39,7 +39,6 @@ GtkWidget *authentification;
   case 2:
     gtk_widget_hide (authentification);
     w = create_kamel_fardi_afficher_window ();
-    
     gtk_widget_show (w);
     treeview = lookup_widget(w, "kamel_fardi_affichage_liste_etudiant_treeview");
     afficher_etudiant(treeview,fichier);
@@ -382,30 +381,13 @@ on_kamel_fardi_etudiant_gestion_etudiants_ajouter_button_clicked
     sprintf(grp, "%d", g);
     if(!strlen(gtk_entry_get_text(GTK_ENTRY(cin_entry)))||!strlen(gtk_entry_get_text(GTK_ENTRY(nom_entry)))||!strlen(gtk_entry_get_text(GTK_ENTRY(prenom_entry)))||!strlen(gtk_entry_get_text(GTK_ENTRY(lieu_de_residence_entry)))||!strlen(gtk_entry_get_text(GTK_ENTRY(numero_telephonique_entry)))||!strlen(gtk_entry_get_text(GTK_ENTRY(chambre)))||!strlen(gtk_entry_get_text(GTK_ENTRY(mail)))||!strlen(gtk_combo_box_get_active_text(GTK_COMBO_BOX(classe)))||!strlen(etd.photo)){
 
-      hint = create_kamel_fardi_ajout_hint_window ();
-      hintlabel=lookup_widget(hint,"kamel_fardi_ajout_hint_fixed_label");
-      fixed1=lookup_widget(hint,"kamel_fardi_ajout_hint_fixed");
-      strcpy(texthint,"<span color=\"red\"><b>Remplir tout les champs !!!</b></span>");
-      hintlabel = gtk_label_new (_(texthint));
-      gtk_widget_show (hintlabel);
-      gtk_fixed_put (GTK_FIXED (fixed1), hintlabel, 400, 336);
-      gtk_widget_set_size_request (hintlabel, 200, 36);
-      gtk_label_set_use_markup (GTK_LABEL (hintlabel), TRUE);
-      gtk_widget_show (hint);
+      set_text("50000","red","Remplir tout les champs !!!",0);
     }
     else{
       if(strlen(gtk_entry_get_text(GTK_ENTRY(cin_entry)))>8||strlen(gtk_entry_get_text(GTK_ENTRY(cin_entry)))<8){
-        hint = create_kamel_fardi_ajout_hint_window ();
-      hintlabel=lookup_widget(hint,"kamel_fardi_ajout_hint_fixed_label");
-      fixed1=lookup_widget(hint,"kamel_fardi_ajout_hint_fixed");
-      strcpy(texthint,"<span color=\"red\"><b>Cin doit avoir 8 digits!!!</b></span>");
-      hintlabel = gtk_label_new (_(texthint));
-      gtk_widget_show (hintlabel);
-      gtk_fixed_put (GTK_FIXED (fixed1), hintlabel, 400, 336);
-      gtk_widget_set_size_request (hintlabel, 200, 36);
-      gtk_label_set_use_markup (GTK_LABEL (hintlabel), TRUE);
-      gtk_widget_show (hint);
-
+        
+        set_text("50000","red","Cin doit avoir 8 digits!!!",0);
+        
       }
       else{
     //////////------------------------------------------------------------///////////////////////////////////////////////////////////////////////////
@@ -430,16 +412,7 @@ on_kamel_fardi_etudiant_gestion_etudiants_ajouter_button_clicked
                           &etd.date_de_naissance.jour);
     if((timeinfo->tm_year+1900-etd.date_de_naissance.annee)<17){
 
-      hint = create_kamel_fardi_ajout_hint_window ();
-      hintlabel=lookup_widget(hint,"kamel_fardi_ajout_hint_fixed_label");
-      fixed1=lookup_widget(hint,"kamel_fardi_ajout_hint_fixed");
-      strcpy(texthint,"<span color=\"red\"><b>Age doit etre supperieur a 18 !!!</b></span>");
-      hintlabel = gtk_label_new (_(texthint));
-      gtk_widget_show (hintlabel);
-      gtk_fixed_put (GTK_FIXED (fixed1), hintlabel, 400, 336);
-      gtk_widget_set_size_request (hintlabel, 200, 36);
-      gtk_label_set_use_markup (GTK_LABEL (hintlabel), TRUE);
-      gtk_widget_show (hint);
+      set_text("50000","red","Age doit etre supperieur a 18 !!!",0);
     }
     else{
     etd.date_d_hebergement.annee=timeinfo->tm_year+1900;
@@ -449,21 +422,14 @@ on_kamel_fardi_etudiant_gestion_etudiants_ajouter_button_clicked
     if (pisc)strcat(etd.services,"+piscine");
   if(verif_cin(etd.cin,fichier)==0){
   gtk_entry_set_text(GTK_ENTRY(cin_entry), "");
-  hint = create_kamel_fardi_ajout_hint_window ();
-  hintlabel=lookup_widget(hint,"kamel_fardi_ajout_hint_fixed_label");
-      fixed1=lookup_widget(hint,"kamel_fardi_ajout_hint_fixed");
-      strcpy(texthint,"<span color=\"red\"><b>Cin deja utilisee !!!</b></span>");
-      hintlabel = gtk_label_new (_(texthint));
-      gtk_widget_show (hintlabel);
-      gtk_fixed_put (GTK_FIXED (fixed1), hintlabel, 400, 336);
-      gtk_widget_set_size_request (hintlabel, 200, 36);
-      gtk_label_set_use_markup (GTK_LABEL (hintlabel), TRUE);
-  gtk_widget_show (hint);
+  set_text("50000","red","Cin deja utilisee !!!",0);
   }
   else{
     /////////--------------------------------------------------------------/////////////////////////////////////////////////////////////////////////
     ajouter_etudiant (etd,fichier);
     ajouter_utilisateur(etd.nom,etd.cin,"etudiant",fichier_users);
+    //1 pour ajouter
+    set_text("40000","green","Un nouveau Etudiant ajoutee !!!",1);
     ////////--------------------reinitialisation des entrees--------------//////////////////////////////////////////////////////////////////////////
     gtk_entry_set_text(GTK_ENTRY(nom_entry), "");
     gtk_entry_set_text(GTK_ENTRY(prenom_entry), "");
@@ -645,7 +611,6 @@ on_kamel_fardi_modifier_ajouter_button_clicked
     char *fichier_users="utilisateurs.txt";
     int g;
     char grp[2];
-    //char *esm;
     //////////-----------------------------------------------------------////////////////////////////////////////////////////////////////////////////
     
     //////////----------------obtenir les objects graphiques-------------////////////////////////////////////////////////////////////////////////////
@@ -666,8 +631,8 @@ on_kamel_fardi_modifier_ajouter_button_clicked
       hint = create_kamel_fardi_ajout_hint_window ();
       hintlabel=lookup_widget(hint,"kamel_fardi_ajout_hint_fixed_label");
       fixed1=lookup_widget(hint,"kamel_fardi_ajout_hint_fixed");
-      strcpy(texthint,"<span color=\"red\"><b>Remplir tout les champs !!!</b></span>");
-      hintlabel = gtk_label_new (_(texthint));
+      strcpy(kftexthint,"<span color=\"red\"><b>Remplir tout les champs !!!</b></span>");
+      hintlabel = gtk_label_new (_(kftexthint));
       gtk_widget_show (hintlabel);
       gtk_fixed_put (GTK_FIXED (fixed1), hintlabel, 400, 336);
       gtk_widget_set_size_request (hintlabel, 250, 36);
@@ -679,8 +644,8 @@ on_kamel_fardi_modifier_ajouter_button_clicked
         hint = create_kamel_fardi_ajout_hint_window ();
       hintlabel=lookup_widget(hint,"kamel_fardi_ajout_hint_fixed_label");
       fixed1=lookup_widget(hint,"kamel_fardi_ajout_hint_fixed");
-      strcpy(texthint,"<span color=\"red\"><b>Cin doit avoir 8 digits!!!</b></span>");
-      hintlabel = gtk_label_new (_(texthint));
+      strcpy(kftexthint,"<span color=\"red\"><b>Cin doit avoir 8 digits!!!</b></span>");
+      hintlabel = gtk_label_new (_(kftexthint));
       gtk_widget_show (hintlabel);
       gtk_fixed_put (GTK_FIXED (fixed1), hintlabel, 400, 336);
       gtk_widget_set_size_request (hintlabel, 250, 36);
@@ -700,7 +665,7 @@ on_kamel_fardi_modifier_ajouter_button_clicked
     strcpy(etd.classe, gtk_combo_box_get_active_text(GTK_COMBO_BOX(classe)));
     strcat(etd.classe,grp);
     strcpy(etd.sexe,"masculin");
-    char *esm=gtk_entry_get_text(GTK_ENTRY(cin_entry));
+    //char *esm=gtk_entry_get_text(GTK_ENTRY(cin_entry));
     strcpy(etd.services, "hebergement");
     
     gtk_calendar_get_date(GTK_CALENDAR(date_de_naissance_calendar),
@@ -715,8 +680,8 @@ on_kamel_fardi_modifier_ajouter_button_clicked
       hint = create_kamel_fardi_ajout_hint_window ();
       hintlabel=lookup_widget(hint,"kamel_fardi_ajout_hint_fixed_label");
       fixed1=lookup_widget(hint,"kamel_fardi_ajout_hint_fixed");
-      strcpy(texthint,"<span color=\"red\"><b>Age doit etre supperieur a 18 !!!</b></span>");
-      hintlabel = gtk_label_new (_(texthint));
+      strcpy(kftexthint,"<span color=\"red\"><b>Age doit etre supperieur a 18 !!!</b></span>");
+      hintlabel = gtk_label_new (_(kftexthint));
       gtk_widget_show (hintlabel);
       gtk_fixed_put (GTK_FIXED (fixed1), hintlabel, 400, 336);
       gtk_widget_set_size_request (hintlabel, 250, 36);
@@ -741,8 +706,6 @@ on_kamel_fardi_modifier_ajouter_button_clicked
   else{
     /////////--------------------------------------------------------------/////////////////////////////////////////////////////////////////////////
     gtk_entry_set_text(GTK_ENTRY(cin_entry), "");
-      //hintlabel=lookup_widget(hint,"label428");
-      //fixed1=lookup_widget(hint,"fixed1");
       hintlabel = gtk_label_new (_("<span color=\"red\"><b>Cin deja existe !!!</b></span>"));
       gtk_widget_show (hintlabel);
       gtk_fixed_put (GTK_FIXED (fixed1), hintlabel, 400, 336);
@@ -1012,12 +975,12 @@ GtkWidget *kamel_fardi_etudiant_window,*ajout_hint,*cinentry;
     adress = lookup_widget(kamel_fardi_etudiant_window, "kamel_fardi_etudiant_window_etd_adresse");
     cin = lookup_widget(kamel_fardi_etudiant_window, "kamel_fardi_etudiant_window_etd_cin");
     ntlfn = lookup_widget(kamel_fardi_etudiant_window, "kamel_fardi_etudiant_window_etd_num_tlf");
-    mail=lookup_widget(kamel_fardi_etudiant_window, "mail_label");
+    mail=lookup_widget(kamel_fardi_etudiant_window, "kamel_fardi_etudiant_window_mail_label");
     sexe = lookup_widget(kamel_fardi_etudiant_window, "kamel_fardi_etudiant_window_etd_sexe");
     lbl=lookup_widget(kamel_fardi_etudiant_window, "kamel_fardi_etudiant_window_etd_date_de_naissace_label");
-    classe=lookup_widget(kamel_fardi_etudiant_window, "classe_lable");
-    services=lookup_widget(kamel_fardi_etudiant_window, "service_entrylabel438");
-    dtheberg=lookup_widget(kamel_fardi_etudiant_window, "dt_heberg_en_label440");
+    classe=lookup_widget(kamel_fardi_etudiant_window, "kamel_fardi_etudiant_window_classe_lable");
+    services=lookup_widget(kamel_fardi_etudiant_window, "kamel_fardi_etudiant_window_service_entrylabel");
+    dtheberg=lookup_widget(kamel_fardi_etudiant_window, "kamel_fardi_etudiant_window_dt_heberg_en_label");
 
 
 
@@ -1041,7 +1004,7 @@ GtkWidget *kamel_fardi_etudiant_window,*ajout_hint,*cinentry;
     img = gtk_image_new_from_file(p.photo);
     gtk_container_add(GTK_CONTAINER(fixed1), img);
     gtk_widget_show(img);
-    gtk_fixed_move(GTK_FIXED(fixed1), img, 10, 100);
+    gtk_fixed_move(GTK_FIXED(fixed1), img, 500, 100);
     gtk_widget_set_size_request(img, 400, 400);
     gtk_widget_hide (kamel_fardi_afficher_window);
     gtk_widget_show (kamel_fardi_etudiant_window);
@@ -1088,9 +1051,7 @@ on_kamel_fardi_dash_board_fixed_espaceadmin_button_clicked
     authentification=create_authentification();
     gtk_widget_hide (authentification);
     w = create_admin ();
-    //v=create_kamel_fardi_dash_board_window ();
     gtk_widget_show (w);
-    //gtk_widget_show (v);
     treeview = lookup_widget(w, "kamel_fardi_espace_admin_treeview_responsables");
     afficher_utilisateur(treeview,file_users);
 }
