@@ -141,7 +141,7 @@ int nombres_des_etudiant(char file_etudiants[],char nv){
     int a,nb_etd=0;
     f=fopen(file_etudiants,"r+");
     if(f!=NULL){
-    if(nv=='0'){
+    if(nv=='t'){
         while((fscanf(f,"%s %s %s %s %s %s %s %d %d %d %s %d %d %d %s %s %s\n",etd.cin,etd.nom,etd.prenom,etd.classe,etd.sexe,etd.adress,etd.aderess_mail,&etd.date_de_naissance.jour,&etd.date_de_naissance.mois,&etd.date_de_naissance.annee,etd.numero_telephonique,&etd.date_d_hebergement.jour,&etd.date_d_hebergement.mois,&etd.date_d_hebergement.annee,etd.chambre,etd.services,etd.photo))!=EOF)
             {
                 nb_etd++;

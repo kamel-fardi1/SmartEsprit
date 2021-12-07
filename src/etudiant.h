@@ -27,7 +27,7 @@ char classe[20];
 Etudiant etd,p;
 int nbr;
 char kftexthint[100];
-char kfchaine[100];
+char kfchaine[300];
 char kfbackground[1000];
 char kflogo[100];
 char kfbuttonlabel[100];

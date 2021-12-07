@@ -705,74 +705,77 @@ create_kamel_fardi_etudiant_window (void)
   gtk_fixed_put (GTK_FIXED (kamel_fardi_fiche_etudiant_fixed), kamel_fardi_fiche_etudiant_window_background_image, 0, 0);
   gtk_widget_set_size_request (kamel_fardi_fiche_etudiant_window_background_image, 1000, 800);
 
-  kamel_fardi_etudiant_window_etd_nom = gtk_label_new (_("<big><span><b></b></span></big>"));
+  kamel_fardi_etudiant_window_etd_nom = gtk_label_new (NULL);
   gtk_widget_show (kamel_fardi_etudiant_window_etd_nom);
   gtk_fixed_put (GTK_FIXED (kamel_fardi_fiche_etudiant_fixed), kamel_fardi_etudiant_window_etd_nom, 200, 142);
-  gtk_widget_set_size_request (kamel_fardi_etudiant_window_etd_nom, 200, 40);
+  gtk_widget_set_size_request (kamel_fardi_etudiant_window_etd_nom, 500, 40);
   gtk_label_set_use_markup (GTK_LABEL (kamel_fardi_etudiant_window_etd_nom), TRUE);
   gtk_misc_set_alignment (GTK_MISC (kamel_fardi_etudiant_window_etd_nom), 0, 0.5);
 
-  kamel_fardi_etudiant_window_etd_prenom = gtk_label_new (_("<big><span><b></b></span></big>"));
+  kamel_fardi_etudiant_window_etd_prenom = gtk_label_new (NULL);
   gtk_widget_show (kamel_fardi_etudiant_window_etd_prenom);
   gtk_fixed_put (GTK_FIXED (kamel_fardi_fiche_etudiant_fixed), kamel_fardi_etudiant_window_etd_prenom, 200, 194);
   gtk_widget_set_size_request (kamel_fardi_etudiant_window_etd_prenom, 200, 40);
   gtk_label_set_use_markup (GTK_LABEL (kamel_fardi_etudiant_window_etd_prenom), TRUE);
   gtk_misc_set_alignment (GTK_MISC (kamel_fardi_etudiant_window_etd_prenom), 0, 0.5);
 
-  kamel_fardi_etudiant_window_etd_date_de_naissace_label = gtk_label_new ("");
+  kamel_fardi_etudiant_window_etd_date_de_naissace_label = gtk_label_new (NULL);
   gtk_widget_show (kamel_fardi_etudiant_window_etd_date_de_naissace_label);
   gtk_fixed_put (GTK_FIXED (kamel_fardi_fiche_etudiant_fixed), kamel_fardi_etudiant_window_etd_date_de_naissace_label, 311, 251);
   gtk_widget_set_size_request (kamel_fardi_etudiant_window_etd_date_de_naissace_label, 250, 40);
   gtk_label_set_use_markup (GTK_LABEL (kamel_fardi_etudiant_window_etd_date_de_naissace_label), TRUE);
+  gtk_misc_set_alignment (GTK_MISC (kamel_fardi_etudiant_window_etd_date_de_naissace_label), 0, 0.5);
 
-  kamel_fardi_etudiant_window_etd_cin = gtk_label_new ("");
+  kamel_fardi_etudiant_window_etd_cin = gtk_label_new (NULL);
   gtk_widget_show (kamel_fardi_etudiant_window_etd_cin);
   gtk_fixed_put (GTK_FIXED (kamel_fardi_fiche_etudiant_fixed), kamel_fardi_etudiant_window_etd_cin, 200, 304);
   gtk_widget_set_size_request (kamel_fardi_etudiant_window_etd_cin, 200, 40);
   gtk_label_set_use_markup (GTK_LABEL (kamel_fardi_etudiant_window_etd_cin), TRUE);
   gtk_misc_set_alignment (GTK_MISC (kamel_fardi_etudiant_window_etd_cin), 0, 0.5);
 
-  kamel_fardi_etudiant_window_etd_adresse = gtk_label_new ("");
+  kamel_fardi_etudiant_window_etd_adresse = gtk_label_new (NULL);
   gtk_widget_show (kamel_fardi_etudiant_window_etd_adresse);
   gtk_fixed_put (GTK_FIXED (kamel_fardi_fiche_etudiant_fixed), kamel_fardi_etudiant_window_etd_adresse, 204, 361);
   gtk_widget_set_size_request (kamel_fardi_etudiant_window_etd_adresse, 200, 40);
   gtk_label_set_use_markup (GTK_LABEL (kamel_fardi_etudiant_window_etd_adresse), TRUE);
   gtk_misc_set_alignment (GTK_MISC (kamel_fardi_etudiant_window_etd_adresse), 0, 0.5);
 
-  kamel_fardi_etudiant_window_mail_label = gtk_label_new ("");
+  kamel_fardi_etudiant_window_mail_label = gtk_label_new (NULL);
   gtk_widget_show (kamel_fardi_etudiant_window_mail_label);
   gtk_fixed_put (GTK_FIXED (kamel_fardi_fiche_etudiant_fixed), kamel_fardi_etudiant_window_mail_label, 200, 416);
   gtk_widget_set_size_request (kamel_fardi_etudiant_window_mail_label, 270, 40);
+  gtk_label_set_use_markup (GTK_LABEL (kamel_fardi_etudiant_window_mail_label), TRUE);
+  gtk_misc_set_alignment (GTK_MISC (kamel_fardi_etudiant_window_mail_label), 0, 0.5);
 
-  kamel_fardi_etudiant_window_etd_sexe = gtk_label_new ("");
+  kamel_fardi_etudiant_window_etd_sexe = gtk_label_new (NULL);
   gtk_widget_show (kamel_fardi_etudiant_window_etd_sexe);
   gtk_fixed_put (GTK_FIXED (kamel_fardi_fiche_etudiant_fixed), kamel_fardi_etudiant_window_etd_sexe, 200, 465);
   gtk_widget_set_size_request (kamel_fardi_etudiant_window_etd_sexe, 200, 40);
   gtk_label_set_use_markup (GTK_LABEL (kamel_fardi_etudiant_window_etd_sexe), TRUE);
   gtk_misc_set_alignment (GTK_MISC (kamel_fardi_etudiant_window_etd_sexe), 0, 0.5);
 
-  kamel_fardi_etudiant_window_dt_heberg_en_label = gtk_label_new ("");
+  kamel_fardi_etudiant_window_dt_heberg_en_label = gtk_label_new (NULL);
   gtk_widget_show (kamel_fardi_etudiant_window_dt_heberg_en_label);
   gtk_fixed_put (GTK_FIXED (kamel_fardi_fiche_etudiant_fixed), kamel_fardi_etudiant_window_dt_heberg_en_label, 320, 517);
   gtk_widget_set_size_request (kamel_fardi_etudiant_window_dt_heberg_en_label, 200, 40);
   gtk_label_set_use_markup (GTK_LABEL (kamel_fardi_etudiant_window_dt_heberg_en_label), TRUE);
   gtk_misc_set_alignment (GTK_MISC (kamel_fardi_etudiant_window_dt_heberg_en_label), 0, 0.5);
 
-  kamel_fardi_etudiant_window_etd_num_tlf = gtk_label_new ("");
+  kamel_fardi_etudiant_window_etd_num_tlf = gtk_label_new (NULL);
   gtk_widget_show (kamel_fardi_etudiant_window_etd_num_tlf);
   gtk_fixed_put (GTK_FIXED (kamel_fardi_fiche_etudiant_fixed), kamel_fardi_etudiant_window_etd_num_tlf, 200, 568);
   gtk_widget_set_size_request (kamel_fardi_etudiant_window_etd_num_tlf, 200, 40);
   gtk_label_set_use_markup (GTK_LABEL (kamel_fardi_etudiant_window_etd_num_tlf), TRUE);
   gtk_misc_set_alignment (GTK_MISC (kamel_fardi_etudiant_window_etd_num_tlf), 0, 0.5);
 
-  kamel_fardi_etudiant_window_service_entrylabel = gtk_label_new ("");
+  kamel_fardi_etudiant_window_service_entrylabel = gtk_label_new (NULL);
   gtk_widget_show (kamel_fardi_etudiant_window_service_entrylabel);
   gtk_fixed_put (GTK_FIXED (kamel_fardi_fiche_etudiant_fixed), kamel_fardi_etudiant_window_service_entrylabel, 205, 619);
   gtk_widget_set_size_request (kamel_fardi_etudiant_window_service_entrylabel, 250, 40);
   gtk_label_set_use_markup (GTK_LABEL (kamel_fardi_etudiant_window_service_entrylabel), TRUE);
   gtk_misc_set_alignment (GTK_MISC (kamel_fardi_etudiant_window_service_entrylabel), 0, 0.5);
 
-  kamel_fardi_etudiant_window_classe_lable = gtk_label_new ("");
+  kamel_fardi_etudiant_window_classe_lable = gtk_label_new (NULL);
   gtk_widget_show (kamel_fardi_etudiant_window_classe_lable);
   gtk_fixed_put (GTK_FIXED (kamel_fardi_fiche_etudiant_fixed), kamel_fardi_etudiant_window_classe_lable, 200, 665);
   gtk_widget_set_size_request (kamel_fardi_etudiant_window_classe_lable, 200, 40);
@@ -780,7 +783,7 @@ create_kamel_fardi_etudiant_window (void)
   gtk_misc_set_alignment (GTK_MISC (kamel_fardi_etudiant_window_classe_lable), 0, 0.5);
 
   kamel_fardi_etudiant_window_etd_photo = gtk_image_new_from_icon_name ("gtk-directory", GTK_ICON_SIZE_BUTTON);
-  gtk_image_set_pixel_size (kamel_fardi_etudiant_window_etd_photo, 90);
+  gtk_image_set_pixel_size (kamel_fardi_etudiant_window_etd_photo, 60);
   gtk_widget_show (kamel_fardi_etudiant_window_etd_photo);
   gtk_fixed_put (GTK_FIXED (kamel_fardi_fiche_etudiant_fixed), kamel_fardi_etudiant_window_etd_photo, 520, 120);
   gtk_widget_set_size_request (kamel_fardi_etudiant_window_etd_photo, 400, 400);
@@ -798,8 +801,8 @@ create_kamel_fardi_etudiant_window (void)
   gtk_widget_show (kamel_fardi_etudiant_window_retour_hbox);
   gtk_container_add (GTK_CONTAINER (kamel_fardi_etudiant_window_retour_alignment), kamel_fardi_etudiant_window_retour_hbox);
 
-  kamel_fardi_etudiant_window_retour_image = gtk_image_new_from_icon_name ("gtk-close", GTK_ICON_SIZE_BUTTON);
-  gtk_image_set_pixel_size (kamel_fardi_etudiant_window_retour_image, 30);
+  kamel_fardi_etudiant_window_retour_image = gtk_image_new_from_icon_name ("go-previous", GTK_ICON_SIZE_BUTTON);
+  gtk_image_set_pixel_size (kamel_fardi_etudiant_window_retour_image, 40);
   gtk_widget_show (kamel_fardi_etudiant_window_retour_image);
   gtk_box_pack_start (GTK_BOX (kamel_fardi_etudiant_window_retour_hbox), kamel_fardi_etudiant_window_retour_image, FALSE, FALSE, 0);
 
@@ -1247,7 +1250,7 @@ create_kamel_fardi_ajout_etudiant_window1 (void)
   gtk_container_add (GTK_CONTAINER (kamel_fardi_ajout_window_logout_align), kamel_fardi_ajout_window_hbox);
 
   kamel_fardi_ajout_widow_logout_img = gtk_image_new_from_icon_name ("gtk-quit", GTK_ICON_SIZE_BUTTON);
-  gtk_image_set_pixel_size (kamel_fardi_ajout_widow_logout_img, 25);
+  gtk_image_set_pixel_size (kamel_fardi_ajout_widow_logout_img, 40);
   gtk_widget_show (kamel_fardi_ajout_widow_logout_img);
   gtk_box_pack_start (GTK_BOX (kamel_fardi_ajout_window_hbox), kamel_fardi_ajout_widow_logout_img, FALSE, FALSE, 0);
 
@@ -1271,7 +1274,7 @@ create_kamel_fardi_ajout_etudiant_window1 (void)
   gtk_container_add (GTK_CONTAINER (kamel_fardi_ajout_window_retour_button_button_alignment), kamel_fardi_ajout_window_retour_button_button_hbox);
 
   kamel_fardi_ajouter_retourn_button_image = gtk_image_new_from_icon_name ("go-previous", GTK_ICON_SIZE_BUTTON);
-  gtk_image_set_pixel_size (kamel_fardi_ajouter_retourn_button_image, 24);
+  gtk_image_set_pixel_size (kamel_fardi_ajouter_retourn_button_image, 40);
   gtk_widget_show (kamel_fardi_ajouter_retourn_button_image);
   gtk_box_pack_start (GTK_BOX (kamel_fardi_ajout_window_retour_button_button_hbox), kamel_fardi_ajouter_retourn_button_image, FALSE, FALSE, 0);
 
@@ -1742,7 +1745,7 @@ create_kamel_fardi_modifier_window (void)
   gtk_widget_show (kamel_fardi_modifier_retour_hbox);
   gtk_container_add (GTK_CONTAINER (kamel_fardi_modifier_retour_alignment), kamel_fardi_modifier_retour_hbox);
 
-  kamel_fardi_modifier_retour_image = gtk_image_new_from_icon_name ("gtk-close", GTK_ICON_SIZE_BUTTON);
+  kamel_fardi_modifier_retour_image = gtk_image_new_from_icon_name ("go-previous", GTK_ICON_SIZE_BUTTON);
   gtk_image_set_pixel_size (kamel_fardi_modifier_retour_image, 40);
   gtk_widget_show (kamel_fardi_modifier_retour_image);
   gtk_box_pack_start (GTK_BOX (kamel_fardi_modifier_retour_hbox), kamel_fardi_modifier_retour_image, FALSE, FALSE, 0);
@@ -2234,7 +2237,7 @@ create_kamel_fardi_dash_board_window (void)
   gtk_box_pack_start (GTK_BOX (kamel_fardi_dash_board_fixed_espaceadmin_hbox), kamel_fardi_dash_board_fixed_espaceadmin_button_label, FALSE, FALSE, 0);
   gtk_label_set_use_markup (GTK_LABEL (kamel_fardi_dash_board_fixed_espaceadmin_button_label), TRUE);
 
-  kamel_fardi_dash_board_fixed_espaceadmin_nombrelabel = gtk_label_new (_("<span font-size=\"13000\"color=\"black\"><b></b></span>"));
+  kamel_fardi_dash_board_fixed_espaceadmin_nombrelabel = gtk_label_new (NULL);
   gtk_widget_show (kamel_fardi_dash_board_fixed_espaceadmin_nombrelabel);
   gtk_fixed_put (GTK_FIXED (kamel_fardi_dash_board_fixed), kamel_fardi_dash_board_fixed_espaceadmin_nombrelabel, 8, 400);
   gtk_widget_set_size_request (kamel_fardi_dash_board_fixed_espaceadmin_nombrelabel, 192, 48);

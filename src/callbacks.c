@@ -847,7 +847,7 @@ on_kamel_fardi_affichage_liste_etudiant_treeview_row_activated
 {
     GtkWidget *kamel_fardi_etudiant_window,*ajout_hint,*cinentry;
     GtkWidget *kamel_fardi_afficher_window;
-    GtkWidget *classe,*services,*img, *fixed1, *nom, *prenom, *adress, *cin, *sexe, *ntlfn, *nenfn, *wind,*mail,*dtheberg,*lbl;
+    GtkWidget *classe,*services,*img, *fixed1, *nom, *prenom, *adress, *cin, *sexe, *ntlfn, *nenfn, *wind,*mail,*dtheberg,*naissance;
     GtkTreeIter iter;
     char *buf1;
     char *buf2;
@@ -855,8 +855,9 @@ on_kamel_fardi_affichage_liste_etudiant_treeview_row_activated
     //Etudiant p;
     gchar *c1,*c2,*c3,*c4,*c5,*c6,*c7,*c8,*c9,*c10,*c11,*c12,*c13;
 
+     //ajout_hint = create_kamel_fardi_ajout_hint_window (); 
     kamel_fardi_etudiant_window = create_kamel_fardi_etudiant_window ();
-    ajout_hint = create_kamel_fardi_ajout_hint_window (); 
+   
 
     nom = lookup_widget(kamel_fardi_etudiant_window, "kamel_fardi_etudiant_window_etd_nom");
     prenom = lookup_widget(kamel_fardi_etudiant_window, "kamel_fardi_etudiant_window_etd_prenom");
@@ -865,11 +866,12 @@ on_kamel_fardi_affichage_liste_etudiant_treeview_row_activated
     ntlfn = lookup_widget(kamel_fardi_etudiant_window, "kamel_fardi_etudiant_window_etd_num_tlf");
     mail=lookup_widget(kamel_fardi_etudiant_window, "kamel_fardi_etudiant_window_mail_label");
     sexe = lookup_widget(kamel_fardi_etudiant_window, "kamel_fardi_etudiant_window_etd_sexe");
-    lbl=lookup_widget(kamel_fardi_etudiant_window, "kamel_fardi_etudiant_window_etd_date_de_naissace_label");
+    naissance=lookup_widget(kamel_fardi_etudiant_window, "kamel_fardi_etudiant_window_etd_date_de_naissace_label");
     classe=lookup_widget(kamel_fardi_etudiant_window, "kamel_fardi_etudiant_window_classe_lable");
     services=lookup_widget(kamel_fardi_etudiant_window, "kamel_fardi_etudiant_window_service_entrylabel");
     dtheberg=lookup_widget(kamel_fardi_etudiant_window, "kamel_fardi_etudiant_window_dt_heberg_en_label");
-
+    fixed1 = lookup_widget(kamel_fardi_etudiant_window, "kamel_fardi_fiche_etudiant_fixed");
+    img = lookup_widget(kamel_fardi_etudiant_window, "kamel_fardi_etudiant_window_etd_photo");
 
 
    GtkTreeModel *model=gtk_tree_view_get_model(treeview);
@@ -879,29 +881,38 @@ on_kamel_fardi_affichage_liste_etudiant_treeview_row_activated
         gtk_tree_model_get(GTK_LIST_STORE(model),&iter,0,&c1, 1, &c2, 2, &c3, 3, &c4, 4, &c5,5, &c6, 6, &c7, 7, &c8, 8, &c9, 9,&c10, 10, &c11, 11,&c12,12,&c13, -1);
     p=chercher_etudiant(c1,fichier);
     
-    buf1=g_strdup_printf("%d %d %d", p.date_de_naissance.jour,p.date_de_naissance.mois,p.date_de_naissance.annee);
-    buf2=g_strdup_printf("%d %d %d",p.date_d_hebergement.jour,p.date_d_hebergement.mois,p.date_d_hebergement.annee);
-    gtk_label_set_text(GTK_LABEL(nom), p.nom);
-    gtk_label_set_text(GTK_LABEL(prenom), p.prenom);
-    gtk_label_set_text(GTK_LABEL(adress), p.adress);
-    gtk_label_set_text(GTK_LABEL(mail), p.aderess_mail);
-    gtk_label_set_text(GTK_LABEL(classe), p.classe);
-    gtk_label_set_text(GTK_LABEL(services), p.services);
-    gtk_label_set_text(GTK_LABEL(cin), p.cin);
-    gtk_label_set_text(GTK_LABEL(sexe), p.sexe);
-    gtk_label_set_text(GTK_LABEL(ntlfn), p.numero_telephonique);
-    gtk_label_set_text(GTK_LABEL(dtheberg), buf2);
-    gtk_label_set_text(GTK_LABEL(lbl), buf1);
+    buf1=g_strdup_printf("%d-%d-%d", p.date_de_naissance.jour,p.date_de_naissance.mois,p.date_de_naissance.annee);
+    buf2=g_strdup_printf("%d-%d-%d",p.date_d_hebergement.jour,p.date_d_hebergement.mois,p.date_d_hebergement.annee);
+    sprintf(kfchaine, "%s%s%s","<span font_desc=\"arial\" color=\"black\"><b>",p.nom,"</b></span>");
+    gtk_label_set_markup (GTK_LABEL (nom), kfchaine);
+    sprintf(kfchaine, "%s%s%s","<span font_desc=\"arial\" color=\"black\"><b>",p.prenom,"</b></span>");
+    gtk_label_set_markup (GTK_LABEL (prenom), kfchaine);
+    sprintf(kfchaine, "%s%s%s","<span font_desc=\"arial\" color=\"black\"><b>",p.adress,"</b></span>");
+    gtk_label_set_markup (GTK_LABEL (adress), kfchaine);
+    sprintf(kfchaine, "%s%s%s","<span font_desc=\"arial\" color=\"black\"><b>",p.aderess_mail,"</b></span>");
+    gtk_label_set_markup (GTK_LABEL (mail), kfchaine);
+    sprintf(kfchaine, "%s%s%s","<span font_desc=\"arial\" color=\"black\"><b>",p.classe,"</b></span>");
+    gtk_label_set_markup (GTK_LABEL (classe), kfchaine);
+    sprintf(kfchaine, "%s%s%s","<span font_desc=\"arial\" color=\"black\"><b>",p.services,"</b></span>");
+    gtk_label_set_markup (GTK_LABEL (services), kfchaine);
+    sprintf(kfchaine, "%s%s%s","<span font_desc=\"arial\" color=\"black\"><b>",p.cin,"</b></span>");
+    gtk_label_set_markup (GTK_LABEL (cin), kfchaine);
+    sprintf(kfchaine, "%s%s%s","<span font_desc=\"arial\" color=\"black\"><b>",p.sexe,"</b></span>");
+    gtk_label_set_markup (GTK_LABEL (sexe), kfchaine);
+    sprintf(kfchaine, "%s%s%s","<span font_desc=\"arial\" color=\"black\"><b>",p.numero_telephonique,"</b></span>");
+    gtk_label_set_markup (GTK_LABEL (ntlfn), kfchaine);
+    sprintf(kfchaine, "%s%s%s","<span font_desc=\"arial\" color=\"black\"><b>",buf2,"</b></span>");
+    gtk_label_set_markup (GTK_LABEL (dtheberg), kfchaine);
+    sprintf(kfchaine, "%s%s%s","<span font_desc=\"arial\" color=\"black\"><b>",buf1,"</b></span>");
+    gtk_label_set_markup (GTK_LABEL (naissance), kfchaine);
     g_free(buf2);
     g_free(buf1);
-    fixed1 = lookup_widget(kamel_fardi_etudiant_window, "kamel_fardi_fiche_etudiant_fixed");
-    img = lookup_widget(kamel_fardi_etudiant_window, "kamel_fardi_etudiant_window_etd_photo");
+    
     img = gtk_image_new_from_file(p.photo);
     gtk_container_add(GTK_CONTAINER(fixed1), img);
     gtk_widget_show(img);
     gtk_fixed_move(GTK_FIXED(fixed1), img, 500, 100);
     gtk_widget_set_size_request(img, 400, 400);
-    //gtk_widget_hide (kamel_fardi_afficher_window);
     gtk_widget_show (kamel_fardi_etudiant_window);
       }
 }
@@ -1069,34 +1080,22 @@ GtkWidget *authentification;
   kamel_fardi_afficher_window = lookup_widget(button, "kamel_fardi_dash_board_window");
   gtk_widget_hide (kamel_fardi_afficher_window);
 }
-
-
-/*void
-on_nombreetudiant_clicked              (GtkWidget       *button,
-                                        gpointer         user_data)
-{
-
-}*/
-
-
 void
 on_kamel_fardi_dash_board_fixed_logout_button_nombreetudiant_clicked
                                         (GtkWidget       *button,
                                         gpointer         user_data)
 {
-GtkWidget *v,*lbl;
-int x=0;
+GtkWidget *v,*lbl,*kamel_fardi_dash_board_fixed_espaceadmin_nombrelabel;
 int s=1;
 char *file="etudiants.txt";
-char t[50];
-char grp[50];
+char t[100];
+char grp[300];
 v = lookup_widget(button, "kamel_fardi_dash_board_fixed_logout_button_combobox");
-lbl=lookup_widget(button,"kamel_fardi_dash_board_fixed_espaceadmin_nombrelabel");
 strcpy(t, gtk_combo_box_get_active_text(GTK_COMBO_BOX(v)));
 s=nombres_des_etudiant(file,t[0]);
-sprintf(grp, "%d", s);
-gtk_label_set_text(GTK_LABEL(lbl), grp);
-  //afficher nbr etd
+sprintf(grp, "%s%d%s","<span font-size=\"13000\"color=\"black\"><b>",s,"</b></span>");
+kamel_fardi_dash_board_fixed_espaceadmin_nombrelabel = lookup_widget(button, "kamel_fardi_dash_board_fixed_espaceadmin_nombrelabel");
+gtk_label_set_markup (GTK_LABEL (kamel_fardi_dash_board_fixed_espaceadmin_nombrelabel), grp);
 }
 
 
