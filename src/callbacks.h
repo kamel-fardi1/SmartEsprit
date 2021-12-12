@@ -339,3 +339,98 @@ on_Med_kh_button_retour1_clicked       (GtkWidget       *objet,
 void
 on_Med_kh_button_retour0_clicked       (GtkWidget       *objet,
                                         gpointer         user_data);
+////////////////////////////tesnime////////////////////////////////////////////
+void
+on_button3_tessnime_affichage_supprimer_clicked
+                                        (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_button1_tesnim_affichage_ajouter_clicked
+                                        (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_button2_tesnime_affichage_modifier_clicked
+                                        (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_button4_tesnime_affichage_rechercher_clicked
+                                        (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_button5_tesnime_afficher__clicked   (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_radiobutton2_tes_ajouter_retrait_clicked
+                                        (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_radiobutton1_tes_ajout_depot_clicked
+                                        (GtkButton       *button,
+                                        gpointer         user_data);
+
+
+
+void
+on_button7_tesnim_retour_clicked       (GtkButton       *button,
+                                        gpointer         user_data);
+
+/*void
+on_button6_tesnim_ajouter_valider_clicked
+                                        (GtkButton       *button,
+                                        gpointer         user_data);*/
+
+void
+on_radiobutton3_tes_modif_depot_clicked
+                                        (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_radiobutton4_tes_modif_retrait_clicked
+                                        (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_button8_valider_tes_modiffier_clicked
+                                        (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_button9_retour_tes_modifier_clicked (GtkButton       *button,
+                                        gpointer         user_data);
+
+
+
+void
+on_radiobutton1_tes_ajout_depot_toggled
+                                        (GtkToggleButton *togglebutton,
+                                        gpointer         user_data);
+
+void
+on_radiobutton2_tes_ajouter_retrait_toggled
+                                        (GtkToggleButton *togglebutton,
+                                        gpointer         user_data);
+
+void
+on_button6_tesnim_ajouter_valider_clicked
+                                        (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_tesnime_treeview_row1_activated     (GtkTreeView     *treeview,
+                                        GtkTreePath     *path,
+                                        GtkTreeViewColumn *column,
+                                        gpointer         user_data);
+void
+on_button6_tesnim_ajouter_valider_clicked
+                                        (GtkButton       *button,
+                                        gpointer         user_data);
+void
+on_ts_deconnect_button_clicked
+                                        (GtkButton       *button,
+                                        gpointer         user_data);

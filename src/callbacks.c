@@ -7,12 +7,16 @@
 #include "callbacks.h"
 #include "interface.h"
 #include "support.h"
+#include "fonction.h"
 #include"capteur.h"
 #include "etudiant.h"
 #include <time.h>
 int pisc=0;
 int restau=0;
 int s;
+char id[30];
+char a[70];char b[70];char c[70];char d[70];char e[70];char f[70];char g[70];
+int radio_type;
 void
 on_kamel_fardi_authen_wind_login_auth_button_clicked
                                         (GtkWidget       *button,
@@ -46,6 +50,11 @@ GtkWidget *authentification;
     case 4:
     gtk_widget_hide (authentification);
     w = create_Med_kh_w_Menu ();
+    gtk_widget_show (w);
+    break;
+    case 7:
+    gtk_widget_hide (authentification);
+    w = create_tesnime_affichage ();
     gtk_widget_show (w);
     break;
   default:
@@ -259,7 +268,13 @@ on_kamel_fardi_gestion_de_stock_admin_window_button_clicked
                                         (GtkWidget       *button,
                                         gpointer         user_data)
 {
+  GtkWidget *admin;
+  GtkWidget *w;
 
+    admin = lookup_widget(button, "admin");
+    gtk_widget_hide (admin);
+    w =create_tesnime_affichage ();
+    gtk_widget_show (w);
 }
 
 
@@ -1665,3 +1680,416 @@ on_Med_kh_button_retour0_clicked       (GtkWidget       *objet,
  gtk_widget_destroy(w_aff_supp);
 }
 
+//////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////
+/////////////////tesnim/////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////
+void
+on_button3_tessnime_affichage_supprimer_clicked
+                                        (GtkButton       *button,
+                                        gpointer         user_data)
+{
+GtkWidget *code;
+char *file="produits.txt";
+
+code=lookup_widget(button,"entry9_recherche_tesnime");
+//strcpy(f.code,gtk_entry_get_text(GTK_ENTRY(code)));
+tes_supprimer(file,gtk_entry_get_text(GTK_ENTRY(code)));
+}
+
+
+ void 
+on_button1_tesnim_affichage_ajouter_clicked
+                                        (GtkButton       *button,
+                                        gpointer         user_data)
+{
+GtkWidget *fenetre_ajout;
+  GtkWidget *fenetre_afficher;
+  fenetre_afficher = lookup_widget(button, "tesnime_affichage");
+  gtk_widget_destroy(fenetre_afficher);
+  //fenetre_ajout = lookup_widget(button, "tesnime_ajouter");
+  fenetre_ajout = create_tesnime_ajouter();
+  gtk_window_set_position(GTK_WINDOW(fenetre_ajout),GTK_WIN_POS_CENTER_ALWAYS);
+  gtk_widget_show(fenetre_ajout);
+}
+
+
+void
+on_button2_tesnime_affichage_modifier_clicked
+                                        (GtkButton       *button,
+                                        gpointer         user_data)
+{
+produit p;
+  
+
+  gchar *nom;
+  gchar *code;
+  gchar *quantite;  
+  gchar *prix;
+  gchar *type;
+  gchar *date;
+	//char *d;
+  GtkWidget *affichage;
+  GtkWidget *modifier;
+  GtkWidget *nomproduit;
+  GtkWidget *codeproduit;
+  GtkWidget *jour;
+  GtkWidget *mois;
+  GtkWidget *annee;
+  GtkWidget *depot;
+  GtkWidget *retrait;
+  
+
+
+    modifier=create_tesnime_modifier();
+	affichage= lookup_widget(button,"tesnime_affichage");
+    gtk_widget_hide(affichage);
+    //gtk_window_set_position(GTK_WINDOW(modifier),GTK_WIN_POS_CENTER_ALWAYS);
+    gtk_widget_show(modifier);
+     
+    sscanf(d, "%d/%d/%d", &p.d.jour, &p.d.mois, &p.d.annee);
+   
+     nomproduit= lookup_widget(modifier, "entry5_tesnim_modif_nom");
+     codeproduit = lookup_widget(modifier, "entry6_tesnim_modif_code");
+     quantite = lookup_widget(modifier, "entry8_tes_modif_quantite");
+     prix= lookup_widget(modifier, "entry7_tes_modif_prix");
+   
+   
+   
+    jour = lookup_widget(modifier, "spinbutton4_tes_modif_jour");
+    mois = lookup_widget(modifier, "spinbutton5_tes_modif_mois");
+    annee = lookup_widget(modifier, "spinbutton6_tes_modifannee");
+    depot = lookup_widget(modifier, "radiobutton3_tes_modif_depot");
+    retrait = lookup_widget(modifier, "radiobutton4_tes_modif_retrait");
+   
+    gtk_entry_set_text(GTK_ENTRY(nomproduit), b);
+    gtk_entry_set_text(GTK_ENTRY(codeproduit), c);
+    gtk_entry_set_text(GTK_ENTRY(quantite), e);
+    gtk_entry_set_text(GTK_ENTRY(prix), f);
+   
+    gtk_spin_button_set_value(GTK_SPIN_BUTTON(jour), p.d.jour);
+    gtk_spin_button_set_value(GTK_SPIN_BUTTON(mois), p.d.mois);
+    gtk_spin_button_set_value(GTK_SPIN_BUTTON(annee), p.d.annee);
+ 
+       
+    if ((strcmp(p.type, "depot") == 0))
+    {
+      gtk_toggle_button_set_active(GTK_RADIO_BUTTON(depot), 1);
+      gtk_toggle_button_set_active(GTK_RADIO_BUTTON(retrait), 0);
+    }
+    else if ((strcmp(p.type, "retrait") == 0))
+    {
+      gtk_toggle_button_set_active(GTK_RADIO_BUTTON(depot), 0);
+      gtk_toggle_button_set_active(GTK_RADIO_BUTTON(retrait), 1);
+}
+}
+
+
+void
+on_button4_tesnime_affichage_rechercher_clicked
+                                        (GtkButton       *button,
+                                        gpointer         user_data)
+{
+produit p;
+  GtkWidget *affichage;
+  GtkWidget *entry9_recherche;
+  GtkWidget *treeview;
+  FILE *f;
+  FILE *f2;
+  char code[30];
+
+  affichage = lookup_widget(button, "tesnime_affichage");
+  entry9_recherche = lookup_widget(button, "entry9_recherche_tesnime");
+  strcpy(id, gtk_entry_get_text(GTK_ENTRY(entry9_recherche)));
+  f = fopen("produits.txt", "r");
+
+  if (f != NULL)
+  {
+    while (fscanf(f, "%s %s %s %s %s %s %s\n", p.categorie,p.nom, p.code, p.quantite, p.prix, p.date, p.type) != EOF)
+    {
+      f2 = fopen("recherche.txt", "a+");
+      if (f2 != NULL)
+      {
+        if ((strcmp(p.code,id ) == 0))
+        {
+          fprintf(f2, "%s %s %s %s %s %s %s\n", p.categorie, p.nom, p.code, p.quantite,p.prix,p.date, p.type);
+        }
+        treeview = lookup_widget(affichage, "tesnime_treeview");
+        fclose(f2);
+        recherche(treeview);
+        
+      }
+    }
+
+    fclose(f);
+  }
+  //remove("recherche.txt");
+}
+
+
+
+
+void
+on_button5_tesnime_afficher__clicked   (GtkButton       *button,
+                                        gpointer         user_data)
+{
+GtkWidget *fenetre_afficher;
+  GtkWidget *treeview;
+
+  //fenetre_afficher = lookup_widget(button, "tesnime_affichage");
+  treeview = lookup_widget(button, "tesnime_treeview");
+  afficher(treeview);
+}
+
+
+void
+on_radiobutton2_tes_ajouter_retrait_clicked
+                                        (GtkButton       *button,
+                                        gpointer         user_data)
+{
+
+}
+
+
+void
+on_radiobutton1_tes_ajout_depot_clicked
+                                        (GtkButton       *button,
+                                        gpointer         user_data)
+{
+
+}
+
+
+
+
+
+
+
+void
+on_button7_tesnim_retour_clicked       (GtkButton       *button,
+                                        gpointer         user_data)
+{
+GtkWidget *fenetre_ajout;
+  GtkWidget *fenetre_afficher;
+  fenetre_ajout = lookup_widget(button, "tesnime_ajouter");
+  gtk_widget_destroy(fenetre_ajout);
+  //fenetre_afficher = lookup_widget(button, "tesnime_ajouter");
+  fenetre_afficher = create_tesnime_affichage();
+  //gtk_window_set_position(GTK_WINDOW(fenetre_afficher),GTK_WIN_POS_CENTER_ALWAYS);
+  gtk_widget_show(fenetre_afficher);
+}
+
+
+
+
+
+
+void
+on_radiobutton3_tes_modif_depot_clicked
+                                        (GtkButton       *button,
+                                        gpointer         user_data)
+{
+
+}
+
+
+void
+on_radiobutton4_tes_modif_retrait_clicked
+                                        (GtkButton       *button,
+                                        gpointer         user_data)
+{
+
+}
+
+
+void
+on_button8_valider_tes_modiffier_clicked
+                                        (GtkButton       *button,
+                                        gpointer         user_data)
+{
+
+produit p;
+ 
+ 
+  GtkWidget *nom;
+  GtkWidget *code;
+  GtkWidget *prix;
+  GtkWidget *quantite;
+  GtkWidget *jour;
+  GtkWidget *mois;
+  GtkWidget *annee;
+  GtkWidget *categorie;
+  char *file="produits.txt";
+ 
+   
+  jour = lookup_widget(button, "spinbutton4_tes_modif_jour");
+  mois = lookup_widget(button, "spinbutton5_tes_modif_mois");
+  annee = lookup_widget(button, "spinbutton6_tes_modifannee");
+  nom = lookup_widget(button, "entry5_tesnim_modif_nom");
+  code = lookup_widget(button, "entry6_tesnim_modif_code");
+  prix = lookup_widget(button, "entry7_tes_modif_prix");
+  quantite = lookup_widget(button, "entry8_tes_modif_quantite");
+  categorie=lookup_widget(button,"combobox2_tesnim_cate_modif");
+  
+ 
+  strcpy(p.nom, gtk_entry_get_text(GTK_ENTRY(nom)));
+  strcpy(p.quantite, gtk_entry_get_text(GTK_ENTRY(quantite)));
+  strcpy(p.prix, gtk_entry_get_text(GTK_ENTRY(prix)));
+  strcpy(p.code, gtk_entry_get_text(GTK_ENTRY(code)));
+  strcpy(p.categorie,gtk_combo_box_get_active_text(GTK_COMBO_BOX(categorie)));
+  p.d.jour = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(jour));
+  p.d.mois = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(mois));
+  p.d.annee = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(annee));
+  sprintf(p.date, "%d/%d/%d", p.d.jour, p.d.mois, p.d.annee);
+  strcpy(p.type,"depot");
+	switch(radio_type)
+	{
+		case 1 : strcpy(p.type,"depot");
+		break;
+		case 0 : strcpy(p.type,"retrait");
+		break;
+		default : strcpy(p.type,"depot");
+		break;
+	}
+  modification(file,p);
+}
+
+
+
+void
+on_button9_retour_tes_modifier_clicked (GtkButton       *button,
+                                        gpointer         user_data)
+{
+GtkWidget *fenetre_ajout;
+  GtkWidget *fenetre_afficher;
+  fenetre_ajout = lookup_widget(button, "tesnime_modifier");
+  gtk_widget_destroy(fenetre_ajout);
+  //fenetre_afficher = lookup_widget(button, "tesnime_modifier");
+  fenetre_afficher = create_tesnime_affichage();
+  gtk_window_set_position(GTK_WINDOW(fenetre_afficher),GTK_WIN_POS_CENTER_ALWAYS);
+  gtk_widget_show(fenetre_afficher);
+}
+
+
+
+void
+on_radiobutton1_tes_ajout_depot_toggled
+                                        (GtkToggleButton *togglebutton,
+                                        gpointer         user_data)
+{
+if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(togglebutton)))
+radio_type=1;
+}
+
+
+void
+on_radiobutton2_tes_ajouter_retrait_toggled
+                                        (GtkToggleButton *togglebutton,
+                                        gpointer         user_data)
+{
+if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(togglebutton)))
+radio_type=0;
+}
+
+
+void
+on_button6_tesnim_ajouter_valider_clicked
+                                        (GtkButton       *button,
+                                        gpointer         user_data)
+{
+produit p;
+ 
+ 
+  GtkWidget *nom;
+  GtkWidget *code;
+  GtkWidget *prix;
+  GtkWidget *quantite;
+  GtkWidget *jour;
+  GtkWidget *mois;
+  GtkWidget *annee;
+  GtkWidget *categorie;
+
+ 
+   
+  jour = lookup_widget(button, "spinbutton1_jour_ajouter");
+  mois = lookup_widget(button, "spinbutton2_tes_mois_ajouter");
+  annee = lookup_widget(button, "spinbutton3_annee");
+  nom = lookup_widget(button, "entry1_tesnim_ajouter_nom");
+  code = lookup_widget(button, "entry2_tesnime_ajouter_code");
+  prix = lookup_widget(button, "entry3_tesnime_ajouter_prix");
+  quantite = lookup_widget(button, "entry4_tesnim_ajouter_quantite");
+  categorie=lookup_widget(button,"combobox1_tesnim_ajouter");
+  
+ 
+  strcpy(p.nom, gtk_entry_get_text(GTK_ENTRY(nom)));
+  strcpy(p.quantite, gtk_entry_get_text(GTK_ENTRY(quantite)));
+  strcpy(p.prix, gtk_entry_get_text(GTK_ENTRY(prix)));
+  strcpy(p.code, gtk_entry_get_text(GTK_ENTRY(code)));
+  strcpy(p.categorie,gtk_combo_box_get_active_text(GTK_COMBO_BOX(categorie)));
+  p.d.jour = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(jour));
+  p.d.mois = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(mois));
+  p.d.annee = gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(annee));
+  sprintf(p.date, "%d/%d/%d", p.d.jour, p.d.mois, p.d.annee);
+
+	switch(radio_type)
+	{
+		case 1 : strcpy(p.type,"depot");
+		break;
+		case 0 : strcpy(p.type,"retrait");
+		break;
+		default : strcpy(p.type,"depot");
+		break;
+	}
+  ajout(p);
+}
+
+
+void
+on_tesnime_treeview_row1_activated     (GtkTreeView     *treeview,
+                                        GtkTreePath     *path,
+                                        GtkTreeViewColumn *column,
+                                        gpointer         user_data)
+{
+produit p ;
+  GtkTreeIter iter;
+  gchar *categorie;
+  gchar *nom ;
+  gchar *code ;
+  gchar *type;
+  gchar *quantite ;
+  gchar *date;
+  gchar *prix;
+
+  
+ 
+ 
+//affichage = lookup_widget(treeview, "tesnime_affichage");
+  GtkTreeModel *model = gtk_tree_view_get_model(treeview);
+  if (gtk_tree_model_get_iter(model, &iter, path))
+  {
+    gtk_tree_model_get(GTK_LIST_STORE(model), &iter, 0, &categorie, 1, &nom, 2, &code, 3, &type, 4, &quantite, 5, &prix, 6,&date, -1);
+   
+    strcpy(a, categorie);
+    strcpy(b, nom);
+    strcpy(c, code);
+    strcpy(d, type);
+    strcpy(e, quantite);
+    strcpy(f, prix);
+    strcpy(g, date);
+}
+}
+void
+on_ts_deconnect_button_clicked
+                                        (GtkButton       *button,
+                                        gpointer         user_data){
+  
+  GtkWidget *authentification;
+  GtkWidget *admin;
+  
+  authentification = create_authentification();
+  gtk_widget_show (authentification);
+  admin = lookup_widget(button, "tesnime_affichage");
+  gtk_widget_hide (admin);
+                                        }
+                                        

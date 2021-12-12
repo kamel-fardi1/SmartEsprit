@@ -3434,4 +3434,895 @@ create_Med_kh_confirme (void)
 
   return Med_kh_confirme;
 }
+/////////////////////////////////tesnime//////////////////////////////////////
+GtkWidget*
+create_tesnime_affichage (void)
+{
+  GtkWidget *tesnime_affichage;
+  GtkWidget *fixed1_tesnime_affichage;
+  GtkWidget *tesnime_treeview;
+  GtkWidget *button1_tesnim_affichage_ajouter;
+  GtkWidget *alignment1_tesnimekabous;
+  GtkWidget *hbox1_tesnime_kabous;
+  GtkWidget *image1_tesnimekabous;
+  GtkWidget *label2_tesnime;
+  GtkWidget *button2_tesnime_affichage_modifier;
+  GtkWidget *alignment2_tesnime_kabous;
+  GtkWidget *hbox2_tesnime;
+  GtkWidget *image2_tesnime;
+  GtkWidget *label3_tesnime;
+  GtkWidget *button4_tesnime_affichage_rechercher;
+  GtkWidget *alignment4_tesnime_kabous;
+  GtkWidget *hbox4_tesnime;
+  GtkWidget *image4_tesnime;
+  GtkWidget *label5_tesnime;
+  GtkWidget *button5_tesnime_afficher_;
+  GtkWidget *alignment5_tesnimekabous;
+  GtkWidget *hbox5_tesnime;
+  GtkWidget *label6_tesnimekabous;
+  GtkWidget *entry9_recherche_tesnime;
+  GtkWidget *button3_tessnime_affichage_supprimer;
+  GtkWidget *alignment3_tesnime_kabous;
+  GtkWidget *hbox3_tesnime;
+  GtkWidget *image3_tesnime;
+  GtkWidget *label4_tesnime;
+  GtkWidget *label1_tesnime;
+  GtkWidget *ts_deconnect_button;
+  GtkWidget *ts_deconnect_button_alignment;
+  GtkWidget *ts_deconnect_button_hbox;
+  GtkWidget *ts_deconnect_button_image;
+  GtkWidget *ts_deconnect_button_label;
 
+  tesnime_affichage = gtk_window_new (GTK_WINDOW_TOPLEVEL);
+  gtk_widget_set_size_request (tesnime_affichage, 1000, 800);
+  gtk_window_set_title (GTK_WINDOW (tesnime_affichage), _("affichage"));
+  gtk_window_set_position (GTK_WINDOW (tesnime_affichage), GTK_WIN_POS_CENTER);
+  gtk_window_set_resizable (GTK_WINDOW (tesnime_affichage), FALSE);
+
+  fixed1_tesnime_affichage = gtk_fixed_new ();
+  gtk_widget_show (fixed1_tesnime_affichage);
+  gtk_container_add (GTK_CONTAINER (tesnime_affichage), fixed1_tesnime_affichage);
+
+  tesnime_treeview = gtk_tree_view_new ();
+  gtk_widget_show (tesnime_treeview);
+  gtk_fixed_put (GTK_FIXED (fixed1_tesnime_affichage), tesnime_treeview, 64, 96);
+  gtk_widget_set_size_request (tesnime_treeview, 712, 344);
+
+  button1_tesnim_affichage_ajouter = gtk_button_new ();
+  gtk_widget_show (button1_tesnim_affichage_ajouter);
+  gtk_fixed_put (GTK_FIXED (fixed1_tesnime_affichage), button1_tesnim_affichage_ajouter, 32, 488);
+  gtk_widget_set_size_request (button1_tesnim_affichage_ajouter, 200, 120);
+
+  alignment1_tesnimekabous = gtk_alignment_new (0.5, 0.5, 0, 0);
+  gtk_widget_show (alignment1_tesnimekabous);
+  gtk_container_add (GTK_CONTAINER (button1_tesnim_affichage_ajouter), alignment1_tesnimekabous);
+
+  hbox1_tesnime_kabous = gtk_hbox_new (FALSE, 2);
+  gtk_widget_show (hbox1_tesnime_kabous);
+  gtk_container_add (GTK_CONTAINER (alignment1_tesnimekabous), hbox1_tesnime_kabous);
+
+  image1_tesnimekabous = gtk_image_new_from_stock ("gtk-add", GTK_ICON_SIZE_BUTTON);
+  gtk_widget_show (image1_tesnimekabous);
+  gtk_box_pack_start (GTK_BOX (hbox1_tesnime_kabous), image1_tesnimekabous, FALSE, FALSE, 0);
+
+  label2_tesnime = gtk_label_new_with_mnemonic (_("<span size=\"20000\">AJOUTER</span>"));
+  gtk_widget_show (label2_tesnime);
+  gtk_box_pack_start (GTK_BOX (hbox1_tesnime_kabous), label2_tesnime, FALSE, FALSE, 0);
+  gtk_label_set_use_markup (GTK_LABEL (label2_tesnime), TRUE);
+
+  button2_tesnime_affichage_modifier = gtk_button_new ();
+  gtk_widget_show (button2_tesnime_affichage_modifier);
+  gtk_fixed_put (GTK_FIXED (fixed1_tesnime_affichage), button2_tesnime_affichage_modifier, 256, 616);
+  gtk_widget_set_size_request (button2_tesnime_affichage_modifier, 224, 117);
+
+  alignment2_tesnime_kabous = gtk_alignment_new (0.5, 0.5, 0, 0);
+  gtk_widget_show (alignment2_tesnime_kabous);
+  gtk_container_add (GTK_CONTAINER (button2_tesnime_affichage_modifier), alignment2_tesnime_kabous);
+
+  hbox2_tesnime = gtk_hbox_new (FALSE, 2);
+  gtk_widget_show (hbox2_tesnime);
+  gtk_container_add (GTK_CONTAINER (alignment2_tesnime_kabous), hbox2_tesnime);
+
+  image2_tesnime = gtk_image_new_from_stock ("gtk-edit", GTK_ICON_SIZE_BUTTON);
+  gtk_widget_show (image2_tesnime);
+  gtk_box_pack_start (GTK_BOX (hbox2_tesnime), image2_tesnime, FALSE, FALSE, 0);
+
+  label3_tesnime = gtk_label_new (_("<span size=\"20000\">MODIFIER</span>"));
+  gtk_widget_show (label3_tesnime);
+  gtk_box_pack_start (GTK_BOX (hbox2_tesnime), label3_tesnime, FALSE, FALSE, 0);
+  gtk_label_set_use_markup (GTK_LABEL (label3_tesnime), TRUE);
+
+  button4_tesnime_affichage_rechercher = gtk_button_new ();
+  gtk_widget_show (button4_tesnime_affichage_rechercher);
+  gtk_fixed_put (GTK_FIXED (fixed1_tesnime_affichage), button4_tesnime_affichage_rechercher, 760, 608);
+  gtk_widget_set_size_request (button4_tesnime_affichage_rechercher, 208, 117);
+
+  alignment4_tesnime_kabous = gtk_alignment_new (0.5, 0.5, 0, 0);
+  gtk_widget_show (alignment4_tesnime_kabous);
+  gtk_container_add (GTK_CONTAINER (button4_tesnime_affichage_rechercher), alignment4_tesnime_kabous);
+
+  hbox4_tesnime = gtk_hbox_new (FALSE, 2);
+  gtk_widget_show (hbox4_tesnime);
+  gtk_container_add (GTK_CONTAINER (alignment4_tesnime_kabous), hbox4_tesnime);
+
+  image4_tesnime = gtk_image_new_from_stock ("gtk-find", GTK_ICON_SIZE_BUTTON);
+  gtk_widget_show (image4_tesnime);
+  gtk_box_pack_start (GTK_BOX (hbox4_tesnime), image4_tesnime, FALSE, FALSE, 0);
+
+  label5_tesnime = gtk_label_new_with_mnemonic (_("<span size=\"20000\">RECHERCHER</span>"));
+  gtk_widget_show (label5_tesnime);
+  gtk_box_pack_start (GTK_BOX (hbox4_tesnime), label5_tesnime, FALSE, FALSE, 0);
+  gtk_label_set_use_markup (GTK_LABEL (label5_tesnime), TRUE);
+
+  button5_tesnime_afficher_ = gtk_button_new ();
+  gtk_widget_show (button5_tesnime_afficher_);
+  gtk_fixed_put (GTK_FIXED (fixed1_tesnime_affichage), button5_tesnime_afficher_, 800, 168);
+  gtk_widget_set_size_request (button5_tesnime_afficher_, 176, 125);
+
+  alignment5_tesnimekabous = gtk_alignment_new (0.5, 0.5, 0, 0);
+  gtk_widget_show (alignment5_tesnimekabous);
+  gtk_container_add (GTK_CONTAINER (button5_tesnime_afficher_), alignment5_tesnimekabous);
+
+  hbox5_tesnime = gtk_hbox_new (FALSE, 2);
+  gtk_widget_show (hbox5_tesnime);
+  gtk_container_add (GTK_CONTAINER (alignment5_tesnimekabous), hbox5_tesnime);
+
+  label6_tesnimekabous = gtk_label_new_with_mnemonic (_("<span size=\"20000\" color=\"red\">AFFICHER</span>"));
+  gtk_widget_show (label6_tesnimekabous);
+  gtk_box_pack_start (GTK_BOX (hbox5_tesnime), label6_tesnimekabous, FALSE, FALSE, 0);
+  gtk_label_set_use_markup (GTK_LABEL (label6_tesnimekabous), TRUE);
+
+  entry9_recherche_tesnime = gtk_entry_new ();
+  gtk_widget_show (entry9_recherche_tesnime);
+  gtk_fixed_put (GTK_FIXED (fixed1_tesnime_affichage), entry9_recherche_tesnime, 760, 512);
+  gtk_widget_set_size_request (entry9_recherche_tesnime, 200, 75);
+  gtk_entry_set_invisible_char (GTK_ENTRY (entry9_recherche_tesnime), 8226);
+
+  button3_tessnime_affichage_supprimer = gtk_button_new ();
+  gtk_widget_show (button3_tessnime_affichage_supprimer);
+  gtk_fixed_put (GTK_FIXED (fixed1_tesnime_affichage), button3_tessnime_affichage_supprimer, 504, 496);
+  gtk_widget_set_size_request (button3_tessnime_affichage_supprimer, 216, 117);
+
+  alignment3_tesnime_kabous = gtk_alignment_new (0.5, 0.5, 0, 0);
+  gtk_widget_show (alignment3_tesnime_kabous);
+  gtk_container_add (GTK_CONTAINER (button3_tessnime_affichage_supprimer), alignment3_tesnime_kabous);
+
+  hbox3_tesnime = gtk_hbox_new (FALSE, 2);
+  gtk_widget_show (hbox3_tesnime);
+  gtk_container_add (GTK_CONTAINER (alignment3_tesnime_kabous), hbox3_tesnime);
+
+  image3_tesnime = gtk_image_new_from_stock ("gtk-delete", GTK_ICON_SIZE_BUTTON);
+  gtk_widget_show (image3_tesnime);
+  gtk_box_pack_start (GTK_BOX (hbox3_tesnime), image3_tesnime, FALSE, FALSE, 0);
+  gtk_widget_set_size_request (image3_tesnime, 29, -1);
+
+  label4_tesnime = gtk_label_new_with_mnemonic (_("<span size=\"20000\">SUPPRIMER</span>"));
+  gtk_widget_show (label4_tesnime);
+  gtk_box_pack_start (GTK_BOX (hbox3_tesnime), label4_tesnime, FALSE, FALSE, 0);
+  gtk_label_set_use_markup (GTK_LABEL (label4_tesnime), TRUE);
+
+  label1_tesnime = gtk_label_new (_("<span  color=\"red\" size=\"30000\">LIST VIEW</span>"));
+  gtk_widget_show (label1_tesnime);
+  gtk_fixed_put (GTK_FIXED (fixed1_tesnime_affichage), label1_tesnime, 216, 24);
+  gtk_widget_set_size_request (label1_tesnime, 304, 64);
+  gtk_label_set_use_markup (GTK_LABEL (label1_tesnime), TRUE);
+
+   ts_deconnect_button = gtk_button_new ();
+  gtk_widget_show (ts_deconnect_button);
+  gtk_fixed_put (GTK_FIXED (fixed1_tesnime_affichage), ts_deconnect_button, 784, 24);
+  gtk_widget_set_size_request (ts_deconnect_button, 200, 50);
+
+  ts_deconnect_button_alignment = gtk_alignment_new (0.5, 0.5, 0, 0);
+  gtk_widget_show (ts_deconnect_button_alignment);
+  gtk_container_add (GTK_CONTAINER (ts_deconnect_button), ts_deconnect_button_alignment);
+
+  ts_deconnect_button_hbox = gtk_hbox_new (FALSE, 2);
+  gtk_widget_show (ts_deconnect_button_hbox);
+  gtk_container_add (GTK_CONTAINER (ts_deconnect_button_alignment), ts_deconnect_button_hbox);
+
+  ts_deconnect_button_image = gtk_image_new_from_icon_name ("gtk-quit", GTK_ICON_SIZE_BUTTON);
+  gtk_image_set_pixel_size (ts_deconnect_button_image, 25);
+  gtk_widget_show (ts_deconnect_button_image);
+  gtk_box_pack_start (GTK_BOX (ts_deconnect_button_hbox), ts_deconnect_button_image, FALSE, FALSE, 0);
+
+  ts_deconnect_button_label = gtk_label_new_with_mnemonic (_("<span color=\"red\"><b>D\303\251connecter</b></span>"));
+  gtk_widget_show (ts_deconnect_button_label);
+  gtk_box_pack_start (GTK_BOX (ts_deconnect_button_hbox), ts_deconnect_button_label, FALSE, FALSE, 0);
+  gtk_label_set_use_markup (GTK_LABEL (ts_deconnect_button_label), TRUE);
+
+
+  g_signal_connect ((gpointer) tesnime_treeview, "row_activated",
+                    G_CALLBACK (on_tesnime_treeview_row1_activated),
+                    NULL);
+  g_signal_connect ((gpointer) button1_tesnim_affichage_ajouter, "clicked",
+                    G_CALLBACK (on_button1_tesnim_affichage_ajouter_clicked),
+                    NULL);
+  g_signal_connect ((gpointer) button2_tesnime_affichage_modifier, "clicked",
+                    G_CALLBACK (on_button2_tesnime_affichage_modifier_clicked),
+                    NULL);
+  g_signal_connect ((gpointer) button4_tesnime_affichage_rechercher, "clicked",
+                    G_CALLBACK (on_button4_tesnime_affichage_rechercher_clicked),
+                    NULL);
+  g_signal_connect ((gpointer) button5_tesnime_afficher_, "clicked",
+                    G_CALLBACK (on_button5_tesnime_afficher__clicked),
+                    NULL);
+  g_signal_connect ((gpointer) button3_tessnime_affichage_supprimer, "clicked",
+                    G_CALLBACK (on_button3_tessnime_affichage_supprimer_clicked),
+                    NULL);
+   g_signal_connect ((gpointer) ts_deconnect_button, "clicked",
+                    G_CALLBACK (on_ts_deconnect_button_clicked),
+                    NULL);                  
+
+  /* Store pointers to all widgets, for use by lookup_widget(). */
+  GLADE_HOOKUP_OBJECT_NO_REF (tesnime_affichage, tesnime_affichage, "tesnime_affichage");
+  GLADE_HOOKUP_OBJECT (tesnime_affichage, fixed1_tesnime_affichage, "fixed1_tesnime_affichage");
+  GLADE_HOOKUP_OBJECT (tesnime_affichage, tesnime_treeview, "tesnime_treeview");
+  GLADE_HOOKUP_OBJECT (tesnime_affichage, button1_tesnim_affichage_ajouter, "button1_tesnim_affichage_ajouter");
+  GLADE_HOOKUP_OBJECT (tesnime_affichage, alignment1_tesnimekabous, "alignment1_tesnimekabous");
+  GLADE_HOOKUP_OBJECT (tesnime_affichage, hbox1_tesnime_kabous, "hbox1_tesnime_kabous");
+  GLADE_HOOKUP_OBJECT (tesnime_affichage, image1_tesnimekabous, "image1_tesnimekabous");
+  GLADE_HOOKUP_OBJECT (tesnime_affichage, label2_tesnime, "label2_tesnime");
+  GLADE_HOOKUP_OBJECT (tesnime_affichage, button2_tesnime_affichage_modifier, "button2_tesnime_affichage_modifier");
+  GLADE_HOOKUP_OBJECT (tesnime_affichage, alignment2_tesnime_kabous, "alignment2_tesnime_kabous");
+  GLADE_HOOKUP_OBJECT (tesnime_affichage, hbox2_tesnime, "hbox2_tesnime");
+  GLADE_HOOKUP_OBJECT (tesnime_affichage, image2_tesnime, "image2_tesnime");
+  GLADE_HOOKUP_OBJECT (tesnime_affichage, label3_tesnime, "label3_tesnime");
+  GLADE_HOOKUP_OBJECT (tesnime_affichage, button4_tesnime_affichage_rechercher, "button4_tesnime_affichage_rechercher");
+  GLADE_HOOKUP_OBJECT (tesnime_affichage, alignment4_tesnime_kabous, "alignment4_tesnime_kabous");
+  GLADE_HOOKUP_OBJECT (tesnime_affichage, hbox4_tesnime, "hbox4_tesnime");
+  GLADE_HOOKUP_OBJECT (tesnime_affichage, image4_tesnime, "image4_tesnime");
+  GLADE_HOOKUP_OBJECT (tesnime_affichage, label5_tesnime, "label5_tesnime");
+  GLADE_HOOKUP_OBJECT (tesnime_affichage, button5_tesnime_afficher_, "button5_tesnime_afficher_");
+  GLADE_HOOKUP_OBJECT (tesnime_affichage, alignment5_tesnimekabous, "alignment5_tesnimekabous");
+  GLADE_HOOKUP_OBJECT (tesnime_affichage, hbox5_tesnime, "hbox5_tesnime");
+  GLADE_HOOKUP_OBJECT (tesnime_affichage, label6_tesnimekabous, "label6_tesnimekabous");
+  GLADE_HOOKUP_OBJECT (tesnime_affichage, entry9_recherche_tesnime, "entry9_recherche_tesnime");
+  GLADE_HOOKUP_OBJECT (tesnime_affichage, button3_tessnime_affichage_supprimer, "button3_tessnime_affichage_supprimer");
+  GLADE_HOOKUP_OBJECT (tesnime_affichage, alignment3_tesnime_kabous, "alignment3_tesnime_kabous");
+  GLADE_HOOKUP_OBJECT (tesnime_affichage, hbox3_tesnime, "hbox3_tesnime");
+  GLADE_HOOKUP_OBJECT (tesnime_affichage, image3_tesnime, "image3_tesnime");
+  GLADE_HOOKUP_OBJECT (tesnime_affichage, label4_tesnime, "label4_tesnime");
+  GLADE_HOOKUP_OBJECT (tesnime_affichage, label1_tesnime, "label1_tesnime");
+    GLADE_HOOKUP_OBJECT (tesnime_affichage, ts_deconnect_button, "ts_deconnect_button");
+  GLADE_HOOKUP_OBJECT (tesnime_affichage, ts_deconnect_button_alignment, "ts_deconnect_button_alignment");
+  GLADE_HOOKUP_OBJECT (tesnime_affichage, ts_deconnect_button_hbox, "ts_deconnect_button_hbox");
+  GLADE_HOOKUP_OBJECT (tesnime_affichage, ts_deconnect_button_image, "ts_deconnect_button_image");
+  GLADE_HOOKUP_OBJECT (tesnime_affichage, ts_deconnect_button_label, "ts_deconnect_button_label");
+  return tesnime_affichage;
+}
+
+GtkWidget*
+create_tesnime_ajouter (void)
+{
+  GtkWidget *tesnime_ajouter;
+  GtkWidget *fixed2_ajouter_tesnime;
+  GtkWidget *entry1_tesnim_ajouter_nom;
+  GtkWidget *entry2_tesnime_ajouter_code;
+  GtkWidget *entry3_tesnime_ajouter_prix;
+  GtkWidget *entry4_tesnim_ajouter_quantite;
+  GtkObject *spinbutton1_jour_ajouter_adj;
+  GtkWidget *spinbutton1_jour_ajouter;
+  GtkObject *spinbutton2_tes_mois_ajouter_adj;
+  GtkWidget *spinbutton2_tes_mois_ajouter;
+  GtkObject *spinbutton3_annee_adj;
+  GtkWidget *spinbutton3_annee;
+  GtkWidget *button7_tesnim_retour;
+  GtkWidget *alignment9_tesnime;
+  GtkWidget *hbox9_tesnime;
+  GtkWidget *image6_tesnime;
+  GtkWidget *label21_tesnime_retour;
+  GtkWidget *radiobutton1_tes_ajout_depot;
+  GSList *radiobutton1_tes_ajout_depot_group = NULL;
+  GtkWidget *alignment6_tesnime;
+  GtkWidget *hbox6_tesnime;
+  GtkWidget *label14_tesnime_depot_ajouter;
+  GtkWidget *radiobutton2_tes_ajouter_retrait;
+  GtkWidget *alignment7_tesnime;
+  GtkWidget *hbox7_tesnime;
+  GtkWidget *label15_tes_retriet_ajouter;
+  GtkWidget *button6_tesnim_ajouter_valider;
+  GtkWidget *alignment13_tesnime;
+  GtkWidget *hbox13_tesnime;
+  GtkWidget *TES_AJOUT_image;
+  GtkWidget *TESN_AJOUT_label;
+  GtkWidget *label13_tes_ajouter_type;
+  GtkWidget *label17_tes_jour;
+  GtkWidget *label18_tes_mois_ajouter;
+  GtkWidget *label19_tes_annee_ajout;
+  GtkWidget *label16_tes_date_ajout;
+  GtkWidget *combobox1_tesnim_ajouter;
+  GtkWidget *label12_tesnim_ajouter_quantite;
+  GtkWidget *label11_tes_ajouter_prix;
+  GtkWidget *label8_tes_ajouter_categorie;
+  GtkWidget *label9_tes_ajouter_nom;
+  GtkWidget *label10_tes_ajout_nom;
+
+  tesnime_ajouter = gtk_window_new (GTK_WINDOW_TOPLEVEL);
+  gtk_widget_set_size_request (tesnime_ajouter, 1000, 800);
+  gtk_window_set_title (GTK_WINDOW (tesnime_ajouter), _("ajouter"));
+  gtk_window_set_position (GTK_WINDOW (tesnime_ajouter), GTK_WIN_POS_CENTER);
+  gtk_window_set_resizable (GTK_WINDOW (tesnime_ajouter), FALSE);
+
+  fixed2_ajouter_tesnime = gtk_fixed_new ();
+  gtk_widget_show (fixed2_ajouter_tesnime);
+  gtk_container_add (GTK_CONTAINER (tesnime_ajouter), fixed2_ajouter_tesnime);
+
+  entry1_tesnim_ajouter_nom = gtk_entry_new ();
+  gtk_widget_show (entry1_tesnim_ajouter_nom);
+  gtk_fixed_put (GTK_FIXED (fixed2_ajouter_tesnime), entry1_tesnim_ajouter_nom, 208, 184);
+  gtk_widget_set_size_request (entry1_tesnim_ajouter_nom, 184, 91);
+  gtk_entry_set_invisible_char (GTK_ENTRY (entry1_tesnim_ajouter_nom), 8226);
+
+  entry2_tesnime_ajouter_code = gtk_entry_new ();
+  gtk_widget_show (entry2_tesnime_ajouter_code);
+  gtk_fixed_put (GTK_FIXED (fixed2_ajouter_tesnime), entry2_tesnime_ajouter_code, 208, 360);
+  gtk_widget_set_size_request (entry2_tesnime_ajouter_code, 184, 83);
+  gtk_entry_set_invisible_char (GTK_ENTRY (entry2_tesnime_ajouter_code), 8226);
+
+  entry3_tesnime_ajouter_prix = gtk_entry_new ();
+  gtk_widget_show (entry3_tesnime_ajouter_prix);
+  gtk_fixed_put (GTK_FIXED (fixed2_ajouter_tesnime), entry3_tesnime_ajouter_prix, 656, 48);
+  gtk_widget_set_size_request (entry3_tesnime_ajouter_prix, 184, 88);
+  gtk_entry_set_invisible_char (GTK_ENTRY (entry3_tesnime_ajouter_prix), 8226);
+
+  entry4_tesnim_ajouter_quantite = gtk_entry_new ();
+  gtk_widget_show (entry4_tesnim_ajouter_quantite);
+  gtk_fixed_put (GTK_FIXED (fixed2_ajouter_tesnime), entry4_tesnim_ajouter_quantite, 656, 184);
+  gtk_widget_set_size_request (entry4_tesnim_ajouter_quantite, 184, 88);
+  gtk_entry_set_invisible_char (GTK_ENTRY (entry4_tesnim_ajouter_quantite), 8226);
+
+  spinbutton1_jour_ajouter_adj = gtk_adjustment_new (1, 1, 31, 1, 10, 10);
+  spinbutton1_jour_ajouter = gtk_spin_button_new (GTK_ADJUSTMENT (spinbutton1_jour_ajouter_adj), 1, 0);
+  gtk_widget_show (spinbutton1_jour_ajouter);
+  gtk_fixed_put (GTK_FIXED (fixed2_ajouter_tesnime), spinbutton1_jour_ajouter, 736, 544);
+  gtk_widget_set_size_request (spinbutton1_jour_ajouter, 120, 32);
+
+  spinbutton2_tes_mois_ajouter_adj = gtk_adjustment_new (8, 1, 12, 1, 10, 10);
+  spinbutton2_tes_mois_ajouter = gtk_spin_button_new (GTK_ADJUSTMENT (spinbutton2_tes_mois_ajouter_adj), 1, 0);
+  gtk_widget_show (spinbutton2_tes_mois_ajouter);
+  gtk_fixed_put (GTK_FIXED (fixed2_ajouter_tesnime), spinbutton2_tes_mois_ajouter, 736, 632);
+  gtk_widget_set_size_request (spinbutton2_tes_mois_ajouter, 120, 32);
+
+  spinbutton3_annee_adj = gtk_adjustment_new (2021, 2000, 2023, 1, 10, 10);
+  spinbutton3_annee = gtk_spin_button_new (GTK_ADJUSTMENT (spinbutton3_annee_adj), 1, 0);
+  gtk_widget_show (spinbutton3_annee);
+  gtk_fixed_put (GTK_FIXED (fixed2_ajouter_tesnime), spinbutton3_annee, 736, 704);
+  gtk_widget_set_size_request (spinbutton3_annee, 120, 32);
+
+  button7_tesnim_retour = gtk_button_new ();
+  gtk_widget_show (button7_tesnim_retour);
+  gtk_fixed_put (GTK_FIXED (fixed2_ajouter_tesnime), button7_tesnim_retour, 248, 656);
+  gtk_widget_set_size_request (button7_tesnim_retour, 216, 120);
+
+  alignment9_tesnime = gtk_alignment_new (0.5, 0.5, 0, 0);
+  gtk_widget_show (alignment9_tesnime);
+  gtk_container_add (GTK_CONTAINER (button7_tesnim_retour), alignment9_tesnime);
+
+  hbox9_tesnime = gtk_hbox_new (FALSE, 2);
+  gtk_widget_show (hbox9_tesnime);
+  gtk_container_add (GTK_CONTAINER (alignment9_tesnime), hbox9_tesnime);
+
+  image6_tesnime = gtk_image_new_from_stock ("gtk-undo", GTK_ICON_SIZE_BUTTON);
+  gtk_widget_show (image6_tesnime);
+  gtk_box_pack_start (GTK_BOX (hbox9_tesnime), image6_tesnime, FALSE, FALSE, 0);
+
+  label21_tesnime_retour = gtk_label_new_with_mnemonic (_("<span size=\"23000\">RETOUR</span>"));
+  gtk_widget_show (label21_tesnime_retour);
+  gtk_box_pack_start (GTK_BOX (hbox9_tesnime), label21_tesnime_retour, FALSE, FALSE, 0);
+  gtk_label_set_use_markup (GTK_LABEL (label21_tesnime_retour), TRUE);
+
+  radiobutton1_tes_ajout_depot = gtk_radio_button_new (NULL);
+  gtk_widget_show (radiobutton1_tes_ajout_depot);
+  gtk_fixed_put (GTK_FIXED (fixed2_ajouter_tesnime), radiobutton1_tes_ajout_depot, 664, 376);
+  gtk_widget_set_size_request (radiobutton1_tes_ajout_depot, 120, 56);
+  gtk_radio_button_set_group (GTK_RADIO_BUTTON (radiobutton1_tes_ajout_depot), radiobutton1_tes_ajout_depot_group);
+  radiobutton1_tes_ajout_depot_group = gtk_radio_button_get_group (GTK_RADIO_BUTTON (radiobutton1_tes_ajout_depot));
+
+  alignment6_tesnime = gtk_alignment_new (0.5, 0.5, 0, 0);
+  gtk_widget_show (alignment6_tesnime);
+  gtk_container_add (GTK_CONTAINER (radiobutton1_tes_ajout_depot), alignment6_tesnime);
+
+  hbox6_tesnime = gtk_hbox_new (FALSE, 2);
+  gtk_widget_show (hbox6_tesnime);
+  gtk_container_add (GTK_CONTAINER (alignment6_tesnime), hbox6_tesnime);
+
+  label14_tesnime_depot_ajouter = gtk_label_new_with_mnemonic (_("<span size=\"23000\" color=\"green\">depot</span>"));
+  gtk_widget_show (label14_tesnime_depot_ajouter);
+  gtk_box_pack_start (GTK_BOX (hbox6_tesnime), label14_tesnime_depot_ajouter, FALSE, FALSE, 0);
+  gtk_label_set_use_markup (GTK_LABEL (label14_tesnime_depot_ajouter), TRUE);
+
+  radiobutton2_tes_ajouter_retrait = gtk_radio_button_new (NULL);
+  gtk_widget_show (radiobutton2_tes_ajouter_retrait);
+  gtk_fixed_put (GTK_FIXED (fixed2_ajouter_tesnime), radiobutton2_tes_ajouter_retrait, 824, 376);
+  gtk_widget_set_size_request (radiobutton2_tes_ajouter_retrait, 128, 48);
+  gtk_radio_button_set_group (GTK_RADIO_BUTTON (radiobutton2_tes_ajouter_retrait), radiobutton1_tes_ajout_depot_group);
+  radiobutton1_tes_ajout_depot_group = gtk_radio_button_get_group (GTK_RADIO_BUTTON (radiobutton2_tes_ajouter_retrait));
+
+  alignment7_tesnime = gtk_alignment_new (0.5, 0.5, 0, 0);
+  gtk_widget_show (alignment7_tesnime);
+  gtk_container_add (GTK_CONTAINER (radiobutton2_tes_ajouter_retrait), alignment7_tesnime);
+
+  hbox7_tesnime = gtk_hbox_new (FALSE, 2);
+  gtk_widget_show (hbox7_tesnime);
+  gtk_container_add (GTK_CONTAINER (alignment7_tesnime), hbox7_tesnime);
+
+  label15_tes_retriet_ajouter = gtk_label_new_with_mnemonic (_("<span size=\"23000\" color=\"green\">retrait</span>"));
+  gtk_widget_show (label15_tes_retriet_ajouter);
+  gtk_box_pack_start (GTK_BOX (hbox7_tesnime), label15_tes_retriet_ajouter, FALSE, FALSE, 0);
+  gtk_label_set_use_markup (GTK_LABEL (label15_tes_retriet_ajouter), TRUE);
+
+  button6_tesnim_ajouter_valider = gtk_button_new ();
+  gtk_widget_show (button6_tesnim_ajouter_valider);
+  gtk_fixed_put (GTK_FIXED (fixed2_ajouter_tesnime), button6_tesnim_ajouter_valider, 24, 536);
+  gtk_widget_set_size_request (button6_tesnim_ajouter_valider, 208, 125);
+
+  alignment13_tesnime = gtk_alignment_new (0.5, 0.5, 0, 0);
+  gtk_widget_show (alignment13_tesnime);
+  gtk_container_add (GTK_CONTAINER (button6_tesnim_ajouter_valider), alignment13_tesnime);
+
+  hbox13_tesnime = gtk_hbox_new (FALSE, 2);
+  gtk_widget_show (hbox13_tesnime);
+  gtk_container_add (GTK_CONTAINER (alignment13_tesnime), hbox13_tesnime);
+
+  TES_AJOUT_image = gtk_image_new_from_stock ("gtk-apply", GTK_ICON_SIZE_BUTTON);
+  gtk_widget_show (TES_AJOUT_image);
+  gtk_box_pack_start (GTK_BOX (hbox13_tesnime), TES_AJOUT_image, FALSE, FALSE, 0);
+
+  TESN_AJOUT_label = gtk_label_new_with_mnemonic (_("<span size=\"23000\">VALIDER</span>"));
+  gtk_widget_show (TESN_AJOUT_label);
+  gtk_box_pack_start (GTK_BOX (hbox13_tesnime), TESN_AJOUT_label, FALSE, FALSE, 0);
+  gtk_label_set_use_markup (GTK_LABEL (TESN_AJOUT_label), TRUE);
+
+  label13_tes_ajouter_type = gtk_label_new (_("<span size=\"23000\">type quantite</span>"));
+  gtk_widget_show (label13_tes_ajouter_type);
+  gtk_fixed_put (GTK_FIXED (fixed2_ajouter_tesnime), label13_tes_ajouter_type, 440, 368);
+  gtk_widget_set_size_request (label13_tes_ajouter_type, 200, 73);
+  gtk_label_set_use_markup (GTK_LABEL (label13_tes_ajouter_type), TRUE);
+
+  label17_tes_jour = gtk_label_new (_("<span size=\"23000\" color=\"green\">jour</span>"));
+  gtk_widget_show (label17_tes_jour);
+  gtk_fixed_put (GTK_FIXED (fixed2_ajouter_tesnime), label17_tes_jour, 624, 544);
+  gtk_widget_set_size_request (label17_tes_jour, 81, 32);
+  gtk_label_set_use_markup (GTK_LABEL (label17_tes_jour), TRUE);
+
+  label18_tes_mois_ajouter = gtk_label_new (_("<span color=\"green\" size=\"23000\">mois</span>"));
+  gtk_widget_show (label18_tes_mois_ajouter);
+  gtk_fixed_put (GTK_FIXED (fixed2_ajouter_tesnime), label18_tes_mois_ajouter, 616, 632);
+  gtk_widget_set_size_request (label18_tes_mois_ajouter, 88, 25);
+  gtk_label_set_use_markup (GTK_LABEL (label18_tes_mois_ajouter), TRUE);
+
+  label19_tes_annee_ajout = gtk_label_new (_("<span color=\"green\" size=\"23000\">annee</span>"));
+  gtk_widget_show (label19_tes_annee_ajout);
+  gtk_fixed_put (GTK_FIXED (fixed2_ajouter_tesnime), label19_tes_annee_ajout, 600, 704);
+  gtk_widget_set_size_request (label19_tes_annee_ajout, 104, 41);
+  gtk_label_set_use_markup (GTK_LABEL (label19_tes_annee_ajout), TRUE);
+
+  label16_tes_date_ajout = gtk_label_new (_("<span size=\"36000\">date</span>"));
+  gtk_widget_show (label16_tes_date_ajout);
+  gtk_fixed_put (GTK_FIXED (fixed2_ajouter_tesnime), label16_tes_date_ajout, 560, 448);
+  gtk_widget_set_size_request (label16_tes_date_ajout, 104, 49);
+  gtk_label_set_use_markup (GTK_LABEL (label16_tes_date_ajout), TRUE);
+
+  combobox1_tesnim_ajouter = gtk_combo_box_new_text ();
+  gtk_widget_show (combobox1_tesnim_ajouter);
+  gtk_fixed_put (GTK_FIXED (fixed2_ajouter_tesnime), combobox1_tesnim_ajouter, 208, 48);
+  gtk_widget_set_size_request (combobox1_tesnim_ajouter, 190, 84);
+  gtk_combo_box_append_text (GTK_COMBO_BOX (combobox1_tesnim_ajouter), _("viandes_\342\200\223_poissons_\342\200\223 \305\223ufs"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (combobox1_tesnim_ajouter), "");
+  gtk_combo_box_append_text (GTK_COMBO_BOX (combobox1_tesnim_ajouter), _("produits_laitiers"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (combobox1_tesnim_ajouter), "");
+  gtk_combo_box_append_text (GTK_COMBO_BOX (combobox1_tesnim_ajouter), _("mati\303\250res_grasses"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (combobox1_tesnim_ajouter), "");
+  gtk_combo_box_append_text (GTK_COMBO_BOX (combobox1_tesnim_ajouter), _("l\303\251gumes"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (combobox1_tesnim_ajouter), "");
+  gtk_combo_box_append_text (GTK_COMBO_BOX (combobox1_tesnim_ajouter), _("fruits"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (combobox1_tesnim_ajouter), "");
+  gtk_combo_box_append_text (GTK_COMBO_BOX (combobox1_tesnim_ajouter), _("l\303\251gumineus"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (combobox1_tesnim_ajouter), "");
+  gtk_combo_box_append_text (GTK_COMBO_BOX (combobox1_tesnim_ajouter), _("produits_sucr\303\251s"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (combobox1_tesnim_ajouter), "");
+  gtk_combo_box_append_text (GTK_COMBO_BOX (combobox1_tesnim_ajouter), _("boissons"));
+
+  label12_tesnim_ajouter_quantite = gtk_label_new (_("<span size=\"23000\">quantite</span>"));
+  gtk_widget_show (label12_tesnim_ajouter_quantite);
+  gtk_fixed_put (GTK_FIXED (fixed2_ajouter_tesnime), label12_tesnim_ajouter_quantite, 472, 192);
+  gtk_widget_set_size_request (label12_tesnim_ajouter_quantite, 152, 73);
+  gtk_label_set_use_markup (GTK_LABEL (label12_tesnim_ajouter_quantite), TRUE);
+
+  label11_tes_ajouter_prix = gtk_label_new (_("<span size=\"23000\">prix</span>"));
+  gtk_widget_show (label11_tes_ajouter_prix);
+  gtk_fixed_put (GTK_FIXED (fixed2_ajouter_tesnime), label11_tes_ajouter_prix, 504, 56);
+  gtk_widget_set_size_request (label11_tes_ajouter_prix, 128, 65);
+  gtk_label_set_use_markup (GTK_LABEL (label11_tes_ajouter_prix), TRUE);
+
+  label8_tes_ajouter_categorie = gtk_label_new (_("<span size=\"23000\">categorie</span>"));
+  gtk_widget_show (label8_tes_ajouter_categorie);
+  gtk_fixed_put (GTK_FIXED (fixed2_ajouter_tesnime), label8_tes_ajouter_categorie, 8, 40);
+  gtk_widget_set_size_request (label8_tes_ajouter_categorie, 192, 96);
+  gtk_label_set_use_markup (GTK_LABEL (label8_tes_ajouter_categorie), TRUE);
+
+  label9_tes_ajouter_nom = gtk_label_new (_("<span size=\"23000\">nom produit</span>"));
+  gtk_widget_show (label9_tes_ajouter_nom);
+  gtk_fixed_put (GTK_FIXED (fixed2_ajouter_tesnime), label9_tes_ajouter_nom, 0, 200);
+  gtk_widget_set_size_request (label9_tes_ajouter_nom, 208, 73);
+  gtk_label_set_use_markup (GTK_LABEL (label9_tes_ajouter_nom), TRUE);
+
+  label10_tes_ajout_nom = gtk_label_new (_("<span size=\"23000\">code produit</span>"));
+  gtk_widget_show (label10_tes_ajout_nom);
+  gtk_fixed_put (GTK_FIXED (fixed2_ajouter_tesnime), label10_tes_ajout_nom, 8, 368);
+  gtk_widget_set_size_request (label10_tes_ajout_nom, 192, 57);
+  gtk_label_set_use_markup (GTK_LABEL (label10_tes_ajout_nom), TRUE);
+
+  g_signal_connect ((gpointer) button7_tesnim_retour, "clicked",
+                    G_CALLBACK (on_button7_tesnim_retour_clicked),
+                    NULL);
+  g_signal_connect ((gpointer) radiobutton1_tes_ajout_depot, "toggled",
+                    G_CALLBACK (on_radiobutton1_tes_ajout_depot_toggled),
+                    NULL);
+  g_signal_connect ((gpointer) radiobutton2_tes_ajouter_retrait, "toggled",
+                    G_CALLBACK (on_radiobutton2_tes_ajouter_retrait_toggled),
+                    NULL);
+  g_signal_connect ((gpointer) button6_tesnim_ajouter_valider, "clicked",
+                    G_CALLBACK (on_button6_tesnim_ajouter_valider_clicked),
+                    NULL);
+
+  /* Store pointers to all widgets, for use by lookup_widget(). */
+  GLADE_HOOKUP_OBJECT_NO_REF (tesnime_ajouter, tesnime_ajouter, "tesnime_ajouter");
+  GLADE_HOOKUP_OBJECT (tesnime_ajouter, fixed2_ajouter_tesnime, "fixed2_ajouter_tesnime");
+  GLADE_HOOKUP_OBJECT (tesnime_ajouter, entry1_tesnim_ajouter_nom, "entry1_tesnim_ajouter_nom");
+  GLADE_HOOKUP_OBJECT (tesnime_ajouter, entry2_tesnime_ajouter_code, "entry2_tesnime_ajouter_code");
+  GLADE_HOOKUP_OBJECT (tesnime_ajouter, entry3_tesnime_ajouter_prix, "entry3_tesnime_ajouter_prix");
+  GLADE_HOOKUP_OBJECT (tesnime_ajouter, entry4_tesnim_ajouter_quantite, "entry4_tesnim_ajouter_quantite");
+  GLADE_HOOKUP_OBJECT (tesnime_ajouter, spinbutton1_jour_ajouter, "spinbutton1_jour_ajouter");
+  GLADE_HOOKUP_OBJECT (tesnime_ajouter, spinbutton2_tes_mois_ajouter, "spinbutton2_tes_mois_ajouter");
+  GLADE_HOOKUP_OBJECT (tesnime_ajouter, spinbutton3_annee, "spinbutton3_annee");
+  GLADE_HOOKUP_OBJECT (tesnime_ajouter, button7_tesnim_retour, "button7_tesnim_retour");
+  GLADE_HOOKUP_OBJECT (tesnime_ajouter, alignment9_tesnime, "alignment9_tesnime");
+  GLADE_HOOKUP_OBJECT (tesnime_ajouter, hbox9_tesnime, "hbox9_tesnime");
+  GLADE_HOOKUP_OBJECT (tesnime_ajouter, image6_tesnime, "image6_tesnime");
+  GLADE_HOOKUP_OBJECT (tesnime_ajouter, label21_tesnime_retour, "label21_tesnime_retour");
+  GLADE_HOOKUP_OBJECT (tesnime_ajouter, radiobutton1_tes_ajout_depot, "radiobutton1_tes_ajout_depot");
+  GLADE_HOOKUP_OBJECT (tesnime_ajouter, alignment6_tesnime, "alignment6_tesnime");
+  GLADE_HOOKUP_OBJECT (tesnime_ajouter, hbox6_tesnime, "hbox6_tesnime");
+  GLADE_HOOKUP_OBJECT (tesnime_ajouter, label14_tesnime_depot_ajouter, "label14_tesnime_depot_ajouter");
+  GLADE_HOOKUP_OBJECT (tesnime_ajouter, radiobutton2_tes_ajouter_retrait, "radiobutton2_tes_ajouter_retrait");
+  GLADE_HOOKUP_OBJECT (tesnime_ajouter, alignment7_tesnime, "alignment7_tesnime");
+  GLADE_HOOKUP_OBJECT (tesnime_ajouter, hbox7_tesnime, "hbox7_tesnime");
+  GLADE_HOOKUP_OBJECT (tesnime_ajouter, label15_tes_retriet_ajouter, "label15_tes_retriet_ajouter");
+  GLADE_HOOKUP_OBJECT (tesnime_ajouter, button6_tesnim_ajouter_valider, "button6_tesnim_ajouter_valider");
+  GLADE_HOOKUP_OBJECT (tesnime_ajouter, alignment13_tesnime, "alignment13_tesnime");
+  GLADE_HOOKUP_OBJECT (tesnime_ajouter, hbox13_tesnime, "hbox13_tesnime");
+  GLADE_HOOKUP_OBJECT (tesnime_ajouter, TES_AJOUT_image, "TES_AJOUT_image");
+  GLADE_HOOKUP_OBJECT (tesnime_ajouter, TESN_AJOUT_label, "TESN_AJOUT_label");
+  GLADE_HOOKUP_OBJECT (tesnime_ajouter, label13_tes_ajouter_type, "label13_tes_ajouter_type");
+  GLADE_HOOKUP_OBJECT (tesnime_ajouter, label17_tes_jour, "label17_tes_jour");
+  GLADE_HOOKUP_OBJECT (tesnime_ajouter, label18_tes_mois_ajouter, "label18_tes_mois_ajouter");
+  GLADE_HOOKUP_OBJECT (tesnime_ajouter, label19_tes_annee_ajout, "label19_tes_annee_ajout");
+  GLADE_HOOKUP_OBJECT (tesnime_ajouter, label16_tes_date_ajout, "label16_tes_date_ajout");
+  GLADE_HOOKUP_OBJECT (tesnime_ajouter, combobox1_tesnim_ajouter, "combobox1_tesnim_ajouter");
+  GLADE_HOOKUP_OBJECT (tesnime_ajouter, label12_tesnim_ajouter_quantite, "label12_tesnim_ajouter_quantite");
+  GLADE_HOOKUP_OBJECT (tesnime_ajouter, label11_tes_ajouter_prix, "label11_tes_ajouter_prix");
+  GLADE_HOOKUP_OBJECT (tesnime_ajouter, label8_tes_ajouter_categorie, "label8_tes_ajouter_categorie");
+  GLADE_HOOKUP_OBJECT (tesnime_ajouter, label9_tes_ajouter_nom, "label9_tes_ajouter_nom");
+  GLADE_HOOKUP_OBJECT (tesnime_ajouter, label10_tes_ajout_nom, "label10_tes_ajout_nom");
+
+  return tesnime_ajouter;
+}
+
+GtkWidget*
+create_tesnime_modifier (void)
+{
+  GtkWidget *tesnime_modifier;
+  GtkWidget *fixed3_modifier_tesnime;
+  GtkWidget *entry5_tesnim_modif_nom;
+  GtkWidget *label22_categorie_modifier;
+  GtkWidget *combobox2_tesnim_cate_modif;
+  GtkWidget *label23_tess_mod_nom;
+  GtkWidget *label24_tes_mod_code;
+  GtkWidget *entry6_tesnim_modif_code;
+  GtkWidget *label26_tesnim_modif_quantite;
+  GtkWidget *entry7_tes_modif_prix;
+  GtkWidget *entry8_tes_modif_quantite;
+  GtkWidget *label27_tes_modif_type;
+  GtkWidget *label30_tes_modif_date;
+  GtkObject *spinbutton4_tes_modif_jour_adj;
+  GtkWidget *spinbutton4_tes_modif_jour;
+  GtkObject *spinbutton5_tes_modif_mois_adj;
+  GtkWidget *spinbutton5_tes_modif_mois;
+  GtkObject *spinbutton6_tes_modifannee_adj;
+  GtkWidget *spinbutton6_tes_modifannee;
+  GtkWidget *label31_tes_modif_jour;
+  GtkWidget *label32_tes_modif_mois;
+  GtkWidget *label33_tes_modif_annee;
+  GtkWidget *label25_tes_mod_prix;
+  GtkWidget *button8_valider_tes_modiffier;
+  GtkWidget *alignment12_tesnime;
+  GtkWidget *hbox12_tesnime;
+  GtkWidget *image7_tesnime;
+  GtkWidget *label34_tesnime_valider;
+  GtkWidget *button9_retour_tes_modifier;
+  GtkWidget *alignment14_tesnime;
+  GtkWidget *hbox14_tesnime;
+  GtkWidget *image9_tesnime;
+  GtkWidget *label36_tesnime;
+  GtkWidget *radiobutton3_tes_modif_depot;
+  GSList *radiobutton3_tes_modif_depot_group = NULL;
+  GtkWidget *alignment10_tesnime;
+  GtkWidget *hbox10_tesnime;
+  GtkWidget *label28_tesnime;
+  GtkWidget *radiobutton4_tes_modif_retrait;
+  GtkWidget *alignment11_tesnime;
+  GtkWidget *hbox11_tesnime_kabous;
+  GtkWidget *label29_tesnime_retrait;
+
+  tesnime_modifier = gtk_window_new (GTK_WINDOW_TOPLEVEL);
+  gtk_window_set_title (GTK_WINDOW (tesnime_modifier), _("modifier"));
+  gtk_window_set_position (GTK_WINDOW (tesnime_modifier), GTK_WIN_POS_CENTER);
+  gtk_window_set_resizable (GTK_WINDOW (tesnime_modifier), FALSE);
+
+  fixed3_modifier_tesnime = gtk_fixed_new ();
+  gtk_widget_show (fixed3_modifier_tesnime);
+  gtk_container_add (GTK_CONTAINER (tesnime_modifier), fixed3_modifier_tesnime);
+  gtk_widget_set_size_request (fixed3_modifier_tesnime, 1000, 800);
+
+  entry5_tesnim_modif_nom = gtk_entry_new ();
+  gtk_widget_show (entry5_tesnim_modif_nom);
+  gtk_fixed_put (GTK_FIXED (fixed3_modifier_tesnime), entry5_tesnim_modif_nom, 208, 168);
+  gtk_widget_set_size_request (entry5_tesnim_modif_nom, 184, 91);
+  gtk_entry_set_invisible_char (GTK_ENTRY (entry5_tesnim_modif_nom), 8226);
+
+  label22_categorie_modifier = gtk_label_new (_("<span size=\"23000\">categorie</span>"));
+  gtk_widget_show (label22_categorie_modifier);
+  gtk_fixed_put (GTK_FIXED (fixed3_modifier_tesnime), label22_categorie_modifier, 0, 32);
+  gtk_widget_set_size_request (label22_categorie_modifier, 192, 96);
+  gtk_label_set_use_markup (GTK_LABEL (label22_categorie_modifier), TRUE);
+
+  combobox2_tesnim_cate_modif = gtk_combo_box_new_text ();
+  gtk_widget_show (combobox2_tesnim_cate_modif);
+  gtk_fixed_put (GTK_FIXED (fixed3_modifier_tesnime), combobox2_tesnim_cate_modif, 208, 40);
+  gtk_widget_set_size_request (combobox2_tesnim_cate_modif, 190, 84);
+  gtk_combo_box_append_text (GTK_COMBO_BOX (combobox2_tesnim_cate_modif), _("viandes_\342\200\223_poissons_\342\200\223 \305\223ufs"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (combobox2_tesnim_cate_modif), "");
+  gtk_combo_box_append_text (GTK_COMBO_BOX (combobox2_tesnim_cate_modif), _("produits_laitiers"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (combobox2_tesnim_cate_modif), "");
+  gtk_combo_box_append_text (GTK_COMBO_BOX (combobox2_tesnim_cate_modif), _("mati\303\250res_grasses"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (combobox2_tesnim_cate_modif), "");
+  gtk_combo_box_append_text (GTK_COMBO_BOX (combobox2_tesnim_cate_modif), _("l\303\251gumes"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (combobox2_tesnim_cate_modif), "");
+  gtk_combo_box_append_text (GTK_COMBO_BOX (combobox2_tesnim_cate_modif), _("fruits"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (combobox2_tesnim_cate_modif), "");
+  gtk_combo_box_append_text (GTK_COMBO_BOX (combobox2_tesnim_cate_modif), _("l\303\251gumineus"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (combobox2_tesnim_cate_modif), "");
+  gtk_combo_box_append_text (GTK_COMBO_BOX (combobox2_tesnim_cate_modif), _("produits_sucr\303\251s"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (combobox2_tesnim_cate_modif), "");
+  gtk_combo_box_append_text (GTK_COMBO_BOX (combobox2_tesnim_cate_modif), _("boissons"));
+
+  label23_tess_mod_nom = gtk_label_new (_("<span size=\"23000\">nom produit</span>"));
+  gtk_widget_show (label23_tess_mod_nom);
+  gtk_fixed_put (GTK_FIXED (fixed3_modifier_tesnime), label23_tess_mod_nom, 8, 176);
+  gtk_widget_set_size_request (label23_tess_mod_nom, 184, 89);
+  gtk_label_set_use_markup (GTK_LABEL (label23_tess_mod_nom), TRUE);
+
+  label24_tes_mod_code = gtk_label_new (_("<span size=\"23000\">code produit</span>"));
+  gtk_widget_show (label24_tes_mod_code);
+  gtk_fixed_put (GTK_FIXED (fixed3_modifier_tesnime), label24_tes_mod_code, 8, 320);
+  gtk_widget_set_size_request (label24_tes_mod_code, 200, 80);
+  gtk_label_set_use_markup (GTK_LABEL (label24_tes_mod_code), TRUE);
+
+  entry6_tesnim_modif_code = gtk_entry_new ();
+  gtk_widget_show (entry6_tesnim_modif_code);
+  gtk_fixed_put (GTK_FIXED (fixed3_modifier_tesnime), entry6_tesnim_modif_code, 216, 320);
+  gtk_widget_set_size_request (entry6_tesnim_modif_code, 176, 88);
+  gtk_entry_set_invisible_char (GTK_ENTRY (entry6_tesnim_modif_code), 8226);
+
+  label26_tesnim_modif_quantite = gtk_label_new (_("<span size=\"23000\">quantite</span>"));
+  gtk_widget_show (label26_tesnim_modif_quantite);
+  gtk_fixed_put (GTK_FIXED (fixed3_modifier_tesnime), label26_tesnim_modif_quantite, 456, 176);
+  gtk_widget_set_size_request (label26_tesnim_modif_quantite, 152, 73);
+  gtk_label_set_use_markup (GTK_LABEL (label26_tesnim_modif_quantite), TRUE);
+
+  entry7_tes_modif_prix = gtk_entry_new ();
+  gtk_widget_show (entry7_tes_modif_prix);
+  gtk_fixed_put (GTK_FIXED (fixed3_modifier_tesnime), entry7_tes_modif_prix, 616, 24);
+  gtk_widget_set_size_request (entry7_tes_modif_prix, 184, 88);
+  gtk_entry_set_invisible_char (GTK_ENTRY (entry7_tes_modif_prix), 8226);
+
+  entry8_tes_modif_quantite = gtk_entry_new ();
+  gtk_widget_show (entry8_tes_modif_quantite);
+  gtk_fixed_put (GTK_FIXED (fixed3_modifier_tesnime), entry8_tes_modif_quantite, 616, 168);
+  gtk_widget_set_size_request (entry8_tes_modif_quantite, 184, 88);
+  gtk_entry_set_invisible_char (GTK_ENTRY (entry8_tes_modif_quantite), 8226);
+
+  label27_tes_modif_type = gtk_label_new (_("<span size=\"23000\">type quantite</span>"));
+  gtk_widget_show (label27_tes_modif_type);
+  gtk_fixed_put (GTK_FIXED (fixed3_modifier_tesnime), label27_tes_modif_type, 440, 328);
+  gtk_widget_set_size_request (label27_tes_modif_type, 200, 73);
+  gtk_label_set_use_markup (GTK_LABEL (label27_tes_modif_type), TRUE);
+
+  label30_tes_modif_date = gtk_label_new (_("<span size=\"36000\">date</span>"));
+  gtk_widget_show (label30_tes_modif_date);
+  gtk_fixed_put (GTK_FIXED (fixed3_modifier_tesnime), label30_tes_modif_date, 608, 432);
+  gtk_widget_set_size_request (label30_tes_modif_date, 104, 49);
+  gtk_label_set_use_markup (GTK_LABEL (label30_tes_modif_date), TRUE);
+
+  spinbutton4_tes_modif_jour_adj = gtk_adjustment_new (1, 1, 31, 1, 10, 10);
+  spinbutton4_tes_modif_jour = gtk_spin_button_new (GTK_ADJUSTMENT (spinbutton4_tes_modif_jour_adj), 1, 0);
+  gtk_widget_show (spinbutton4_tes_modif_jour);
+  gtk_fixed_put (GTK_FIXED (fixed3_modifier_tesnime), spinbutton4_tes_modif_jour, 728, 544);
+  gtk_widget_set_size_request (spinbutton4_tes_modif_jour, 128, 35);
+
+  spinbutton5_tes_modif_mois_adj = gtk_adjustment_new (10, 1, 12, 1, 10, 10);
+  spinbutton5_tes_modif_mois = gtk_spin_button_new (GTK_ADJUSTMENT (spinbutton5_tes_modif_mois_adj), 1, 0);
+  gtk_widget_show (spinbutton5_tes_modif_mois);
+  gtk_fixed_put (GTK_FIXED (fixed3_modifier_tesnime), spinbutton5_tes_modif_mois, 728, 632);
+  gtk_widget_set_size_request (spinbutton5_tes_modif_mois, 128, 35);
+
+  spinbutton6_tes_modifannee_adj = gtk_adjustment_new (2021, 2000, 2024, 1, 10, 10);
+  spinbutton6_tes_modifannee = gtk_spin_button_new (GTK_ADJUSTMENT (spinbutton6_tes_modifannee_adj), 1, 0);
+  gtk_widget_show (spinbutton6_tes_modifannee);
+  gtk_fixed_put (GTK_FIXED (fixed3_modifier_tesnime), spinbutton6_tes_modifannee, 728, 712);
+  gtk_widget_set_size_request (spinbutton6_tes_modifannee, 128, 35);
+
+  label31_tes_modif_jour = gtk_label_new (_("<span size=\"23000\" color=\"green\">jour</span>"));
+  gtk_widget_show (label31_tes_modif_jour);
+  gtk_fixed_put (GTK_FIXED (fixed3_modifier_tesnime), label31_tes_modif_jour, 616, 544);
+  gtk_widget_set_size_request (label31_tes_modif_jour, 81, 32);
+  gtk_label_set_use_markup (GTK_LABEL (label31_tes_modif_jour), TRUE);
+
+  label32_tes_modif_mois = gtk_label_new (_("<span color=\"green\" size=\"23000\">mois</span>"));
+  gtk_widget_show (label32_tes_modif_mois);
+  gtk_fixed_put (GTK_FIXED (fixed3_modifier_tesnime), label32_tes_modif_mois, 616, 632);
+  gtk_widget_set_size_request (label32_tes_modif_mois, 88, 25);
+  gtk_label_set_use_markup (GTK_LABEL (label32_tes_modif_mois), TRUE);
+
+  label33_tes_modif_annee = gtk_label_new (_("<span color=\"green\" size=\"23000\">annee</span>"));
+  gtk_widget_show (label33_tes_modif_annee);
+  gtk_fixed_put (GTK_FIXED (fixed3_modifier_tesnime), label33_tes_modif_annee, 608, 712);
+  gtk_widget_set_size_request (label33_tes_modif_annee, 104, 41);
+  gtk_label_set_use_markup (GTK_LABEL (label33_tes_modif_annee), TRUE);
+
+  label25_tes_mod_prix = gtk_label_new (_("<span size=\"23000\">prix</span>"));
+  gtk_widget_show (label25_tes_mod_prix);
+  gtk_fixed_put (GTK_FIXED (fixed3_modifier_tesnime), label25_tes_mod_prix, 472, 48);
+  gtk_widget_set_size_request (label25_tes_mod_prix, 128, 65);
+  gtk_label_set_use_markup (GTK_LABEL (label25_tes_mod_prix), TRUE);
+
+  button8_valider_tes_modiffier = gtk_button_new ();
+  gtk_widget_show (button8_valider_tes_modiffier);
+  gtk_fixed_put (GTK_FIXED (fixed3_modifier_tesnime), button8_valider_tes_modiffier, 32, 552);
+  gtk_widget_set_size_request (button8_valider_tes_modiffier, 208, 117);
+
+  alignment12_tesnime = gtk_alignment_new (0.5, 0.5, 0, 0);
+  gtk_widget_show (alignment12_tesnime);
+  gtk_container_add (GTK_CONTAINER (button8_valider_tes_modiffier), alignment12_tesnime);
+
+  hbox12_tesnime = gtk_hbox_new (FALSE, 2);
+  gtk_widget_show (hbox12_tesnime);
+  gtk_container_add (GTK_CONTAINER (alignment12_tesnime), hbox12_tesnime);
+
+  image7_tesnime = gtk_image_new_from_stock ("gtk-apply", GTK_ICON_SIZE_BUTTON);
+  gtk_widget_show (image7_tesnime);
+  gtk_box_pack_start (GTK_BOX (hbox12_tesnime), image7_tesnime, FALSE, FALSE, 0);
+
+  label34_tesnime_valider = gtk_label_new_with_mnemonic (_("<span size=\"23000\">VALIDER</span>"));
+  gtk_widget_show (label34_tesnime_valider);
+  gtk_box_pack_start (GTK_BOX (hbox12_tesnime), label34_tesnime_valider, FALSE, FALSE, 0);
+  gtk_label_set_use_markup (GTK_LABEL (label34_tesnime_valider), TRUE);
+
+  button9_retour_tes_modifier = gtk_button_new ();
+  gtk_widget_show (button9_retour_tes_modifier);
+  gtk_fixed_put (GTK_FIXED (fixed3_modifier_tesnime), button9_retour_tes_modifier, 264, 664);
+  gtk_widget_set_size_request (button9_retour_tes_modifier, 224, 117);
+
+  alignment14_tesnime = gtk_alignment_new (0.5, 0.5, 0, 0);
+  gtk_widget_show (alignment14_tesnime);
+  gtk_container_add (GTK_CONTAINER (button9_retour_tes_modifier), alignment14_tesnime);
+
+  hbox14_tesnime = gtk_hbox_new (FALSE, 2);
+  gtk_widget_show (hbox14_tesnime);
+  gtk_container_add (GTK_CONTAINER (alignment14_tesnime), hbox14_tesnime);
+
+  image9_tesnime = gtk_image_new_from_stock ("gtk-undo", GTK_ICON_SIZE_BUTTON);
+  gtk_widget_show (image9_tesnime);
+  gtk_box_pack_start (GTK_BOX (hbox14_tesnime), image9_tesnime, FALSE, FALSE, 0);
+
+  label36_tesnime = gtk_label_new_with_mnemonic (_("<span size=\"23000\">RETOUR</span>"));
+  gtk_widget_show (label36_tesnime);
+  gtk_box_pack_start (GTK_BOX (hbox14_tesnime), label36_tesnime, FALSE, FALSE, 0);
+  gtk_label_set_use_markup (GTK_LABEL (label36_tesnime), TRUE);
+
+  radiobutton3_tes_modif_depot = gtk_radio_button_new (NULL);
+  gtk_widget_show (radiobutton3_tes_modif_depot);
+  gtk_fixed_put (GTK_FIXED (fixed3_modifier_tesnime), radiobutton3_tes_modif_depot, 656, 344);
+  gtk_widget_set_size_request (radiobutton3_tes_modif_depot, 120, 56);
+  gtk_radio_button_set_group (GTK_RADIO_BUTTON (radiobutton3_tes_modif_depot), radiobutton3_tes_modif_depot_group);
+  radiobutton3_tes_modif_depot_group = gtk_radio_button_get_group (GTK_RADIO_BUTTON (radiobutton3_tes_modif_depot));
+
+  alignment10_tesnime = gtk_alignment_new (0.5, 0.5, 0, 0);
+  gtk_widget_show (alignment10_tesnime);
+  gtk_container_add (GTK_CONTAINER (radiobutton3_tes_modif_depot), alignment10_tesnime);
+
+  hbox10_tesnime = gtk_hbox_new (FALSE, 2);
+  gtk_widget_show (hbox10_tesnime);
+  gtk_container_add (GTK_CONTAINER (alignment10_tesnime), hbox10_tesnime);
+
+  label28_tesnime = gtk_label_new_with_mnemonic (_("<span size=\"23000\" color=\"green\">depot</span>"));
+  gtk_widget_show (label28_tesnime);
+  gtk_box_pack_start (GTK_BOX (hbox10_tesnime), label28_tesnime, FALSE, FALSE, 0);
+  gtk_label_set_use_markup (GTK_LABEL (label28_tesnime), TRUE);
+
+  radiobutton4_tes_modif_retrait = gtk_radio_button_new (NULL);
+  gtk_widget_show (radiobutton4_tes_modif_retrait);
+  gtk_fixed_put (GTK_FIXED (fixed3_modifier_tesnime), radiobutton4_tes_modif_retrait, 824, 352);
+  gtk_widget_set_size_request (radiobutton4_tes_modif_retrait, 144, 48);
+  gtk_radio_button_set_group (GTK_RADIO_BUTTON (radiobutton4_tes_modif_retrait), radiobutton3_tes_modif_depot_group);
+  radiobutton3_tes_modif_depot_group = gtk_radio_button_get_group (GTK_RADIO_BUTTON (radiobutton4_tes_modif_retrait));
+
+  alignment11_tesnime = gtk_alignment_new (0.5, 0.5, 0, 0);
+  gtk_widget_show (alignment11_tesnime);
+  gtk_container_add (GTK_CONTAINER (radiobutton4_tes_modif_retrait), alignment11_tesnime);
+
+  hbox11_tesnime_kabous = gtk_hbox_new (FALSE, 2);
+  gtk_widget_show (hbox11_tesnime_kabous);
+  gtk_container_add (GTK_CONTAINER (alignment11_tesnime), hbox11_tesnime_kabous);
+
+  label29_tesnime_retrait = gtk_label_new_with_mnemonic (_("<span color=\"green\" size=\"23000\">retrait</span>"));
+  gtk_widget_show (label29_tesnime_retrait);
+  gtk_box_pack_start (GTK_BOX (hbox11_tesnime_kabous), label29_tesnime_retrait, FALSE, FALSE, 0);
+  gtk_label_set_use_markup (GTK_LABEL (label29_tesnime_retrait), TRUE);
+
+  g_signal_connect ((gpointer) button8_valider_tes_modiffier, "clicked",
+                    G_CALLBACK (on_button8_valider_tes_modiffier_clicked),
+                    NULL);
+  g_signal_connect ((gpointer) button9_retour_tes_modifier, "clicked",
+                    G_CALLBACK (on_button9_retour_tes_modifier_clicked),
+                    NULL);
+  g_signal_connect ((gpointer) radiobutton3_tes_modif_depot, "clicked",
+                    G_CALLBACK (on_radiobutton3_tes_modif_depot_clicked),
+                    NULL);
+  g_signal_connect ((gpointer) radiobutton4_tes_modif_retrait, "clicked",
+                    G_CALLBACK (on_radiobutton4_tes_modif_retrait_clicked),
+                    NULL);
+
+  /* Store pointers to all widgets, for use by lookup_widget(). */
+  GLADE_HOOKUP_OBJECT_NO_REF (tesnime_modifier, tesnime_modifier, "tesnime_modifier");
+  GLADE_HOOKUP_OBJECT (tesnime_modifier, fixed3_modifier_tesnime, "fixed3_modifier_tesnime");
+  GLADE_HOOKUP_OBJECT (tesnime_modifier, entry5_tesnim_modif_nom, "entry5_tesnim_modif_nom");
+  GLADE_HOOKUP_OBJECT (tesnime_modifier, label22_categorie_modifier, "label22_categorie_modifier");
+  GLADE_HOOKUP_OBJECT (tesnime_modifier, combobox2_tesnim_cate_modif, "combobox2_tesnim_cate_modif");
+  GLADE_HOOKUP_OBJECT (tesnime_modifier, label23_tess_mod_nom, "label23_tess_mod_nom");
+  GLADE_HOOKUP_OBJECT (tesnime_modifier, label24_tes_mod_code, "label24_tes_mod_code");
+  GLADE_HOOKUP_OBJECT (tesnime_modifier, entry6_tesnim_modif_code, "entry6_tesnim_modif_code");
+  GLADE_HOOKUP_OBJECT (tesnime_modifier, label26_tesnim_modif_quantite, "label26_tesnim_modif_quantite");
+  GLADE_HOOKUP_OBJECT (tesnime_modifier, entry7_tes_modif_prix, "entry7_tes_modif_prix");
+  GLADE_HOOKUP_OBJECT (tesnime_modifier, entry8_tes_modif_quantite, "entry8_tes_modif_quantite");
+  GLADE_HOOKUP_OBJECT (tesnime_modifier, label27_tes_modif_type, "label27_tes_modif_type");
+  GLADE_HOOKUP_OBJECT (tesnime_modifier, label30_tes_modif_date, "label30_tes_modif_date");
+  GLADE_HOOKUP_OBJECT (tesnime_modifier, spinbutton4_tes_modif_jour, "spinbutton4_tes_modif_jour");
+  GLADE_HOOKUP_OBJECT (tesnime_modifier, spinbutton5_tes_modif_mois, "spinbutton5_tes_modif_mois");
+  GLADE_HOOKUP_OBJECT (tesnime_modifier, spinbutton6_tes_modifannee, "spinbutton6_tes_modifannee");
+  GLADE_HOOKUP_OBJECT (tesnime_modifier, label31_tes_modif_jour, "label31_tes_modif_jour");
+  GLADE_HOOKUP_OBJECT (tesnime_modifier, label32_tes_modif_mois, "label32_tes_modif_mois");
+  GLADE_HOOKUP_OBJECT (tesnime_modifier, label33_tes_modif_annee, "label33_tes_modif_annee");
+  GLADE_HOOKUP_OBJECT (tesnime_modifier, label25_tes_mod_prix, "label25_tes_mod_prix");
+  GLADE_HOOKUP_OBJECT (tesnime_modifier, button8_valider_tes_modiffier, "button8_valider_tes_modiffier");
+  GLADE_HOOKUP_OBJECT (tesnime_modifier, alignment12_tesnime, "alignment12_tesnime");
+  GLADE_HOOKUP_OBJECT (tesnime_modifier, hbox12_tesnime, "hbox12_tesnime");
+  GLADE_HOOKUP_OBJECT (tesnime_modifier, image7_tesnime, "image7_tesnime");
+  GLADE_HOOKUP_OBJECT (tesnime_modifier, label34_tesnime_valider, "label34_tesnime_valider");
+  GLADE_HOOKUP_OBJECT (tesnime_modifier, button9_retour_tes_modifier, "button9_retour_tes_modifier");
+  GLADE_HOOKUP_OBJECT (tesnime_modifier, alignment14_tesnime, "alignment14_tesnime");
+  GLADE_HOOKUP_OBJECT (tesnime_modifier, hbox14_tesnime, "hbox14_tesnime");
+  GLADE_HOOKUP_OBJECT (tesnime_modifier, image9_tesnime, "image9_tesnime");
+  GLADE_HOOKUP_OBJECT (tesnime_modifier, label36_tesnime, "label36_tesnime");
+  GLADE_HOOKUP_OBJECT (tesnime_modifier, radiobutton3_tes_modif_depot, "radiobutton3_tes_modif_depot");
+  GLADE_HOOKUP_OBJECT (tesnime_modifier, alignment10_tesnime, "alignment10_tesnime");
+  GLADE_HOOKUP_OBJECT (tesnime_modifier, hbox10_tesnime, "hbox10_tesnime");
+  GLADE_HOOKUP_OBJECT (tesnime_modifier, label28_tesnime, "label28_tesnime");
+  GLADE_HOOKUP_OBJECT (tesnime_modifier, radiobutton4_tes_modif_retrait, "radiobutton4_tes_modif_retrait");
+  GLADE_HOOKUP_OBJECT (tesnime_modifier, alignment11_tesnime, "alignment11_tesnime");
+  GLADE_HOOKUP_OBJECT (tesnime_modifier, hbox11_tesnime_kabous, "hbox11_tesnime_kabous");
+  GLADE_HOOKUP_OBJECT (tesnime_modifier, label29_tesnime_retrait, "label29_tesnime_retrait");
+
+  return tesnime_modifier;
+}

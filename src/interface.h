@@ -20,3 +20,7 @@ GtkWidget* create_Med_kh_windowC_f (void);
 GtkWidget* create_Med_kh_w_aff_supp (void);
 GtkWidget* create_Med_kh_w_Rechercher (void);
 GtkWidget* create_Med_kh_confirme (void);
+///////////////////tesnime ////////////////////////////////
+GtkWidget* create_tesnime_affichage (void);
+GtkWidget* create_tesnime_ajouter (void);
+GtkWidget* create_tesnime_modifier (void);
