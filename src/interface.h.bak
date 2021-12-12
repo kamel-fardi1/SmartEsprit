@@ -12,11 +12,3 @@ GtkWidget* create_kamel_fardi_ajout_hint_window (void);
 GtkWidget* create_kamel_fardi_rechercher_faild_window (void);
 GtkWidget* create_kamel_fardi_dash_board_window (void);
 GtkWidget* create_kamel_fardi_bien_ajoutee_window (void);
-///////////////////mohamed khoualdia/////////////////////
-GtkWidget* create_Med_kh_w_Ajouter (void);
-GtkWidget* create_Med_kh_w_Modifier (void);
-GtkWidget* create_Med_kh_w_Menu (void);
-GtkWidget* create_Med_kh_windowC_f (void);
-GtkWidget* create_Med_kh_w_aff_supp (void);
-GtkWidget* create_Med_kh_w_Rechercher (void);
-GtkWidget* create_Med_kh_confirme (void);

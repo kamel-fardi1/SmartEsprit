@@ -6,7 +6,7 @@ typedef struct
  int annee;
  int mois;
  int jour;   /* data */
-} date;
+} kfdate;
 typedef struct
 {
 char cin[10];
@@ -19,8 +19,8 @@ char aderess_mail[100];
 char numero_telephonique[20];
 char chambre[20];
 char photo[1000];
-date date_d_hebergement;
-date date_de_naissance;
+kfdate date_d_hebergement;
+kfdate date_de_naissance;
 char classe[20];
 }Etudiant;
 

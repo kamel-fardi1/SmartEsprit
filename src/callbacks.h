@@ -242,3 +242,100 @@ void
 on_kamel_fardi_bien_ajoutee_ok_button_clicked
                                         (GtkWidget       *button,
                                         gpointer         user_data);
+/////////////;ohamed khoualdia/////////////////////////////////////////////
+void
+on_mk_dash_treeview_row_activated      (GtkTreeView     *treeview,
+                                        GtkTreePath     *path,
+                                        GtkTreeViewColumn *column,
+                                        gpointer         user_data);
+
+void
+on_mk_dash_afficher_clicked            (GtkButton       *button,
+                                        gpointer         user_data);
+void
+on_Med_kh_checkbutton_e1_toggled       (GtkToggleButton *togglebutton,
+                                        gpointer         user_data);
+
+void
+on_Med_kh_checkbutton_e2_toggled       (GtkToggleButton *togglebutton,
+                                        gpointer         user_data);
+
+void
+on_Med_kh_checkbutton_e3_toggled       (GtkToggleButton *togglebutton,
+                                        gpointer         user_data);
+
+void
+on_Med_kh_button1_Ajouter_clicked      (GtkWidget       *objet,
+                                        gpointer         user_data);
+
+void
+on_Med_kh_bouton_modifier_clicked      (GtkWidget       *objet,
+                                        gpointer         user_data);
+
+void
+on_Med_kh_checkbutton_e6_toggled       (GtkToggleButton *togglebutton,
+                                        gpointer         user_data);
+
+void
+on_Med_kh_checkbutton_e5_toggled       (GtkToggleButton *togglebutton,
+                                        gpointer         user_data);
+
+void
+on_Med_kh_checkbutton_e4_toggled       (GtkToggleButton *togglebutton,
+                                        gpointer         user_data);
+
+void
+on_Med_kh_Ajouter_clicked              (GtkWidget       *objet,
+                                        gpointer         user_data);
+
+void
+on_Med_kh_Supprimer_clicked            (GtkWidget       *objet,
+                                        gpointer         user_data);
+
+void
+on_Med_kh_button_CF_clicked            (GtkButton       *objet,
+                                        gpointer         user_data);
+
+void
+on_Med_kh_Rechercher_clicked           (GtkButton       *objet,
+                                        gpointer         user_data);
+
+void
+on_Med_kh_treeview3_row_activated      (GtkTreeView     *treeview,
+                                        GtkTreePath     *path,
+                                        GtkTreeViewColumn *column,
+                                        gpointer         user_data);
+
+void
+on_Med_kh_button_conf_clicked          (GtkWidget       *objet,
+                                        gpointer         user_data);
+
+void
+on_Med_kh_treeview1_row_activated      (GtkTreeView     *treeview,
+                                        GtkTreePath     *path,
+                                        GtkTreeViewColumn *column,
+                                        gpointer         user_data);
+
+void
+on_Med_kh_Act_clicked                  (GtkWidget       *objet,
+                                        gpointer         user_data);
+
+void
+on_Med_kh_modif_conf_button_clicked    (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_Med_kh_supp_confirme_button_clicked (GtkWidget       *objet,
+                                        gpointer         user_data);
+
+void
+on_Med_kh_button_retour2_clicked       (GtkWidget       *objet,
+                                        gpointer         user_data);
+
+void
+on_Med_kh_button_retour1_clicked       (GtkWidget       *objet,
+                                        gpointer         user_data);
+
+void
+on_Med_kh_button_retour0_clicked       (GtkWidget       *objet,
+                                        gpointer         user_data);

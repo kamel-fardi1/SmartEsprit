@@ -1,9 +1,3 @@
-02316583 lotfi fardi 2EM1 masculin paris hoc@esprit.tn 1 11 2002 24153206 1 12 2021 102 hebergement /usr/share/icons/Humanity/actions/24/gtk-media-play-ltr.svg
-09717529 lotfi fardi 1EM1 masculin paris hoc@esprit.tn 1 11 2021 24153206 1 12 2021 102 hebergement /home/kamel/Desktop/SE/pixmaps/farmer.jpg
-09717520 kamel fardi 2EM1 masculin tozr k@k 1 1 1999 50195490 1 12 2021 120 hebergement+restaurant+piscine /home/kamel/Desktop/ES/pixmaps/EDIT-BACKGROUNdfinal.png
-02316583 lotfi fardi 3A1 masculin paris hoc@esprit.tn 1 11 2021 24153206 1 12 2021 102 hebergement+restaurant /home/kamel/Desktop/SE/pixmaps/farmer.jpg
-09717520 kamel fardi 1A1 male tozr k@k 1 11 2021 50195490 1 12 2021 120 hebergement+restaurant /home/kamel/Desktop/SE/pixmaps/farmer.jpg
-02316581 lotfi fardi 3A1 masculin paris hoc@esprit.tn 1 11 2021 24153206 1 12 2021 102 hebergement+restaurant /home/kamel/Desktop/SE/pixmaps/farmer.jpg
 09717521 3ezdine fardi 3EM1 masculin tozr k@k 1 11 2002 50195490 1 12 2021 120 hebergement+restaurant /home/kamel/Desktop/SE/pixmaps/dashboardblue
 96385274 f f 1GC1 masculin f f 5 11 2003 f 5 12 2021 f hebergement+restaurant /home/kamel/Desktop/ES/pixmaps/red.png
 14725836 s s 3EM1 masculin s s 5 11 2003 s 5 12 2021 s hebergement+restaurant /home/kamel/Desktop/ES/pixmaps/EDIT-BACKGROUNdfinal.png
@@ -16,4 +10,3 @@
 15975364 sadsad adsadada 1GC1 masculin dadadad adadad 5 11 2003 ada 5 12 2021 adad hebergement+restaurant /home/kamel/Desktop/ES/pixmaps/EDIT-BACKGROUNdfinal.png
 01478541 dsfadf fsfsf 3EM4 masculin dsf adfsdf 5 11 2003 sf 5 12 2021 sadf hebergement+restaurant /home/kamel/Desktop/ES/pixmaps/red.png
 96235874 ada dfa 1GC1 masculin dadfds dsfsa 5 11 2003 dsfsf 5 12 2021 sdfsf hebergement+restaurant /home/kamel/Desktop/ES/pixmaps/red.png
-ffffffff fff fffff 3EM1 masculin ffffff ffff 5 11 2003 ffff 5 12 2021 ffff hebergement+restaurant+piscine /home/kamel/Desktop/ES/pixmaps/bienajouter.png

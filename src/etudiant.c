@@ -269,10 +269,10 @@ void afficher_utilisateur(GtkWidget *liste,char file[])
         column = gtk_tree_view_column_new_with_attributes("nom d'utilisateur", renderer, "text", Username, NULL);
         gtk_tree_view_append_column(GTK_TREE_VIEW(liste), column);
         renderer = gtk_cell_renderer_text_new();
-        column = gtk_tree_view_column_new_with_attributes("              mot de passe          ", renderer, "text", password, NULL);
+        column = gtk_tree_view_column_new_with_attributes("mot de passe", renderer, "text", password, NULL);
         gtk_tree_view_append_column(GTK_TREE_VIEW(liste), column);
         renderer = gtk_cell_renderer_text_new();
-        column = gtk_tree_view_column_new_with_attributes("              Role        ", renderer, "text", job, NULL);
+        column = gtk_tree_view_column_new_with_attributes("Role", renderer, "text", job, NULL);
         gtk_tree_view_append_column(GTK_TREE_VIEW(liste), column);
     }
     store = gtk_list_store_new(COLUMNS5, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING);
@@ -306,10 +306,10 @@ void afficher_responsables(GtkWidget *liste,char file[])
         column = gtk_tree_view_column_new_with_attributes("nom d'utilisateur", renderer, "text", Username1, NULL);
         gtk_tree_view_append_column(GTK_TREE_VIEW(liste), column);
         renderer = gtk_cell_renderer_text_new();
-        column = gtk_tree_view_column_new_with_attributes("              mot de passe          ", renderer, "text", password1, NULL);
+        column = gtk_tree_view_column_new_with_attributes("mot de passe", renderer, "text", password1, NULL);
         gtk_tree_view_append_column(GTK_TREE_VIEW(liste), column);
         renderer = gtk_cell_renderer_text_new();
-        column = gtk_tree_view_column_new_with_attributes("              Role        ", renderer, "text", job1, NULL);
+        column = gtk_tree_view_column_new_with_attributes("Role", renderer, "text", job1, NULL);
         gtk_tree_view_append_column(GTK_TREE_VIEW(liste), column);
     }
     store = gtk_list_store_new(COLUMNS6, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING);
