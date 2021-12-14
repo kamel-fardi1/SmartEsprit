@@ -434,3 +434,100 @@ void
 on_ts_deconnect_button_clicked
                                         (GtkButton       *button,
                                         gpointer         user_data);
+
+void
+on_houssemkh_treeview1_row_activated   (GtkTreeView     *treeview,
+                                        GtkTreePath     *path,
+                                        GtkTreeViewColumn *column,
+                                        gpointer         user_data);
+
+void
+on_houssemkh_button6_aficher_clicked   (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_houssem_buttonbaby44_clicked        (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_houssem_button2_ajout_clicked       (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_houssem_leplusreclamer_clicked      (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_treeview2_row_activated             (GtkTreeView     *treeview,
+                                        GtkTreePath     *path,
+                                        GtkTreeViewColumn *column,
+                                        gpointer         user_data);
+
+void
+on_houssem_button4_mod_clicked         (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_houssem_button5_rech_clicked        (GtkWidget       *objet_graphique,gpointer  user_data);
+
+void
+on_alignment4_check_resize             (GtkContainer    *container,
+                                        gpointer         user_data);
+
+void
+on_houssemkh_button_ajout_rasmi_clicked
+                                        (GtkWidget       *objet_graphique,gpointer  user_data);
+
+void
+on_houssemkh_radiobutton3_hebergement_toggled
+                                        (GtkToggleButton *togglebutton,
+                                        gpointer         user_data);
+
+void
+on_houssem_radiobutton1_restauration_toggled
+                                        (GtkToggleButton *togglebutton,
+                                        gpointer         user_data);
+
+void
+on_houssemkh_button7_confirmer_desuprimer_clicked
+                                        (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_checkbutton2_ssa_toggled            (GtkToggleButton *togglebutton,
+                                        gpointer         user_data);
+
+void
+on_checkbutton1_yess_toggled           (GtkToggleButton *togglebutton,
+                                        gpointer         user_data);
+
+void
+on_houssemkh_modification23_clicked    (GtkWidget       *objet,
+                                        gpointer         user_data);
+
+void
+on_boutonderecuperationhoussem_clicked (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_houssemkh_bouton_de_tache2_clicked  (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_houssem_kharroubi_bouton_error_clicked
+                                        (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_houssemkh_bouton_fermer_clicked     (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_houssem_radiobutton1_restauration_toggled
+                                        (GtkToggleButton *togglebutton,
+                                        gpointer         user_data);
+
+void
+on_houssemkh_radiobutton3_hebergement_toggled
+                                        (GtkToggleButton *togglebutton,
+                                        gpointer         user_data);

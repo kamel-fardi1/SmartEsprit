@@ -12,9 +12,10 @@ SmartEsprit_SOURCES = \
 	support.c support.h \
 	interface.c interface.h \
 	callbacks.c callbacks.h	\
-	etudiant.c \
+	etudiant.c\
 	capteur.c \
-	fonction.c
+	fonction.c \
+    reclamation.c
 
 SmartEsprit_LDADD = @PACKAGE_LIBS@ $(INTLLIBS)
 

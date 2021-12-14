@@ -12,15 +12,9 @@ GtkWidget* create_kamel_fardi_ajout_hint_window (void);
 GtkWidget* create_kamel_fardi_rechercher_faild_window (void);
 GtkWidget* create_kamel_fardi_dash_board_window (void);
 GtkWidget* create_kamel_fardi_bien_ajoutee_window (void);
-///////////////////mohamed khoualdia/////////////////////
-GtkWidget* create_Med_kh_w_Ajouter (void);
-GtkWidget* create_Med_kh_w_Modifier (void);
-GtkWidget* create_Med_kh_w_Menu (void);
-GtkWidget* create_Med_kh_windowC_f (void);
-GtkWidget* create_Med_kh_w_aff_supp (void);
-GtkWidget* create_Med_kh_w_Rechercher (void);
-GtkWidget* create_Med_kh_confirme (void);
-///////////////////tesnime ////////////////////////////////
-GtkWidget* create_tesnime_affichage (void);
-GtkWidget* create_tesnime_ajouter (void);
-GtkWidget* create_tesnime_modifier (void);
+GtkWidget* create_houssem_gestion_de_reclamatio (void);
+GtkWidget* create_houssem_ajoutdereclamation (void);
+GtkWidget* create_houssem_CONFIRMATION (void);
+GtkWidget* create_houssem_modification (void);
+GtkWidget* create_houssemkh_dache_bord (void);
+GtkWidget* create_houssem_kharroubi_eroor (void);
