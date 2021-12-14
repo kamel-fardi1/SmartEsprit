@@ -531,3 +531,90 @@ void
 on_houssemkh_radiobutton3_hebergement_toggled
                                         (GtkToggleButton *togglebutton,
                                         gpointer         user_data);
+
+void
+on_naim_bouraoui_treeview_row_activated
+                                        (GtkTreeView     *treeview,
+                                        GtkTreePath     *path,
+                                        GtkTreeViewColumn *column,
+                                        gpointer         user_data);
+
+void
+on_button_ajouter_clicked              (GtkWidget       *objet_graphique,
+                                        gpointer         user_data);
+
+void
+on_button_modif_clicked                (GtkWidget       *objet_graphique,
+                                        gpointer         user_data);
+
+void
+on_button_supp_clicked                 (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_button_rechercher_clicked           (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_naim_bouraoui_checkbuttons_toggled  (GtkToggleButton *togglebutton,
+                                        gpointer         user_data);
+
+void
+on_naim_bouraoui_checkbuttonT_toggled  (GtkToggleButton *togglebutton,
+                                        gpointer         user_data);
+
+void
+on_naim_bouraoui_Afficher_clicked      (GtkWidget        *objet,
+                                        gpointer         user_data);
+
+void
+on_button_valider_clicked              (GtkWidget       *objet_graphique,
+                                        gpointer         user_data);
+
+void
+on_naim_bouraoui_radiobutton_supprimer_toggled
+                                        (GtkToggleButton *togglebutton,
+                                        gpointer         user_data);
+
+void
+on_naim_bouraoui_radiobutton_annuler_toggled
+                                        (GtkToggleButton *togglebutton,
+                                        gpointer         user_data);
+
+void
+on_naim_bouraoui_ok_clicked            (GtkWidget       *objet_graphique,
+                                        gpointer         user_data);
+
+void
+on_naim_bouraoui_modifier2_clicked     (GtkWidget       *objet_graphique,
+                                        gpointer         user_data);
+
+void
+on_naim_bouraoui_erreur1_clicked       (GtkWidget        *objey_graphique,
+                                        gpointer         user_data);
+
+void
+on_naim_bouraoui_boutton_retour_clicked
+                                        (GtkWidget       *objet_graphique,
+                                        gpointer         user_data);
+
+void
+on_naim_bouraoui_actualiser_clicked    (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_naim_bouraoui_retour_modif_clicked  (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_naim_bouraoui_erreur_rech_clicked   (GtkButton       *button,
+                                        gpointer         user_data);
+
+void
+on_naim_bouraoui_retou_ajout_clicked   (GtkButton       *button,
+                                        gpointer         user_data);
+
+
+void
+on_naim_bouraoui_boutton_ret_clicked   (GtkButton       *button,
+                                        gpointer         user_data);
