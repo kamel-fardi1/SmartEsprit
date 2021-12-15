@@ -14,7 +14,9 @@ SmartEsprit_SOURCES = \
 	callbacks.c callbacks.h	\
 	etudiant.c \
 	capteur.c \
-	fonction.c
+	fonction.c \
+	fonctionN.c \
+	reclamation.c
 
 SmartEsprit_LDADD = @PACKAGE_LIBS@ $(INTLLIBS)
 

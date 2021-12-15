@@ -10,6 +10,8 @@
 #include "fonction.h"
 #include"capteur.h"
 #include "etudiant.h"
+#include "fonctionN.h"
+#include "reclamation.h"
 #include <time.h>
 int pisc=0;
 int restau=0;
@@ -17,6 +19,13 @@ int s;
 char id[30];
 char a[70];char b[70];char c[70];char d[70];char e[70];char f[70];char g[70];
 int radio_type;
+int decision;
+reclamation roe;
+int x;
+int ge[2]={0,0};
+char he[20]="hebergement";
+char de[20]="restauration";
+soulofthedead poe;
 void
 on_kamel_fardi_authen_wind_login_auth_button_clicked
                                         (GtkWidget       *button,
@@ -24,6 +33,7 @@ on_kamel_fardi_authen_wind_login_auth_button_clicked
 {
 GtkWidget *authentification;
   GtkWidget *w,*v,*kamel_fardi_authen_wind_username_auth_entry,*kamel_fardi_authen_wind_password_auth_entry,*treeview;
+  GtkWidget *pdejtree,*dejtree,*dentree,*hkreclam;
   char *file_users="utilisateurs.txt";
   char *fichier="etudiants.txt";
   kamel_fardi_authen_wind_username_auth_entry = lookup_widget(button, "kamel_fardi_authen_wind_username_auth_entry");
@@ -33,12 +43,17 @@ GtkWidget *authentification;
   {
   case 1:
     gtk_widget_hide (authentification);
-    w = create_admin ();
     v=create_kamel_fardi_dash_board_window ();
-    //gtk_widget_show (w);
+    
+    pdejtree=lookup_widget(v,"nb_dash_pdej_treeview1");
+    dejtree=lookup_widget(v,"nb_dash_dej_treeview2");
+    dentree=lookup_widget(v,"nb_dash_den_treeview3");
+    hkreclam=lookup_widget(v,"hk_dash_treeview1");
+    nbaffiche_meileur_menu(pdejtree,1);
+    nbaffiche_meileur_menu(dejtree,2);
+    nbaffiche_meileur_menu(dentree,3);
+    hkleplusreclamer(hkreclam);
     gtk_widget_show (v);
-    treeview = lookup_widget(w, "kamel_fardi_espace_admin_treeview_responsables");
-    afficher_utilisateur(treeview,file_users);
     break;
   case 2:
     gtk_widget_hide (authentification);
@@ -47,12 +62,22 @@ GtkWidget *authentification;
     treeview = lookup_widget(w, "kamel_fardi_affichage_liste_etudiant_treeview");
     afficher_etudiant(treeview,fichier);
     break;
+    case 3:
+    gtk_widget_hide (authentification);
+    w = create_naim_bouraoui_gestion_des_menus ();
+    gtk_widget_show (w);
+    break;
     case 4:
     gtk_widget_hide (authentification);
     w = create_Med_kh_w_Menu ();
     gtk_widget_show (w);
     break;
-    case 7:
+    case 5:
+    gtk_widget_hide (authentification);
+    w = create_houssem_gestion_de_reclamation ();
+    gtk_widget_show (w);
+    break;
+    case 6:
     gtk_widget_hide (authentification);
     w = create_tesnime_affichage ();
     gtk_widget_show (w);
@@ -80,18 +105,18 @@ on_treeview_empl_row_activated         (GtkTreeView     *treeview,
                                         GtkTreeViewColumn *column,
                                         gpointer         user_data)
 {
-/*GtkWidget *kamel_fardi_etudiant_window,*ajout_hint,*cinentry;
+GtkWidget *kamel_fardi_etudiant_window,*ajout_hint,*cinentry;
     GtkWidget *kamel_fardi_afficher_window;
     //GtkWidget *classe,*services,*img, *fixed1, *nom, *prenom, *adress, *cin, *sexe, *ntlfn, *nenfn, *wind,*mail,*dtheberg,*naissance;
     GtkTreeIter iter;
     //char *buf1;
     //char *buf2;
-    char *fichier="etudiants.txt";
+    char *fichier="utilisateurs.txt";
     //Etudiant p;
     gchar *c1,*c2,*c3;
 
      //ajout_hint = create_kamel_fardi_ajout_hint_window (); 
-    kamel_fardi_etudiant_window = create_kamel_fardi_etudiant_window ();
+    //kamel_fardi_etudiant_window = create_kamel_fardi_etudiant_window ();
    
 
     
@@ -102,10 +127,10 @@ on_treeview_empl_row_activated         (GtkTreeView     *treeview,
       {
     
         gtk_tree_model_get(GTK_LIST_STORE(model),&iter,0,&c1, 1, &c2, 2, &c3, -1);
-    p=chercher_etudiant(c1,fichier);*/
+        supprimer_utilisateur(c1,c2,c3,fichier);
 }
 
-
+}
 void
 on_kamel_fardi_modifier_admin_button_clicked
                                         (GtkWidget       *button,
@@ -128,7 +153,17 @@ on_kamel_fardi_es_admin_supprimer_res_button_clicked
                                         (GtkWidget       *button,
                                         gpointer         user_data)
 {
+GtkWidget *kamel_fardi_es_admin_resp_un_entry,*kamel_fardi_es_admin_pswrd_resp_entry,*kamel_fardi_role_admin_window_combobox;
 
+//////////------------------------------------------------------------///////////////////////////////////////////////////////////////////////////
+//////////----------------obtenir les objects graphiques-------------////////////////////////////////////////////////////////////////////////////
+kamel_fardi_es_admin_resp_un_entry = lookup_widget(button, "kamel_fardi_es_admin_resp_un_entry");
+kamel_fardi_es_admin_pswrd_resp_entry = lookup_widget(button, "kamel_fardi_es_admin_pswrd_resp_entry");
+
+
+
+gtk_entry_set_text(GTK_ENTRY(kamel_fardi_es_admin_resp_un_entry), "");
+gtk_entry_set_text(GTK_ENTRY(kamel_fardi_es_admin_pswrd_resp_entry), "");
 }
 
 
@@ -141,8 +176,8 @@ on_kamel_fardi_es_admin_liste_res_button_clicked
   GtkWidget *treeview;
   char *fichier="utilisateurs.txt";  
   admin = lookup_widget(button, "admin");
-    treeview = lookup_widget(admin, "kamel_fardi_espace_admin_treeview_responsables");
-    afficher_utilisateur(treeview,fichier);
+  treeview = lookup_widget(admin, "kamel_fardi_espace_admin_treeview_responsables");
+  afficher_utilisateur(treeview,fichier);
 }
 
 
@@ -151,7 +186,12 @@ on_kamel_fardi_es_admin_chercher_res_button_clicked
                                         (GtkWidget       *button,
                                         gpointer         user_data)
 {
-
+  GtkWidget *chercherentry;
+  GtkWidget *treeview;
+  //char *fichier="utilisateurs.txt";  
+  chercherentry = lookup_widget(button, "kamel_fardi_es_admin_chercher_responsable_entry");
+  treeview = lookup_widget(button, "kamel_fardi_espace_admin_treeview_responsables");
+  afficher_person(treeview,gtk_entry_get_text(GTK_ENTRY(chercherentry)));
 }
 
 
@@ -243,7 +283,13 @@ on_kamel_fardi_gestion_des_menus_de_la_semaine_admin_window_button_clicked
                                         (GtkWidget       *button,
                                         gpointer         user_data)
 {
+GtkWidget *admin;
+  GtkWidget *w;
 
+    admin = lookup_widget(button, "admin");
+    gtk_widget_hide (admin);
+    w = create_naim_bouraoui_gestion_des_menus ();
+    gtk_widget_show (w);
 }
 
 
@@ -283,7 +329,13 @@ on_kamel_fardi_Gestion_des_reclamations_hebergee_admin_window_button_clicked
                                         (GtkWidget       *button,
                                         gpointer         user_data)
 {
+  GtkWidget *admin;
+  GtkWidget *w;
 
+    admin = lookup_widget(button, "admin");
+    gtk_widget_hide (admin);
+    w =create_houssem_gestion_de_reclamation ();
+    gtk_widget_show (w);
 }
 
 
@@ -317,7 +369,7 @@ on_kamel_fardi_etudiant_window_modif_button_clicked
     GtkWidget *treeview;
     GtkWidget *nom_entry;
     GtkWidget *prenom_entry, *lieu_de_residence_entry, *date_de_naissance_calendar;
-    GtkWidget *numero_telephonique_entry, *cin_entry, *groupe,*mail,*chambre,*classe;
+    GtkWidget *numero_telephonique_entry, *cin_entry, *groupe,*mail,*chambre,*classe,*sexeh,*sexef,*rest,*pisci;
     //////////-----------------------------------------------------------////////////////////////////////////////////////////////////////////////////
     //////////----------------obtenir les fenetres graphiques-------------////////////////////////////////////////////////////////////////////////////
     kamel_fardi_etudiant_window = lookup_widget(button, "kamel_fardi_etudiant_window");
@@ -334,6 +386,10 @@ on_kamel_fardi_etudiant_window_modif_button_clicked
     groupe = lookup_widget(kamel_fardi_modifier_window, "kamel_fardi_modifier_groupe_spinbutton");
     mail = lookup_widget(kamel_fardi_modifier_window, "kamel_fardi_modifier_email_entry");
     classe = lookup_widget(kamel_fardi_modifier_window, "kamel_fardi_modifier_classe_combobox");
+    sexef=lookup_widget(kamel_fardi_modifier_window,"kamel_fardi_modifier_female_radiobutton");
+    sexeh=lookup_widget(kamel_fardi_modifier_window,"kamel_fardi_modifier_male_radiobutton");
+    rest=lookup_widget(kamel_fardi_modifier_window,"kamel_fardi_modifier_restaurant_checkbutton");
+    pisci=lookup_widget(kamel_fardi_modifier_window,"kamel_fardi_modifier_piscine_checkbutton");
     ////////--------------------reinitialisation des entrees--------------//////////////////////////////////////////////////////////////////////////
     
     gtk_entry_set_text(GTK_ENTRY(nom_entry), p.nom);
@@ -349,6 +405,29 @@ on_kamel_fardi_etudiant_window_modif_button_clicked
                               p.date_de_naissance.annee);
     gtk_calendar_select_day(GTK_CALENDAR(date_de_naissance_calendar),
                             p.date_de_naissance.jour);
+    if (!strcmp(p.services,"hebergement"))
+    {
+    gtk_toggle_button_set_active(GTK_CHECK_BUTTON(rest), 0);
+    gtk_toggle_button_set_active(GTK_CHECK_BUTTON(pisci), 0);
+    }
+    else if (!strcmp(p.services,"hebergement+restaurant")){
+    gtk_toggle_button_set_active(GTK_CHECK_BUTTON(rest), 1);
+    gtk_toggle_button_set_active(GTK_CHECK_BUTTON(pisci), 0);
+    }
+    else{
+    gtk_toggle_button_set_active(GTK_CHECK_BUTTON(rest), 1);
+    gtk_toggle_button_set_active(GTK_CHECK_BUTTON(pisci), 1);
+    }
+    if (!strcmp(p.sexe,"masculin"))
+    {
+      gtk_toggle_button_set_active(GTK_RADIO_BUTTON(sexeh), 1);
+      gtk_toggle_button_set_active(GTK_RADIO_BUTTON(sexef), 0);
+    }
+    else
+    {
+      gtk_toggle_button_set_active(GTK_RADIO_BUTTON(sexeh), 0);
+      gtk_toggle_button_set_active(GTK_RADIO_BUTTON(sexef), 1);
+    }
     ///////-------------------------------------------------------------//////////////////////////////////////////////////////////////////////////
     gtk_widget_hide (kamel_fardi_etudiant_window);
     gtk_widget_show (kamel_fardi_modifier_window);
@@ -414,7 +493,7 @@ on_kamel_fardi_etudiant_gestion_etudiants_ajouter_button_clicked
     GtkWidget *nom_entry;
     GtkWidget *prenom_entry, *lieu_de_residence_entry, *date_de_naissance_calendar;
     GtkWidget *numero_telephonique_entry, *cin_entry, *groupe,*mail,*chambre,*classe,*hintlabel,*fixed1;
-    GtkWidget *hint,*kamel_fardi_ajout_etudiant_window1;
+    GtkWidget *hint,*kamel_fardi_ajout_etudiant_window1,*rest,*pisci,*rf;
     char *fichier="etudiants.txt";
     char *fichier_users="utilisateurs.txt";
     //////////-----------------------------------------------------------////////////////////////////////////////////////////////////////////////////
@@ -431,6 +510,9 @@ on_kamel_fardi_etudiant_gestion_etudiants_ajouter_button_clicked
     groupe = lookup_widget(button, "kamel_fardi_etudiant_gestion_etudiants_spinbutton");
     mail = lookup_widget(button, "kamel_fardi_etudiant_gestion_etudiants_mail_entry");
     classe = lookup_widget(button, "kamel_fardi_ajout_window_ajouter_combobox");
+    rest = lookup_widget(button, "kamel_fardi_ajouter_restaurant_checkbutton");
+    pisci = lookup_widget(button, "kamel_fardi_ajouter_piscine_checkbutton");
+    rf = lookup_widget(button, "kamel_fardi_ajout_window_ajouter_m_radiob");
     g=gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(groupe));
     sprintf(grp, "%d", g);
     if(!strlen(gtk_entry_get_text(GTK_ENTRY(cin_entry)))||!strlen(gtk_entry_get_text(GTK_ENTRY(nom_entry)))||!strlen(gtk_entry_get_text(GTK_ENTRY(prenom_entry)))||!strlen(gtk_entry_get_text(GTK_ENTRY(lieu_de_residence_entry)))||!strlen(gtk_entry_get_text(GTK_ENTRY(numero_telephonique_entry)))||!strlen(gtk_entry_get_text(GTK_ENTRY(chambre)))||!strlen(gtk_entry_get_text(GTK_ENTRY(mail)))||!strlen(gtk_combo_box_get_active_text(GTK_COMBO_BOX(classe)))||!strlen(etd.photo)||gtk_combo_box_get_active_text(GTK_COMBO_BOX(classe))==NULL){
@@ -492,6 +574,9 @@ on_kamel_fardi_etudiant_gestion_etudiants_ajouter_button_clicked
     gtk_entry_set_text(GTK_ENTRY(cin_entry), "");
     gtk_entry_set_text(GTK_ENTRY(mail), "");
     gtk_entry_set_text(GTK_ENTRY(chambre), "");
+    gtk_toggle_button_set_active(GTK_RADIO_BUTTON(rf), 1);
+    gtk_toggle_button_set_active(GTK_CHECK_BUTTON(rest), 0);
+    gtk_toggle_button_set_active(GTK_CHECK_BUTTON(pisci), 0);
     ///////-------------------------------------------------------------///////////////////////////////////////////////////////////////////////////
 }
 }
@@ -516,7 +601,7 @@ on_kamel_fardi_etudiant_gestion_etudiants_annuler_button_clicked
     GtkWidget *nom_entry;
     GtkWidget *prenom_entry, *lieu_de_residence_entry, *date_de_naissance_calendar;
     GtkWidget *numero_telephonique_entry, *cin_entry, *groupe,*mail,*chambre,*classe;
-    GtkWidget *hint,*kamel_fardi_ajout_etudiant_window1;
+    GtkWidget *hint,*kamel_fardi_ajout_etudiant_window1,*rest,*pisci,*rf;
     char *fichier="etudiants.txt";
     char *fichier_users="utilisateurs.txt";
     //////////-----------------------------------------------------------////////////////////////////////////////////////////////////////////////////
@@ -532,7 +617,9 @@ on_kamel_fardi_etudiant_gestion_etudiants_annuler_button_clicked
     groupe = lookup_widget(button, "kamel_fardi_etudiant_gestion_etudiants_spinbutton");
     mail = lookup_widget(button, "kamel_fardi_etudiant_gestion_etudiants_mail_entry");
     classe = lookup_widget(button, "kamel_fardi_ajout_window_ajouter_combobox");
-    
+    rest = lookup_widget(button, "kamel_fardi_ajouter_restaurant_checkbutton");
+    pisci = lookup_widget(button, "kamel_fardi_ajouter_piscine_checkbutton");
+    rf = lookup_widget(button, "kamel_fardi_ajout_window_ajouter_m_radiob");
   ////////--------------------reinitialisation des entrees--------------//////////////////////////////////////////////////////////////////////////
     //gtk_label_set_text(GTK_LABEL(lbl),"bien ajouter !!");
     gtk_entry_set_text(GTK_ENTRY(nom_entry), "");
@@ -548,6 +635,10 @@ on_kamel_fardi_etudiant_gestion_etudiants_annuler_button_clicked
                               timeinfo->tm_year+1882);
     gtk_calendar_select_day(GTK_CALENDAR(date_de_naissance_calendar),
                             timeinfo->tm_mday);
+    gtk_toggle_button_set_active(GTK_CHECK_BUTTON(rest), 0);
+    gtk_toggle_button_set_active(GTK_CHECK_BUTTON(pisci), 0);
+    gtk_toggle_button_set_active(GTK_RADIO_BUTTON(rf), 1);
+                            
 }
 
 
@@ -788,7 +879,7 @@ on_kamel_fardi_modifier_annuler_button_clicked
     GtkWidget *nom_entry;
     GtkWidget *prenom_entry, *lieu_de_residence_entry, *date_de_naissance_calendar;
     GtkWidget *numero_telephonique_entry, *cin_entry, *groupe,*mail,*chambre,*classe;
-    GtkWidget *hint,*kamel_fardi_ajout_etudiant_window1;
+    GtkWidget *hint,*kamel_fardi_ajout_etudiant_window1,*sexeh,*sexef;
     char *fichier="etudiants.txt";
     char *fichier_users="utilisateurs.txt";
     //////////-----------------------------------------------------------////////////////////////////////////////////////////////////////////////////
@@ -804,7 +895,8 @@ on_kamel_fardi_modifier_annuler_button_clicked
     groupe = lookup_widget(button, "kamel_fardi_modifier_groupe_spinbutton");
     mail = lookup_widget(button, "kamel_fardi_modifier_email_entry");
     classe = lookup_widget(button, "kamel_fardi_modifier_classe_combobox");
-    
+    sexef=lookup_widget(button, "kamel_fardi_modifier_female_radiobutton");
+    sexeh=lookup_widget(button, "kamel_fardi_modifier_male_radiobutton");
   ////////--------------------reinitialisation des entrees--------------//////////////////////////////////////////////////////////////////////////
     gtk_entry_set_text(GTK_ENTRY(nom_entry), p.nom);
     gtk_entry_set_text(GTK_ENTRY(prenom_entry),p.prenom);
@@ -819,6 +911,16 @@ on_kamel_fardi_modifier_annuler_button_clicked
                               p.date_de_naissance.annee);
     gtk_calendar_select_day(GTK_CALENDAR(date_de_naissance_calendar),
                             p.date_de_naissance.jour);
+    if (!strcmp(p.sexe,"masculin"))
+    {
+      gtk_toggle_button_set_active(GTK_RADIO_BUTTON(sexeh), 1);
+      gtk_toggle_button_set_active(GTK_RADIO_BUTTON(sexef), 0);
+    }
+    else
+    {
+      gtk_toggle_button_set_active(GTK_RADIO_BUTTON(sexeh), 0);
+      gtk_toggle_button_set_active(GTK_RADIO_BUTTON(sexef), 1);
+    }
 }
 
 
@@ -1021,7 +1123,7 @@ on_kamel_fardi_afficher_chercher_button_clicked
 {
 GtkWidget *kamel_fardi_etudiant_window,*ajout_hint,*cinentry;
   GtkWidget *kamel_fardi_afficher_window;
-  GtkWidget *classe,*services,*img, *fixed1, *nom, *prenom, *adress, *cin, *sexe, *ntlfn, *nenfn, *wind,*mail,*dtheberg,*lbl;
+  GtkWidget *classe,*services,*img, *fixed1, *nom, *prenom, *adress, *cin, *sexe, *ntlfn, *nenfn, *wind,*mail,*dtheberg,*naissance;
   char *buf1;
   char *buf2;
   char *fichier="etudiants.txt";
@@ -1042,26 +1144,35 @@ GtkWidget *kamel_fardi_etudiant_window,*ajout_hint,*cinentry;
     ntlfn = lookup_widget(kamel_fardi_etudiant_window, "kamel_fardi_etudiant_window_etd_num_tlf");
     mail=lookup_widget(kamel_fardi_etudiant_window, "kamel_fardi_etudiant_window_mail_label");
     sexe = lookup_widget(kamel_fardi_etudiant_window, "kamel_fardi_etudiant_window_etd_sexe");
-    lbl=lookup_widget(kamel_fardi_etudiant_window, "kamel_fardi_etudiant_window_etd_date_de_naissace_label");
+    naissance=lookup_widget(kamel_fardi_etudiant_window, "kamel_fardi_etudiant_window_etd_date_de_naissace_label");
     classe=lookup_widget(kamel_fardi_etudiant_window, "kamel_fardi_etudiant_window_classe_lable");
     services=lookup_widget(kamel_fardi_etudiant_window, "kamel_fardi_etudiant_window_service_entrylabel");
     dtheberg=lookup_widget(kamel_fardi_etudiant_window, "kamel_fardi_etudiant_window_dt_heberg_en_label");
 
-
-
-    buf1=g_strdup_printf("%d %d %d", p.date_de_naissance.jour,p.date_de_naissance.mois,p.date_de_naissance.annee);
-    buf2=g_strdup_printf("%d %d %d",p.date_d_hebergement.jour,p.date_d_hebergement.mois,p.date_d_hebergement.annee);
-    gtk_label_set_text(GTK_LABEL(nom), p.nom);
-    gtk_label_set_text(GTK_LABEL(prenom), p.prenom);
-    gtk_label_set_text(GTK_LABEL(adress), p.adress);
-    gtk_label_set_text(GTK_LABEL(mail), p.aderess_mail);
-    gtk_label_set_text(GTK_LABEL(classe), p.classe);
-    gtk_label_set_text(GTK_LABEL(services), p.services);
-    gtk_label_set_text(GTK_LABEL(cin), p.cin);
-    gtk_label_set_text(GTK_LABEL(sexe), p.sexe);
-    gtk_label_set_text(GTK_LABEL(ntlfn), p.numero_telephonique);
-    gtk_label_set_text(GTK_LABEL(dtheberg), buf2);
-    gtk_label_set_text(GTK_LABEL(lbl), buf1);
+    buf1=g_strdup_printf("%d-%d-%d", p.date_de_naissance.jour,p.date_de_naissance.mois,p.date_de_naissance.annee);
+    buf2=g_strdup_printf("%d-%d-%d",p.date_d_hebergement.jour,p.date_d_hebergement.mois,p.date_d_hebergement.annee);
+    sprintf(kfchaine, "%s%s%s","<span font_desc=\"arial\" color=\"black\"><b>",p.nom,"</b></span>");
+    gtk_label_set_markup (GTK_LABEL (nom), kfchaine);
+    sprintf(kfchaine, "%s%s%s","<span font_desc=\"arial\" color=\"black\"><b>",p.prenom,"</b></span>");
+    gtk_label_set_markup (GTK_LABEL (prenom), kfchaine);
+    sprintf(kfchaine, "%s%s%s","<span font_desc=\"arial\" color=\"black\"><b>",p.adress,"</b></span>");
+    gtk_label_set_markup (GTK_LABEL (adress), kfchaine);
+    sprintf(kfchaine, "%s%s%s","<span font_desc=\"arial\" color=\"black\"><b>",p.aderess_mail,"</b></span>");
+    gtk_label_set_markup (GTK_LABEL (mail), kfchaine);
+    sprintf(kfchaine, "%s%s%s","<span font_desc=\"arial\" color=\"black\"><b>",p.classe,"</b></span>");
+    gtk_label_set_markup (GTK_LABEL (classe), kfchaine);
+    sprintf(kfchaine, "%s%s%s","<span font_desc=\"arial\" color=\"black\"><b>",p.services,"</b></span>");
+    gtk_label_set_markup (GTK_LABEL (services), kfchaine);
+    sprintf(kfchaine, "%s%s%s","<span font_desc=\"arial\" color=\"black\"><b>",p.cin,"</b></span>");
+    gtk_label_set_markup (GTK_LABEL (cin), kfchaine);
+    sprintf(kfchaine, "%s%s%s","<span font_desc=\"arial\" color=\"black\"><b>",p.sexe,"</b></span>");
+    gtk_label_set_markup (GTK_LABEL (sexe), kfchaine);
+    sprintf(kfchaine, "%s%s%s","<span font_desc=\"arial\" color=\"black\"><b>",p.numero_telephonique,"</b></span>");
+    gtk_label_set_markup (GTK_LABEL (ntlfn), kfchaine);
+    sprintf(kfchaine, "%s%s%s","<span font_desc=\"arial\" color=\"black\"><b>",buf2,"</b></span>");
+    gtk_label_set_markup (GTK_LABEL (dtheberg), kfchaine);
+    sprintf(kfchaine, "%s%s%s","<span font_desc=\"arial\" color=\"black\"><b>",buf1,"</b></span>");
+    gtk_label_set_markup (GTK_LABEL (naissance), kfchaine);
     g_free(buf2);
     g_free(buf1);
     fixed1 = lookup_widget(kamel_fardi_etudiant_window, "kamel_fardi_fiche_etudiant_fixed");
@@ -1111,10 +1222,10 @@ on_kamel_fardi_dash_board_fixed_espaceadmin_button_clicked
                                         (GtkWidget       *button,
                                         gpointer         user_data)
 {
-    GtkWidget *w,*treeview,*authentification;
+    GtkWidget *w,*treeview,*dash;
     char *file_users="utilisateurs.txt";
-    authentification=create_authentification();
-    gtk_widget_hide (authentification);
+    dash=lookup_widget(button, "kamel_fardi_dash_board_window");
+    gtk_widget_hide (dash);
     w = create_admin ();
     gtk_widget_show (w);
     treeview = lookup_widget(w, "kamel_fardi_espace_admin_treeview_responsables");
@@ -1129,6 +1240,7 @@ on_kamel_fardi_dash_board_fixed_logout_button_clicked
 {
 GtkWidget *authentification;
   GtkWidget *kamel_fardi_afficher_window;
+  
   authentification = create_authentification ();
   gtk_widget_show (authentification);
   kamel_fardi_afficher_window = lookup_widget(button, "kamel_fardi_dash_board_window");
@@ -1156,6 +1268,11 @@ gtk_label_set_markup (GTK_LABEL (kamel_fardi_dash_board_fixed_espaceadmin_nombre
 void
 on_kamel_fardi_bien_ajoutee_ok_button_clicked
                                         (GtkWidget       *button,
+                                        gpointer         user_data)
+{
+
+}
+on_kf_dash_pr_button_clicked           (GtkWidget       *button,
                                         gpointer         user_data)
 {
 
@@ -1194,7 +1311,7 @@ GtkWidget *w_Ajouter,*confirme;
 
 
 void
-on_mk_dash_afficher_clicked            (GtkButton       *button,
+on_mk_dash_afficher_clicked            (GtkWidget       *button,
                                         gpointer         user_data)
 {
 GtkWidget *kamel_fardi_dash_board_window,*mk_dash_combobox;
@@ -1425,16 +1542,13 @@ GtkWidget *tree;
 //Menu=lookup_widget(objet,"Med_kh_w_Menu");
 aff = create_Med_kh_w_aff_supp ();
 
-
-//tree=lookup_widget(aff,"Med_kh_treeview1");
-//afficher_capteur(tree);
 gtk_widget_show (aff);
 //gtk_widget_hide(Menu);
 }
 
 
 void
-on_Med_kh_button_CF_clicked            (GtkButton       *objet,
+on_Med_kh_button_CF_clicked            (GtkWidget       *objet,
                                         gpointer         user_data)
 {
   GtkWidget *Menu;
@@ -1472,7 +1586,7 @@ on_Med_kh_button_CF_clicked            (GtkButton       *objet,
 
 
 void
-on_Med_kh_Rechercher_clicked           (GtkButton       *objet,
+on_Med_kh_Rechercher_clicked           (GtkWidget       *objet,
                                         gpointer         user_data)
 {
   GtkWidget *Menu;
@@ -1581,7 +1695,7 @@ afficher_capteur(tree);
 
 
 void
-on_Med_kh_modif_conf_button_clicked    (GtkButton       *button,
+on_Med_kh_modif_conf_button_clicked    (GtkWidget       *button,
                                         gpointer         user_data)
 {
    GtkWidget *confirme;
@@ -1679,6 +1793,19 @@ on_Med_kh_button_retour0_clicked       (GtkWidget       *objet,
  w_aff_supp=lookup_widget(objet,"Med_kh_w_aff_supp");
  gtk_widget_destroy(w_aff_supp);
 }
+void
+on_mk_deconnect_button_clicked   (GtkWidget       *button,
+                                        gpointer         user_data)
+{
+  GtkWidget *authentification;
+  GtkWidget *admin;
+  
+  authentification = create_authentification();
+  gtk_widget_show (authentification);
+  admin = lookup_widget(button, "Med_kh_w_Menu");
+  gtk_widget_hide (admin);
+
+                                        }
 
 //////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////
@@ -1687,7 +1814,7 @@ on_Med_kh_button_retour0_clicked       (GtkWidget       *objet,
 ///////////////////////////////////////////////////////////////////
 void
 on_button3_tessnime_affichage_supprimer_clicked
-                                        (GtkButton       *button,
+                                        (GtkWidget       *button,
                                         gpointer         user_data)
 {
 GtkWidget *code;
@@ -1701,7 +1828,7 @@ tes_supprimer(file,gtk_entry_get_text(GTK_ENTRY(code)));
 
  void 
 on_button1_tesnim_affichage_ajouter_clicked
-                                        (GtkButton       *button,
+                                        (GtkWidget       *button,
                                         gpointer         user_data)
 {
 GtkWidget *fenetre_ajout;
@@ -1717,7 +1844,7 @@ GtkWidget *fenetre_ajout;
 
 void
 on_button2_tesnime_affichage_modifier_clicked
-                                        (GtkButton       *button,
+                                        (GtkWidget       *button,
                                         gpointer         user_data)
 {
 produit p;
@@ -1788,7 +1915,7 @@ produit p;
 
 void
 on_button4_tesnime_affichage_rechercher_clicked
-                                        (GtkButton       *button,
+                                        (GtkWidget       *button,
                                         gpointer         user_data)
 {
 produit p;
@@ -1831,7 +1958,7 @@ produit p;
 
 
 void
-on_button5_tesnime_afficher__clicked   (GtkButton       *button,
+on_button5_tesnime_afficher__clicked   (GtkWidget       *button,
                                         gpointer         user_data)
 {
 GtkWidget *fenetre_afficher;
@@ -1845,7 +1972,7 @@ GtkWidget *fenetre_afficher;
 
 void
 on_radiobutton2_tes_ajouter_retrait_clicked
-                                        (GtkButton       *button,
+                                        (GtkWidget       *button,
                                         gpointer         user_data)
 {
 
@@ -1854,7 +1981,7 @@ on_radiobutton2_tes_ajouter_retrait_clicked
 
 void
 on_radiobutton1_tes_ajout_depot_clicked
-                                        (GtkButton       *button,
+                                        (GtkWidget       *button,
                                         gpointer         user_data)
 {
 
@@ -1867,7 +1994,7 @@ on_radiobutton1_tes_ajout_depot_clicked
 
 
 void
-on_button7_tesnim_retour_clicked       (GtkButton       *button,
+on_button7_tesnim_retour_clicked       (GtkWidget       *button,
                                         gpointer         user_data)
 {
 GtkWidget *fenetre_ajout;
@@ -1887,7 +2014,7 @@ GtkWidget *fenetre_ajout;
 
 void
 on_radiobutton3_tes_modif_depot_clicked
-                                        (GtkButton       *button,
+                                        (GtkWidget       *button,
                                         gpointer         user_data)
 {
 
@@ -1896,7 +2023,7 @@ on_radiobutton3_tes_modif_depot_clicked
 
 void
 on_radiobutton4_tes_modif_retrait_clicked
-                                        (GtkButton       *button,
+                                        (GtkWidget       *button,
                                         gpointer         user_data)
 {
 
@@ -1905,7 +2032,7 @@ on_radiobutton4_tes_modif_retrait_clicked
 
 void
 on_button8_valider_tes_modiffier_clicked
-                                        (GtkButton       *button,
+                                        (GtkWidget       *button,
                                         gpointer         user_data)
 {
 
@@ -1958,7 +2085,7 @@ produit p;
 
 
 void
-on_button9_retour_tes_modifier_clicked (GtkButton       *button,
+on_button9_retour_tes_modifier_clicked (GtkWidget       *button,
                                         gpointer         user_data)
 {
 GtkWidget *fenetre_ajout;
@@ -1995,7 +2122,7 @@ radio_type=0;
 
 void
 on_button6_tesnim_ajouter_valider_clicked
-                                        (GtkButton       *button,
+                                        (GtkWidget       *button,
                                         gpointer         user_data)
 {
 produit p;
@@ -2081,7 +2208,7 @@ produit p ;
 }
 void
 on_ts_deconnect_button_clicked
-                                        (GtkButton       *button,
+                                        (GtkWidget       *button,
                                         gpointer         user_data){
   
   GtkWidget *authentification;
@@ -2092,4 +2219,778 @@ on_ts_deconnect_button_clicked
   admin = lookup_widget(button, "tesnime_affichage");
   gtk_widget_hide (admin);
                                         }
-                                        
+//////////////////////naim////////////////////////////////////////////////////
+
+
+
+void
+on_naim_bouraoui_treeview_row_activated
+                                        (GtkTreeView     *treeview,
+                                        GtkTreePath     *path,
+                                        GtkTreeViewColumn *column,
+                                        gpointer         user_data)
+{
+GtkWidget* windowOK;
+FILE *d=NULL;
+d=fopen("suppression.txt","w");
+GtkTreeIter iter;
+	gint mois;
+	gint jour;
+	gchar* boisson;
+	gchar* produit;
+	gchar* vienoiserie;
+	gchar* entreedej;
+	gchar* platdej;
+	gchar* dessertdej;
+	gchar* entreedin;
+	gchar* platdin;
+	gchar* dessertdin;
+	menu menu;
+GtkTreeModel *model = gtk_tree_view_get_model(treeview);
+if (gtk_tree_model_get_iter(model,&iter,path))
+{
+	gtk_tree_model_get(GTK_LIST_STORE(model),&iter ,0,&mois,1,&jour,2,&boisson,3,&produit,     4,&vienoiserie,5,&entreedej,6,&platdej,7,&dessertdej,8,&entreedin,9,&platdin,10,&dessertdin,-1);
+	menu.mois=mois;
+	menu.jour=jour;
+	if(d!=NULL)
+	{
+	fprintf(d,"%d %d",menu.mois,menu.jour);
+	fclose(d);
+	}
+	windowOK=create_naim_bouraoui_confirmation();
+	gtk_widget_show(windowOK);	
+}
+}
+
+void
+on_button_ajouter_clicked              (GtkWidget       *objet_graphique,
+                                        gpointer         user_data)
+{
+GtkWidget *windowMenu,*fenetre_gestion;
+windowMenu=create_naim_bouraoui_ajout_menu();
+fenetre_gestion=lookup_widget(objet_graphique,"naim_bouraoui_gestion_des_menus");
+gtk_widget_show (windowMenu);
+gtk_widget_hide(fenetre_gestion);
+}
+
+
+void
+on_button_modif_clicked                (GtkWidget       *objet_graphique,
+                                        gpointer         user_data)
+{
+GtkWidget * windowModif,*fenetre_gestion;
+GtkWidget * windowMenu,* window_afficher,* treeview,* mois1,* jour1,* boiss,* fenetre_afficher,
+* produits,* vien,* entreepd,* platpd,* desspd,* entreed,* platd
+,* dessd;
+fenetre_afficher=lookup_widget(objet_graphique,"naim_bouraoui_gestion_des_menus");
+treeview=lookup_widget(fenetre_afficher,"naim_bouraoui_treeview");
+GtkTreeSelection *selection;
+GtkTreeIter iter;
+	gint mois;
+	gint jour;
+	gchar* boisson;
+	gchar* produit;
+	gchar* vienoiserie;
+	gchar* entreedej;
+	gchar* platdej;
+	gchar* dessertdej;
+	gchar* entreedin;
+	gchar* platdin;
+	gchar* dessertdin;
+	selection=gtk_tree_view_get_selection(GTK_TREE_VIEW(treeview));
+	GtkTreeModel* model;
+	if (gtk_tree_selection_get_selected(selection,&model,&iter))
+	{
+	gtk_tree_model_get(model,&iter,0,&mois,1,&jour,2,&boisson,3,&produit,4,&vienoiserie,	5,&entreedej,6,&platdej,7,&dessertdej,8,&entreedin,9,&platdin,10,&dessertdin,-1);
+	windowModif=create_naim_bouraoui_modif_menu();
+	gtk_widget_show (windowModif);
+
+	mois1=lookup_widget(windowModif,"naim_bouraoui_spin");
+	gtk_spin_button_set_value(GTK_SPIN_BUTTON(mois1),mois);
+
+	jour1=lookup_widget(windowModif,"naim_bouraoui_spin1");
+	gtk_spin_button_set_value(GTK_SPIN_BUTTON(jour1),jour);
+
+	boiss=lookup_widget(windowModif,"naim_bouraoui_boisson1");
+	gtk_entry_set_text(GTK_ENTRY(boiss),boisson);
+
+	produits=lookup_widget(windowModif,"naim_bouraoui_produit1");
+	gtk_entry_set_text(GTK_ENTRY(produits),produit);
+
+	vien=lookup_widget(windowModif,"naim_bouraoui_vienoi1");
+	gtk_entry_set_text(GTK_ENTRY(vien),vienoiserie);
+
+	entreepd=lookup_widget(windowModif,"naim_bouraoui_entreedej1");
+	gtk_entry_set_text(GTK_ENTRY(entreepd),entreedej);
+
+	platpd=lookup_widget(windowModif,"naim_bouraoui_platdej1");
+	gtk_entry_set_text(GTK_ENTRY(platpd),platdej);
+
+	desspd=lookup_widget(windowModif,"naim_bouraoui_dessdej1");
+	gtk_entry_set_text(GTK_ENTRY(desspd),dessertdej);
+	
+	entreed=lookup_widget(windowModif,"naim_bouraoui_entreedin1");
+	gtk_entry_set_text(GTK_ENTRY(entreed),entreedin);
+	
+	platd=lookup_widget(windowModif,"naim_bouraoui_platdin1");
+	gtk_entry_set_text(GTK_ENTRY(platd),platdin);
+
+	dessd=lookup_widget(windowModif,"naim_bouraoui_dessdin1");
+	gtk_entry_set_text(GTK_ENTRY(dessd),dessertdin);
+	}
+gtk_widget_hide(fenetre_afficher);
+}
+
+
+void
+on_button_supp_clicked                 (GtkWidget       *button,
+                                        gpointer         user_data)
+{
+GtkWidget *mois1 ,*jour1, *windowOK;
+menu menu;
+FILE *d=NULL;
+d=fopen("suppression.txt","w");
+mois1=lookup_widget(button,"naim_bouraoui_spinbuttonM1");
+jour1=lookup_widget(button,"naim_bouraoui_spinbuttonM2");
+menu.mois=gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(mois1));
+menu.jour=gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(jour1));
+if(d!=NULL)
+{
+fprintf(d,"%d %d",menu.mois,menu.jour);
+fclose(d);
+}
+windowOK=create_naim_bouraoui_confirmation();
+gtk_widget_show(windowOK);
+}
+
+
+void
+on_button_rechercher_clicked           (GtkWidget       *button,
+                                        gpointer         user_data)
+{
+menu menu;
+int trouvee;
+GtkWidget *fenetre_afficher, *treeview, *mois2, *jour2,*fenetre_erreur;
+fenetre_erreur=create_naim_bouraoui_erreur_recherche();
+mois2=lookup_widget(button,"naim_bouraoui_spinbuttonM1");
+jour2=lookup_widget(button,"naim_bouraoui_spinbuttonM2");
+menu.mois=gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(mois2));
+menu.jour=gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(jour2));
+fenetre_afficher=lookup_widget(button,"naim_bouraoui_gestion_des_menus");
+treeview=lookup_widget(fenetre_afficher,"naim_bouraoui_treeview");
+trouvee=nbtrouve(menu);
+if(trouvee==1){
+nbchercher(menu,treeview);}
+else{
+gtk_widget_show(fenetre_erreur);}
+}
+
+
+void
+on_naim_bouraoui_checkbuttons_toggled  (GtkToggleButton *togglebutton,
+                                        gpointer         user_data)
+{
+if (gtk_toggle_button_get_active(togglebutton))
+decision=3;
+}
+
+
+void
+on_naim_bouraoui_checkbuttonT_toggled  (GtkToggleButton *togglebutton,
+                                        gpointer         user_data)
+{
+if (gtk_toggle_button_get_active(togglebutton))
+decision=2;
+}
+
+
+void
+on_naim_bouraoui_Afficher_clicked      (GtkWidget       *objet,
+                                        gpointer         user_data)
+{
+GtkWidget *treeview, *fenetre_mode, *fenetre_afficher, *combobox;
+int numsemaine;
+fenetre_afficher=lookup_widget(objet,"naim_bouraoui_gestion_des_menus");
+treeview=lookup_widget(fenetre_afficher,"naim_bouraoui_treeview");
+
+combobox=lookup_widget(objet,"naim_bouraoui_combobox");
+if(decision==3)
+{
+if(strcmp("",gtk_combo_box_get_active_text(GTK_COMBO_BOX(combobox)))==0)
+  numsemaine=10;
+if(strcmp("Semaine 1",gtk_combo_box_get_active_text(GTK_COMBO_BOX(combobox)))==0)
+  numsemaine=1;
+else if (strcmp("Semaine 2",gtk_combo_box_get_active_text(GTK_COMBO_BOX(combobox)))==0)
+  numsemaine=2;
+else if (strcmp("Semaine 3",gtk_combo_box_get_active_text(GTK_COMBO_BOX(combobox)))==0)
+  numsemaine=3;
+else 
+  numsemaine=4;
+nbafficher(numsemaine,treeview);
+}
+if (decision==2)
+{
+nbaffichage(treeview);
+}
+}
+
+
+void
+on_button_valider_clicked              (GtkWidget       *objet_graphique,
+                                        gpointer         user_data)
+{
+int trouvee;
+menu semaine1;
+GtkWidget *fenetre_erreur,*mois1, *jour1, *boiss, *produits, *vien, *entreepd, *platpd, *desspd, *entreed, *platd, *dessd;
+fenetre_erreur=create_naim_bouraoui_erreur();
+mois1=lookup_widget(objet_graphique,"naim_bouraoui_mois");
+jour1=lookup_widget(objet_graphique,"naim_bouraoui_jour");
+boiss=lookup_widget(objet_graphique,"naim_bouraoui_boisson");
+produits=lookup_widget(objet_graphique,"naim_bouraoui_cerealier");
+vien=lookup_widget(objet_graphique,"naim_bouraoui_vienoiserie");
+entreepd=lookup_widget(objet_graphique,"naim_bouraoui_entreedej");
+platpd=lookup_widget(objet_graphique,"naim_bouraoui_platdej");
+desspd=lookup_widget(objet_graphique,"naim_bouraoui_dessertdej");
+entreed=lookup_widget(objet_graphique,"naim_bouraoui_entreedin");
+platd=lookup_widget(objet_graphique,"naim_bouraoui_platdin");
+dessd=lookup_widget(objet_graphique,"naim_bouraoui_dessertdin");
+semaine1.mois=gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(mois1));
+semaine1.jour=gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(jour1));
+strcpy(semaine1.petit_dej.boisson,gtk_entry_get_text(GTK_ENTRY(boiss)));
+strcpy(semaine1.petit_dej.produit_cerealier,gtk_entry_get_text(GTK_ENTRY(produits)));
+strcpy(semaine1.petit_dej.vienoiserie,gtk_entry_get_text(GTK_ENTRY(vien)));
+strcpy(semaine1.dejeuner.entree,gtk_entry_get_text(GTK_ENTRY(entreepd)));
+strcpy(semaine1.dejeuner.plat_princ,gtk_entry_get_text(GTK_ENTRY(platpd)));
+strcpy(semaine1.dejeuner.dessert,gtk_entry_get_text(GTK_ENTRY(desspd)));
+strcpy(semaine1.diner.entree,gtk_entry_get_text(GTK_ENTRY(entreed)));
+strcpy(semaine1.diner.plat_princ,gtk_entry_get_text(GTK_ENTRY(platd)));
+strcpy(semaine1.diner.dessert,gtk_entry_get_text(GTK_ENTRY(dessd)));
+trouvee=nbtrouve(semaine1);
+if(trouvee==0){
+nbajouter(semaine1);
+}
+else{
+gtk_widget_show(fenetre_erreur);
+}
+}
+
+void
+on_naim_bouraoui_radiobutton_supprimer_toggled
+                                        (GtkToggleButton *togglebutton,
+                                        gpointer         user_data)
+{
+if (gtk_toggle_button_get_active(GTK_RADIO_BUTTON(togglebutton)))
+decision=1;
+}
+
+
+void
+on_naim_bouraoui_radiobutton_annuler_toggled
+                                        (GtkToggleButton *togglebutton,
+                                        gpointer         user_data)
+{
+if (gtk_toggle_button_get_active(GTK_RADIO_BUTTON(togglebutton)))
+decision=0;
+}
+
+
+void
+on_naim_bouraoui_ok_clicked            (GtkWidget       *objet_graphique,
+                                        gpointer         user_data)
+{
+GtkWidget *fenetre_confirmation;
+menu menu;
+FILE *f=NULL;
+f=fopen("suppression.txt","r");
+if(f!=NULL)
+{
+fscanf(f,"%d %d",&menu.mois,&menu.jour);
+fclose(f);
+}
+else 
+printf("file not found");
+fenetre_confirmation=lookup_widget(objet_graphique,"naim_bouraoui_confirmation");
+if(decision==1)
+{
+nbsupprimer(menu);
+gtk_widget_destroy(fenetre_confirmation);
+}
+else if(decision==0)
+gtk_widget_destroy(fenetre_confirmation);
+}
+
+
+void
+on_naim_bouraoui_modifier2_clicked     (GtkWidget       *objet_graphique,
+                                        gpointer         user_data)
+{
+menu semaine1;
+GtkWidget *mois1, *jour1, *boiss, *produits, *vien, *entreepd, *platpd, *desspd, *entreed, *platd, *dessd;
+mois1=lookup_widget(objet_graphique,"naim_bouraoui_spin");
+jour1=lookup_widget(objet_graphique,"naim_bouraoui_spin1");
+boiss=lookup_widget(objet_graphique,"naim_bouraoui_boisson1");
+produits=lookup_widget(objet_graphique,"naim_bouraoui_produit1");
+vien=lookup_widget(objet_graphique,"naim_bouraoui_vienoi1");
+entreepd=lookup_widget(objet_graphique,"naim_bouraoui_entreedej1");
+platpd=lookup_widget(objet_graphique,"naim_bouraoui_platdej1");
+desspd=lookup_widget(objet_graphique,"naim_bouraoui_dessdej1");
+entreed=lookup_widget(objet_graphique,"naim_bouraoui_entreedin1");
+platd=lookup_widget(objet_graphique,"naim_bouraoui_platdin1");
+dessd=lookup_widget(objet_graphique,"naim_bouraoui_dessdin1");
+
+semaine1.mois=gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(mois1));
+semaine1.jour=gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(jour1));
+strcpy(semaine1.petit_dej.boisson,gtk_entry_get_text(GTK_ENTRY(boiss)));
+strcpy(semaine1.petit_dej.produit_cerealier,gtk_entry_get_text(GTK_ENTRY(produits)));
+strcpy(semaine1.petit_dej.vienoiserie,gtk_entry_get_text(GTK_ENTRY(vien)));
+strcpy(semaine1.dejeuner.entree,gtk_entry_get_text(GTK_ENTRY(entreepd)));
+strcpy(semaine1.dejeuner.plat_princ,gtk_entry_get_text(GTK_ENTRY(platpd)));
+strcpy(semaine1.dejeuner.dessert,gtk_entry_get_text(GTK_ENTRY(desspd)));
+strcpy(semaine1.diner.entree,gtk_entry_get_text(GTK_ENTRY(entreed)));
+strcpy(semaine1.diner.plat_princ,gtk_entry_get_text(GTK_ENTRY(platd)));
+strcpy(semaine1.diner.dessert,gtk_entry_get_text(GTK_ENTRY(dessd)));
+nbmodifier(semaine1);
+}
+
+
+
+void
+on_naim_bouraoui_erreur1_clicked       (GtkWidget       *objet_graphique,
+                                        gpointer         user_data)
+{
+GtkWidget *fenetre_erreur;
+fenetre_erreur=lookup_widget(objet_graphique,"naim_bouraoui_erreur");
+gtk_widget_destroy(fenetre_erreur);
+}
+
+
+
+
+
+void
+on_naim_bouraoui_actualiser_clicked    (GtkWidget       *button,
+                                        gpointer         user_data)
+{
+GtkWidget *fenetre_afficher,*w1,*treeview;
+w1=lookup_widget(button,"naim_bouraoui_gestion_des_menus");
+fenetre_afficher=create_naim_bouraoui_gestion_des_menus();
+
+gtk_widget_show(fenetre_afficher);
+gtk_widget_hide(w1);
+treeview=lookup_widget(fenetre_afficher,"naim_bouraoui_treeview");
+//vider(treeview);
+nbaffichage(treeview);
+}
+
+
+void
+on_naim_bouraoui_retour_modif_clicked  (GtkWidget       *button,
+                                        gpointer         user_data)
+{
+GtkWidget *fenetre_modif,* fenetre_gestion;
+fenetre_gestion=create_naim_bouraoui_gestion_des_menus();
+fenetre_modif=lookup_widget(button,"naim_bouraoui_modif_menu");
+gtk_widget_show(fenetre_gestion);
+gtk_widget_hide(fenetre_modif);
+}
+
+
+void
+on_naim_bouraoui_erreur_rech_clicked   (GtkWidget       *button,
+                                        gpointer         user_data)
+{
+GtkWidget *fenetre_erreur;
+fenetre_erreur=lookup_widget(button,"naim_bouraoui_erreur_recherche");
+gtk_widget_destroy(fenetre_erreur);
+}
+
+
+void
+on_naim_bouraoui_retou_ajout_clicked   (GtkWidget       *button,
+                                        gpointer         user_data)
+{
+GtkWidget *fenetre_ajout,* fenetre_gestion;
+fenetre_gestion=create_naim_bouraoui_gestion_des_menus();
+fenetre_ajout=lookup_widget(button,"naim_bouraoui_ajout_menu");
+gtk_widget_show(fenetre_gestion);
+gtk_widget_hide(fenetre_ajout);
+}
+
+
+
+
+void
+on_naim_bouraoui_boutton_ret_clicked   (GtkWidget       *button,
+                                        gpointer         user_data)
+{
+
+}
+void
+on_nb_deconnect_button_clicked   (GtkWidget       *button,
+                                        gpointer         user_data)
+{
+  GtkWidget *authentification;
+  GtkWidget *admin;
+  
+  authentification = create_authentification();
+  gtk_widget_show (authentification);
+  admin = lookup_widget(button, "naim_bouraoui_gestion_des_menus");
+  gtk_widget_hide (admin);
+
+                                        }
+///////////////////////////////////houssem//////////////////////////////////////
+void
+on_houssemkh_treeview1_row_activated   (GtkTreeView     *treeview,
+                                        GtkTreePath     *path,
+                                        GtkTreeViewColumn *column,
+                                        gpointer         user_data)
+{
+int a;
+GtkTreeIter iter;
+gchar* nom;
+gchar* prenom;
+gchar* jour;
+gchar* mois;
+gchar* annee;
+gchar* ID;
+gchar* type;
+gchar* numero;
+gchar* text;
+
+GtkTreeModel *model=gtk_tree_view_get_model(treeview);
+if (gtk_tree_model_get_iter(model,&iter,path))
+{
+
+gtk_tree_model_get(GTK_LIST_STORE(model),&iter,0,&jour,1,&mois,2,&annee,3,&nom,4,&prenom,5,&ID,6,&type,7,&numero,8,&text,-1);
+strcpy(poe.jour1,jour);
+strcpy(poe.mois1,mois);
+strcpy(poe.annee1,annee);
+strcpy(poe.nom,nom);
+strcpy(poe.prenom,prenom);
+strcpy(poe.ID,ID);
+strcpy(poe.type_reclamation,type);
+strcpy(poe.numero_reclamation,numero);
+strcpy(poe.text_reclamation,text);
+
+}
+
+}
+
+
+void
+on_houssemkh_button6_aficher_clicked   (GtkButton       *button,
+                                        gpointer         user_data)
+{
+GtkWidget *treeview;
+
+treeview=lookup_widget(button,"houssemkh_treeview1");
+hkaffich(treeview);
+}
+
+
+void
+on_houssem_buttonbaby44_clicked        (GtkButton       *button,
+                                        gpointer         user_data)
+{
+GtkWidget *windore;
+windore=create_houssem_CONFIRMATION();
+gtk_widget_show (windore);
+
+}
+
+
+void
+on_houssem_button2_ajout_clicked       (GtkButton       *button,
+                                        gpointer         user_data)
+{
+GtkWidget *windowre;
+windowre=create_houssem_ajoutdereclamation();
+gtk_widget_show (windowre);
+
+}
+
+
+void
+on_houssem_leplusreclamer_clicked      (GtkButton       *button,
+                                        gpointer         user_data)
+{
+GtkWidget *windore;
+windore=create_houssemkh_dache_bord();
+gtk_widget_show (windore);
+
+}
+
+
+void
+on_treeview2_row_activated             (GtkTreeView     *treeview,
+                                        GtkTreePath     *path,
+                                        GtkTreeViewColumn *column,
+                                        gpointer         user_data)
+{
+
+}
+
+
+void
+on_houssem_button4_mod_clicked         (GtkButton       *button,
+                                        gpointer         user_data)
+{
+GtkWidget *windowre;
+windowre=create_houssem_modification();
+gtk_widget_show (windowre);
+
+}
+
+
+void
+on_houssem_button5_rech_clicked         (GtkWidget       *objet_graphique,gpointer  user_data)
+{
+GtkWidget *treevieww;
+
+treevieww=lookup_widget(objet_graphique,"houssemkh_treeview1");
+char n[20];
+char p[20];
+
+GtkWidget *jouro;
+GtkWidget *rto;
+
+jouro=lookup_widget(objet_graphique,"houssem_enterderecherche");
+rto=lookup_widget(objet_graphique,"houssemkhentryderecherche2");
+strcpy(n,gtk_entry_get_text(GTK_ENTRY(jouro)));
+strcpy(p,gtk_entry_get_text(GTK_ENTRY(rto)));
+hkchercher(n,p,treevieww);
+
+}
+
+
+void
+on_alignment4_check_resize             (GtkContainer    *container,
+                                        gpointer         user_data)
+{
+  
+
+
+
+
+}
+
+
+void
+on_houssemkh_button_ajout_rasmi_clicked
+                                       (GtkWidget       *objet_graphique,gpointer  user_data)
+{
+
+newreclam  z;
+int e;
+char s;
+int tr;
+
+
+GtkWidget *nom, *prenom, *id, *type, *text, *numr;
+GtkWidget *jouro;
+GtkWidget *moiso;
+GtkWidget *annneo;
+nom=lookup_widget(objet_graphique,"houssemkh_entry_nom");
+prenom=lookup_widget(objet_graphique,"houssemkh_entryss_prenom");
+id=lookup_widget(objet_graphique,"houssemkh_entryrr_id");
+text=lookup_widget(objet_graphique,"houssemkh_entry_textq");
+numr=lookup_widget(objet_graphique,"houssemkh_entreyomyheart");
+jouro=lookup_widget(objet_graphique,"houssemkh_spinbutton101");
+moiso=lookup_widget(objet_graphique,"houssem_spinbutton233");
+annneo=lookup_widget(objet_graphique,"houssemkh_comboboxentry101");
+
+
+
+
+z.jour1=gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(jouro));
+z.mois1=gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(moiso));
+if(strcmp("2021",gtk_combo_box_get_active_text(GTK_COMBO_BOX(annneo)))==0)
+z.annee1=2021;
+else
+z.annee1=2022;
+
+
+
+
+
+
+strcpy(z.nom,gtk_entry_get_text(GTK_ENTRY(nom)));
+strcpy(z.prenom,gtk_entry_get_text(GTK_ENTRY(prenom)));
+strcpy(z.ID,gtk_entry_get_text(GTK_ENTRY(id)));
+strcpy(z.text_reclamation,gtk_entry_get_text(GTK_ENTRY(text)));
+strcpy(z.numero_reclamation,gtk_entry_get_text(GTK_ENTRY(numr)));
+if(x==1)
+
+{
+strcpy(z.type_reclamation,he);
+}
+else if(x==2)
+{
+strcpy(z.type_reclamation,de);
+}
+tr=hkverification(z);
+if(tr==0)
+ajouter_reclam(z);
+else if (tr==1)
+{
+GtkWidget *windowre;
+windowre=create_houssem_kharroubi_eroor();
+gtk_widget_show (windowre);
+
+}
+
+
+
+}
+
+
+void
+on_houssemkh_radiobutton3_hebergement_toggled
+                                        (GtkToggleButton *togglebutton,
+                                        gpointer         user_data)
+{
+if(gtk_toggle_button_get_active(togglebutton))
+x=1;
+}
+
+
+void
+on_houssem_radiobutton1_restauration_toggled
+                                        (GtkToggleButton *togglebutton,
+                                        gpointer         user_data)
+{
+if(gtk_toggle_button_get_active(togglebutton))
+x=2;
+}
+
+
+void
+on_houssemkh_button7_confirmer_desuprimer_clicked
+                                        (GtkButton       *button,
+                                        gpointer         user_data)
+{
+if(ge[1]==2)
+
+supprimer_reclam(poe);
+else 
+ge[0]=1;
+}
+
+
+void
+on_checkbutton2_ssa_toggled            (GtkToggleButton *togglebutton,
+                                        gpointer         user_data)
+{
+if(gtk_toggle_button_get_active(togglebutton))
+ge[0]=1;
+}
+
+
+void
+on_checkbutton1_yess_toggled           (GtkToggleButton *togglebutton,
+                                        gpointer         user_data)
+{
+if(gtk_toggle_button_get_active(togglebutton))
+ge[1]=2;
+
+}
+
+
+void
+on_houssemkh_modification23_clicked    (GtkWidget       *objet,
+                                        gpointer         user_data)
+{
+
+
+newreclam o;
+int t;
+int x=1 ;
+char z[20] ;
+
+
+
+GtkWidget *jour,*mois,*annee,*nom, *prenom, *id, *type, *text,*numc,*calanderofthisar;
+
+nom=lookup_widget(objet,"entry1nomholy");
+prenom=lookup_widget(objet,"entry2holy");
+id=lookup_widget(objet,"entrydeid2");
+text=lookup_widget(objet,"entrykiko");
+numc=lookup_widget(objet,"entrydenumdereclam");
+
+calanderofthisar=lookup_widget(objet,"houssem_calendar1");
+o.jour1=gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(jour));
+o.mois1=gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(mois));
+gtk_calendar_get_date(GTK_CALENDAR(calanderofthisar),
+                          &o.annee1,
+                          &o.mois1,
+                          &o.jour1);
+
+       
+strcpy(o.nom,gtk_entry_get_text(GTK_ENTRY(nom)));
+strcpy(o.prenom,gtk_entry_get_text(GTK_ENTRY(prenom)));
+strcpy(o.ID,gtk_entry_get_text(GTK_ENTRY(id)));
+strcpy(o.text_reclamation,gtk_entry_get_text(GTK_ENTRY(text)));
+strcpy(o.numero_reclamation,gtk_entry_get_text(GTK_ENTRY(numc)));
+if(x==1)
+{
+strcpy(roe.type_reclamation,he);
+}
+else if(x==2)
+{
+strcpy(roe.type_reclamation,de);
+}
+
+modifier_reclam(poe,o);
+}
+
+
+void
+on_boutonderecuperationhoussem_clicked (GtkButton       *button,
+                                        gpointer         user_data)
+{
+GtkWidget *jour,*mois,*annee,*nom, *prenom, *id, *type, *text,*numc,*calanderofthisar;
+
+nom=lookup_widget(button,"entry1nomholy");
+prenom=lookup_widget(button,"entry2holy");
+id=lookup_widget(button,"entrydeid2");
+text=lookup_widget(button,"entrykiko");
+numc=lookup_widget(button,"entrydenumdereclam");
+gtk_entry_set_text(GTK_ENTRY(nom),poe.nom);
+gtk_entry_set_text(GTK_ENTRY(prenom),poe.prenom);
+gtk_entry_set_text(GTK_ENTRY(id),poe.ID);
+gtk_entry_set_text(GTK_ENTRY(text),poe.text_reclamation);
+gtk_entry_set_text(GTK_ENTRY(numc),poe.numero_reclamation);
+}
+
+
+void
+on_houssemkh_bouton_de_tache2_clicked  (GtkButton       *button,
+                                        gpointer         user_data)
+{
+GtkWidget *treeview;
+
+treeview=lookup_widget(button,"houssemkh_treeview2");
+ hkleplusreclamer(treeview);
+}
+
+void
+on_houssemkh_bouton_fermer_clicked     (GtkButton       *button,
+                                        gpointer         user_data)
+{
+GtkWidget *confez;
+confez = lookup_widget(button,"houssem_kharroubi_eroor");
+gtk_widget_destroy(confez);
+
+}
+void
+on_hk_deconnect_button_clicked     (GtkButton       *button,
+                                        gpointer         user_data)
+{
+  GtkWidget *authentification;
+  GtkWidget *admin;
+  
+  authentification = create_authentification();
+  gtk_widget_show (authentification);
+  admin = lookup_widget(button, "houssem_gestion_de_reclamation");
+  gtk_widget_hide (admin);
+}

@@ -95,27 +95,27 @@ void supprimer_etudiant(char cin[],char file_etudiants[]){
         remove(file_etudiants);
         rename("temp.txt",file_etudiants);
         }
-void supprimer_utilisateur(char un[],char pswrd[],char role[],char file_etudiants[]){
+void supprimer_utilisateur(char un[],char pswrd[],char role[],char file[]){
     FILE *f,*f1;
-    char *u1,*p1,*r1;
-    f=fopen(file_etudiants,"r");
+    char u1[50],p1[50],r1[50];
+    f=fopen(file,"r");
     f1=fopen("temp.txt","w+");
     if(f==NULL){
             printf("fichier n'existe pas");}
     else
         {
-    while((fscanf(f,"%s %s %s",u1,p1,r1))!=EOF)
+    while((fscanf(f,"%s %s %s\n",u1,p1,r1))!=EOF)
             {
-                if((strcmp(un,u1)==0)&&(strcmp(pswrd,p1)==0)&&(strcmp(role,r1)==0)){
+                if((!strcmp(un,u1))&&(!strcmp(pswrd,p1))&&(!strcmp(role,r1))){
                         
                 }
-                else fprintf(f1,"%s %s %s",u1,p1,r1);
+                else fprintf(f1,"%s %s %s\n",u1,p1,r1);
             }
         fclose(f);
         fclose(f1);
         }
-        remove(file_etudiants);
-        rename("temp.txt",file_etudiants);
+        remove(file);
+        rename("temp.txt",file);
         }
 ///////////////affichage///////////////////////////
 /*void afficher_etudiant(char file_etudiants[]){
@@ -331,7 +331,7 @@ void afficher_responsables(GtkWidget *liste,char file[])
 }
 int login(char username[],char pswrd[],char *file){
     FILE *f;
-    char user[20],pwd[20],role[20];
+    char user[50],pwd[50],role[50];
     f=fopen(file,"r");
     while((fscanf(f,"%s %s %s",user,pwd,role))!=EOF)
             {
@@ -393,15 +393,16 @@ Etudiant chercher_etudiant(gchar *cin_cher,char file[])
         }
         fclose(f);
 }
-/*void afficher_person(GtkWidget *liste,Etudiant E)
+
+void afficher_person(GtkWidget *liste, char nomu[])
 {
     GtkCellRenderer *renderer;
     GtkTreeViewColumn *column;
     GtkTreeIter iter;
     GtkListStore *store;
     FILE *f;
-    char u1[20],p1[30],r1[100];
-    f=fopen(file,"r");
+    char u1[50],p1[50],r1[50];
+    f=fopen("utilisateurs.txt","r");
 
     store = NULL;
     store = gtk_tree_view_get_model(liste);
@@ -417,18 +418,17 @@ Etudiant chercher_etudiant(gchar *cin_cher,char file[])
         column = gtk_tree_view_column_new_with_attributes("              Role        ", renderer, "text", job1, NULL);
         gtk_tree_view_append_column(GTK_TREE_VIEW(liste), column);
     }
-    store = gtk_list_store_new(COLUMNS6, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING);            
-            gtk_list_store_append(store, &iter);
-            gtk_list_store_set(store, &iter, Username1, E.cin, password1, E., job1, r1, -1);
+    store = gtk_list_store_new(COLUMNS6, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING);
+        while((fscanf(f,"%s %s %s\n",u1,p1,r1))!=EOF) { 
+            if(!strcmp(nomu,u1)){          
+                gtk_list_store_append(store, &iter);
+                gtk_list_store_set(store, &iter, Username1, u1, password1, p1, job1, r1, -1);
+                }
             }
-            
-            
-        
-    
     gtk_tree_view_set_model(GTK_TREE_VIEW(liste), GTK_TREE_MODEL(store));
     g_object_unref(store);
     fclose(f);
-}  */      
+}        
 void modif_admin(char un[],char pswd[],char file[]){
     FILE *f,*f1;
     char u[20],p[30],r[100];

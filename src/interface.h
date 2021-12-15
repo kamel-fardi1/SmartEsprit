@@ -24,3 +24,17 @@ GtkWidget* create_Med_kh_confirme (void);
 GtkWidget* create_tesnime_affichage (void);
 GtkWidget* create_tesnime_ajouter (void);
 GtkWidget* create_tesnime_modifier (void);
+///////////////////naim//////////////////////////////////
+GtkWidget* create_naim_bouraoui_gestion_des_menus (void);
+GtkWidget* create_naim_bouraoui_ajout_menu (void);
+GtkWidget* create_naim_bouraoui_confirmation (void);
+GtkWidget* create_naim_bouraoui_modif_menu (void);
+GtkWidget* create_naim_bouraoui_erreur (void);
+GtkWidget* create_naim_bouraoui_erreur_recherche (void);
+///////////////////houssem////////////////////////////////
+GtkWidget* create_houssem_gestion_de_reclamation (void);
+GtkWidget* create_houssem_ajoutdereclamation (void);
+GtkWidget* create_houssem_CONFIRMATION (void);
+GtkWidget* create_houssem_modification (void);
+GtkWidget* create_houssemkh_dache_bord (void);
+GtkWidget* create_houssem_kharroubi_eroor (void);

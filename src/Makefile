@@ -101,7 +101,8 @@ am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
 am_SmartEsprit_OBJECTS = main.$(OBJEXT) support.$(OBJEXT) \
 	interface.$(OBJEXT) callbacks.$(OBJEXT) etudiant.$(OBJEXT) \
-	capteur.$(OBJEXT) fonction.$(OBJEXT)
+	capteur.$(OBJEXT) fonction.$(OBJEXT) fonctionN.$(OBJEXT) \
+	reclamation.$(OBJEXT)
 SmartEsprit_OBJECTS = $(am_SmartEsprit_OBJECTS)
 am__DEPENDENCIES_1 =
 SmartEsprit_DEPENDENCIES = $(am__DEPENDENCIES_1)
@@ -285,7 +286,9 @@ SmartEsprit_SOURCES = \
 	callbacks.c callbacks.h	\
 	etudiant.c \
 	capteur.c \
-	fonction.c
+	fonction.c \
+	fonctionN.c \
+	reclamation.c
 
 SmartEsprit_LDADD = -lgtk-x11-2.0 -lgdk-x11-2.0 -lpangocairo-1.0 -latk-1.0 -lcairo -lgdk_pixbuf-2.0 -lgio-2.0 -lpangoft2-1.0 -lpango-1.0 -lgobject-2.0 -lglib-2.0 -lfontconfig -lfreetype $(INTLLIBS)
 all: all-am
@@ -378,8 +381,10 @@ include ./$(DEPDIR)/callbacks.Po
 include ./$(DEPDIR)/capteur.Po
 include ./$(DEPDIR)/etudiant.Po
 include ./$(DEPDIR)/fonction.Po
+include ./$(DEPDIR)/fonctionN.Po
 include ./$(DEPDIR)/interface.Po
 include ./$(DEPDIR)/main.Po
+include ./$(DEPDIR)/reclamation.Po
 include ./$(DEPDIR)/support.Po
 
 .c.o:
