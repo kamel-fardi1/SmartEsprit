@@ -101,7 +101,7 @@ am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
 am_SmartEsprit_OBJECTS = main.$(OBJEXT) support.$(OBJEXT) \
 	interface.$(OBJEXT) callbacks.$(OBJEXT) etudiant.$(OBJEXT) \
-	capteur.$(OBJEXT) fonction.$(OBJEXT) reclamation.$(OBJEXT)
+	capteur.$(OBJEXT) fonction.$(OBJEXT)
 SmartEsprit_OBJECTS = $(am_SmartEsprit_OBJECTS)
 am__DEPENDENCIES_1 =
 SmartEsprit_DEPENDENCIES = $(am__DEPENDENCIES_1)
@@ -161,12 +161,12 @@ ETAGS = etags
 CTAGS = ctags
 am__DIST_COMMON = $(srcdir)/Makefile.in $(top_srcdir)/depcomp
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
-ACLOCAL = ${SHELL} /home/houssemkh/Desktop/smart_esprit_projet/SmartEsprit/missing aclocal-1.15
+ACLOCAL = ${SHELL} /home/kamel/Desktop/SmartEsprit/missing aclocal-1.15
 AMTAR = $${TAR-tar}
 AM_DEFAULT_VERBOSITY = 1
-AUTOCONF = ${SHELL} /home/houssemkh/Desktop/smart_esprit_projet/SmartEsprit/missing autoconf
-AUTOHEADER = ${SHELL} /home/houssemkh/Desktop/smart_esprit_projet/SmartEsprit/missing autoheader
-AUTOMAKE = ${SHELL} /home/houssemkh/Desktop/smart_esprit_projet/SmartEsprit/missing automake-1.15
+AUTOCONF = ${SHELL} /home/kamel/Desktop/SmartEsprit/missing autoconf
+AUTOHEADER = ${SHELL} /home/kamel/Desktop/SmartEsprit/missing autoheader
+AUTOMAKE = ${SHELL} /home/kamel/Desktop/SmartEsprit/missing automake-1.15
 AWK = mawk
 CATALOGS = 
 CATOBJEXT = .gmo
@@ -201,7 +201,7 @@ LIBOBJS =
 LIBS = 
 LTLIBOBJS = 
 MAINT = 
-MAKEINFO = ${SHELL} /home/houssemkh/Desktop/smart_esprit_projet/SmartEsprit/missing makeinfo
+MAKEINFO = ${SHELL} /home/kamel/Desktop/SmartEsprit/missing makeinfo
 MKDIR_P = /bin/mkdir -p
 MKINSTALLDIRS = ./mkinstalldirs
 MSGFMT = /usr/bin/msgfmt
@@ -230,10 +230,10 @@ STRIP =
 USE_NLS = yes
 VERSION = 0.1
 XGETTEXT = /usr/bin/xgettext
-abs_builddir = /home/houssemkh/Desktop/smart_esprit_projet/SmartEsprit/src
-abs_srcdir = /home/houssemkh/Desktop/smart_esprit_projet/SmartEsprit/src
-abs_top_builddir = /home/houssemkh/Desktop/smart_esprit_projet/SmartEsprit
-abs_top_srcdir = /home/houssemkh/Desktop/smart_esprit_projet/SmartEsprit
+abs_builddir = /home/kamel/Desktop/SmartEsprit/src
+abs_srcdir = /home/kamel/Desktop/SmartEsprit/src
+abs_top_builddir = /home/kamel/Desktop/SmartEsprit
+abs_top_srcdir = /home/kamel/Desktop/SmartEsprit
 ac_ct_CC = gcc
 am__include = include
 am__leading_dot = .
@@ -252,7 +252,7 @@ host_alias =
 htmldir = ${docdir}
 includedir = ${prefix}/include
 infodir = ${datarootdir}/info
-install_sh = ${SHELL} /home/houssemkh/Desktop/smart_esprit_projet/SmartEsprit/install-sh
+install_sh = ${SHELL} /home/kamel/Desktop/SmartEsprit/install-sh
 libdir = ${exec_prefix}/lib
 libexecdir = ${exec_prefix}/libexec
 localedir = ${datarootdir}/locale
@@ -283,10 +283,9 @@ SmartEsprit_SOURCES = \
 	support.c support.h \
 	interface.c interface.h \
 	callbacks.c callbacks.h	\
-	etudiant.c\
+	etudiant.c \
 	capteur.c \
-	fonction.c \
-    reclamation.c
+	fonction.c
 
 SmartEsprit_LDADD = -lgtk-x11-2.0 -lgdk-x11-2.0 -lpangocairo-1.0 -latk-1.0 -lcairo -lgdk_pixbuf-2.0 -lgio-2.0 -lpangoft2-1.0 -lpango-1.0 -lgobject-2.0 -lglib-2.0 -lfontconfig -lfreetype $(INTLLIBS)
 all: all-am
@@ -381,7 +380,6 @@ include ./$(DEPDIR)/etudiant.Po
 include ./$(DEPDIR)/fonction.Po
 include ./$(DEPDIR)/interface.Po
 include ./$(DEPDIR)/main.Po
-include ./$(DEPDIR)/reclamation.Po
 include ./$(DEPDIR)/support.Po
 
 .c.o:

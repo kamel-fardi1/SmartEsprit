@@ -606,7 +606,7 @@ callbacks.o: callbacks.c /usr/include/stdc-predef.h ../config.h \
  /usr/include/gtk-2.0/gtk/gtktipsquery.h callbacks.h interface.h \
  support.h /usr/include/libintl.h /usr/include/locale.h \
  /usr/include/x86_64-linux-gnu/bits/locale.h fonction.h capteur.h \
- reclamation.h etudiant.h
+ etudiant.h
 
 /usr/include/stdc-predef.h:
 
@@ -1963,7 +1963,5 @@ support.h:
 fonction.h:
 
 capteur.h:
-
-reclamation.h:
 
 etudiant.h:

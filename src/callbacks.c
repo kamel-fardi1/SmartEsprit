@@ -9,7 +9,6 @@
 #include "support.h"
 #include "fonction.h"
 #include"capteur.h"
-#include"reclamation.h"
 #include "etudiant.h"
 #include <time.h>
 int pisc=0;
@@ -48,18 +47,18 @@ GtkWidget *authentification;
     treeview = lookup_widget(w, "kamel_fardi_affichage_liste_etudiant_treeview");
     afficher_etudiant(treeview,fichier);
     break;
-    /*case 4:
+    case 4:
     gtk_widget_hide (authentification);
     w = create_Med_kh_w_Menu ();
     gtk_widget_show (w);
     break;
-    /*case 7:
+    case 7:
     gtk_widget_hide (authentification);
     w = create_tesnime_affichage ();
     gtk_widget_show (w);
     break;
   default:
-    break;*/
+    break;
   }
   
 
@@ -252,14 +251,14 @@ void
 on_kamel_fardi_Gestion_des_capteurs_admin_window_button_clicked
                                         (GtkWidget       *button,
                                         gpointer         user_data)
-{/*
+{
   GtkWidget *admin;
   GtkWidget *w;
 
     admin = lookup_widget(button, "admin");
     gtk_widget_hide (admin);
     w = create_Med_kh_w_Menu ();
-    gtk_widget_show (w);*/
+    gtk_widget_show (w);
 
 }
 
@@ -268,14 +267,14 @@ void
 on_kamel_fardi_gestion_de_stock_admin_window_button_clicked
                                         (GtkWidget       *button,
                                         gpointer         user_data)
-{/*
+{
   GtkWidget *admin;
   GtkWidget *w;
 
     admin = lookup_widget(button, "admin");
     gtk_widget_hide (admin);
     w =create_tesnime_affichage ();
-    gtk_widget_show (w);*/
+    gtk_widget_show (w);
 }
 
 
@@ -284,13 +283,7 @@ on_kamel_fardi_Gestion_des_reclamations_hebergee_admin_window_button_clicked
                                         (GtkWidget       *button,
                                         gpointer         user_data)
 {
-GtkWidget *admin;
-GtkWidget *w;
 
-    admin = lookup_widget(button, "admin");
-    gtk_widget_hide (admin);
-    w =create_houssem_gestion_de_reclamatio();
-    gtk_widget_show (w);
 }
 
 
@@ -1183,7 +1176,7 @@ on_mk_dash_treeview_row_activated      (GtkTreeView     *treeview,
                                         GtkTreePath     *path,
                                         GtkTreeViewColumn *column,
                                         gpointer         user_data)
-{/*
+{
 GtkWidget *w_Ajouter,*confirme;
 	GtkTreeIter iter;
 	char *fich="capteurs.txt";
@@ -1196,14 +1189,14 @@ GtkWidget *w_Ajouter,*confirme;
 	gtk_tree_model_get(GTK_LIST_STORE(model),&iter,0,&cap.ref,1,&cap.type,2,&cap.V_Max,3,&cap.V_Min,4,&cap.dt.jour,5,&cap.dt.mois,6,&cap.dt.annee,7,&cap.Emplacement,-1);
 	}
 	confirme=create_Med_kh_confirme();
-	gtk_widget_show (confirme);*/
+	gtk_widget_show (confirme);
 }
 
 
 void
 on_mk_dash_afficher_clicked            (GtkButton       *button,
                                         gpointer         user_data)
-{/*
+{
 GtkWidget *kamel_fardi_dash_board_window,*mk_dash_combobox;
    GtkWidget *mk_dash_treeview;
    char *file="temperature.txt";
@@ -1213,12 +1206,12 @@ mk_dash_treeview=lookup_widget(button,"mk_dash_treeview");
 mk_dash_combobox=lookup_widget(button,"mk_dash_combobox");
 strcpy(chaine,gtk_combo_box_get_active_text(GTK_COMBO_BOX(mk_dash_combobox)));
 E=chaine[0];
-cap_defecteux(mk_dash_treeview,E,file);*/
+cap_defecteux(mk_dash_treeview,E,file);
 }
 void
 on_Med_kh_button1_Ajouter_clicked      (GtkWidget       *objet,
                                         gpointer         user_data)
-{/*
+{
    capteur c;
    
 
@@ -1277,7 +1270,7 @@ on_Med_kh_button1_Ajouter_clicked      (GtkWidget       *objet,
   
 						  
     Ajouter_capt(c);
-    gtk_widget_hide (ajout);*/
+    gtk_widget_hide (ajout);
 
 }
 
@@ -1285,34 +1278,34 @@ on_Med_kh_button1_Ajouter_clicked      (GtkWidget       *objet,
 void
 on_Med_kh_checkbutton_e1_toggled       (GtkToggleButton *togglebutton,
                                         gpointer         user_data)
-{/*
+{
  if (gtk_toggle_button_get_active(togglebutton));
-	s=1;*/
+	s=1;
 }
 
 
 void
 on_Med_kh_checkbutton_e2_toggled       (GtkToggleButton *togglebutton,
                                         gpointer         user_data)
-{/*
+{
  if (gtk_toggle_button_get_active(togglebutton));
-	s=2;*/
+	s=2;
 }
 
 
 void
 on_Med_kh_checkbutton_e3_toggled       (GtkToggleButton *togglebutton,
                                         gpointer         user_data)
-{/*
+{
  if (gtk_toggle_button_get_active(togglebutton));
-	s=3;*/
+	s=3;
 }
 
 
 void
 on_Med_kh_bouton_modifier_clicked      (GtkWidget       *objet,
                                         gpointer         user_data)
-{/*
+{
 capteur c;
 GtkWidget *modif;
    GtkWidget *ref;
@@ -1373,7 +1366,7 @@ GtkWidget *modif;
 
 
 	modifier(c,cap.ref);
-	gtk_widget_hide (modif);*/
+	gtk_widget_hide (modif);
 
 }
 
@@ -1381,48 +1374,48 @@ GtkWidget *modif;
 void
 on_Med_kh_checkbutton_e6_toggled       (GtkToggleButton *togglebutton,
                                         gpointer         user_data)
-{/*
+{
  if (gtk_toggle_button_get_active(togglebutton));
-	s=3;*/
+	s=3;
 }
 
 
 void
 on_Med_kh_checkbutton_e5_toggled       (GtkToggleButton *togglebutton,
                                         gpointer         user_data)
-{/*
+{
  if (gtk_toggle_button_get_active(togglebutton));
-	s=2;*/
+	s=2;
 }
 
 
 void
 on_Med_kh_checkbutton_e4_toggled       (GtkToggleButton *togglebutton,
                                         gpointer         user_data)
-{/*
+{
  if (gtk_toggle_button_get_active(togglebutton));
-	s=1;*/
+	s=1;
 }
 
 
 void
 on_Med_kh_Ajouter_clicked              (GtkWidget       *objet,
                                         gpointer         user_data)
-{/*
+{
 GtkWidget *Menu;
 GtkWidget *Ajouter;
 
 Ajouter=lookup_widget(objet,"Med_kh_w_Ajouter");
 Ajouter=create_Med_kh_w_Ajouter();
 
-gtk_widget_show(Ajouter);*/
+gtk_widget_show(Ajouter);
 
 }
 
 void
 on_Med_kh_Supprimer_clicked            (GtkWidget       *objet,
                                         gpointer         user_data)
-{/*
+{
 GtkWidget *Menu;
 GtkWidget *aff;
 GtkWidget *tree;
@@ -1436,14 +1429,14 @@ aff = create_Med_kh_w_aff_supp ();
 //tree=lookup_widget(aff,"Med_kh_treeview1");
 //afficher_capteur(tree);
 gtk_widget_show (aff);
-//gtk_widget_hide(Menu);*/
+//gtk_widget_hide(Menu);
 }
 
 
 void
 on_Med_kh_button_CF_clicked            (GtkButton       *objet,
                                         gpointer         user_data)
-{/*
+{
   GtkWidget *Menu;
   GtkWidget *def;
   GtkWidget *treeview3;
@@ -1473,7 +1466,7 @@ on_Med_kh_button_CF_clicked            (GtkButton       *objet,
   treeview3=lookup_widget(def,"Med_kh_treeview3");
   Aff_captdef(treeview3);
   gtk_widget_show (def);
- */
+ 
    
 }
 
@@ -1481,7 +1474,7 @@ on_Med_kh_button_CF_clicked            (GtkButton       *objet,
 void
 on_Med_kh_Rechercher_clicked           (GtkButton       *objet,
                                         gpointer         user_data)
-{/*
+{
   GtkWidget *Menu;
   GtkWidget *rechercher;
   GtkWidget *treeview2;
@@ -1520,7 +1513,7 @@ on_Med_kh_Rechercher_clicked           (GtkButton       *objet,
 
   treeview2=lookup_widget(rechercher,"Med_kh_treeview2");
   Rech_affich(treeview2);
-  gtk_widget_show (rechercher);*/
+  gtk_widget_show (rechercher);
   
 }
 
@@ -1530,7 +1523,7 @@ on_Med_kh_treeview3_row_activated      (GtkTreeView     *treeview,
                                         GtkTreePath     *path,
                                         GtkTreeViewColumn *column,
                                         gpointer         user_data)
-{/*
+{
         GtkWidget *def;
 	GtkTreeIter iter;
 	char *fich="temperature.txt";
@@ -1543,7 +1536,7 @@ on_Med_kh_treeview3_row_activated      (GtkTreeView     *treeview,
 	gtk_tree_model_get(GTK_LIST_STORE(model),&iter,0,&cap.ref,1,&cap.type,2,&cap.V_Max,3,&cap.V_Min,4,&cap.dt.jour,5,&cap.dt.mois,6,&cap.dt.annee,7,&cap.Emplacement,-1);
 	}
 	def=create_Med_kh_windowC_f();
-	gtk_widget_show (def);*/
+	gtk_widget_show (def);
 }
 
 
@@ -1554,7 +1547,7 @@ on_Med_kh_treeview1_row_activated      (GtkTreeView     *treeview,
                                         GtkTreeViewColumn *column,
                                         gpointer         user_data)
 {
-/*
+
 	GtkWidget *w_Ajouter,*confirme;
 	GtkTreeIter iter;
 	char *fich="capteurs.txt";
@@ -1567,14 +1560,14 @@ on_Med_kh_treeview1_row_activated      (GtkTreeView     *treeview,
 	gtk_tree_model_get(GTK_LIST_STORE(model),&iter,0,&cap.ref,1,&cap.type,2,&cap.V_Max,3,&cap.V_Min,4,&cap.dt.jour,5,&cap.dt.mois,6,&cap.dt.annee,7,&cap.Emplacement,-1);
 	}
 	confirme=create_Med_kh_confirme();
-	gtk_widget_show (confirme);*/
+	gtk_widget_show (confirme);
 }
 
 
 void
 on_Med_kh_Act_clicked                  (GtkWidget       *objet,
                                         gpointer         user_data)
-{/*
+{
 GtkWidget *act;
 GtkWidget *aff;
 GtkWidget *tree;
@@ -1583,14 +1576,14 @@ GtkWidget *tree;
 
 act=lookup_widget(objet,"Med_kh_Act");
 tree=lookup_widget(objet,"Med_kh_treeview1");
-afficher_capteur(tree);*/
+afficher_capteur(tree);
 }
 
 
 void
 on_Med_kh_modif_conf_button_clicked    (GtkButton       *button,
                                         gpointer         user_data)
-{/*
+{
    GtkWidget *confirme;
    GtkWidget *aff,*modif;
    GtkWidget *ref;
@@ -1626,7 +1619,7 @@ on_Med_kh_modif_conf_button_clicked    (GtkButton       *button,
 
 
    
-/*
+
   gtk_spin_button_set_value(GTK_SPIN_BUTTON(ref),cap.ref);
 
   //strcpy(cap.type,gtk_combo_box_get_active_text(GTK_COMBO_BOX(type)));
@@ -1640,51 +1633,51 @@ on_Med_kh_modif_conf_button_clicked    (GtkButton       *button,
    gtk_spin_button_set_value(GTK_SPIN_BUTTON(annee),cap.dt.annee);
 	gtk_widget_hide (confirme);
 	//gtk_widget_hide (aff);
-	gtk_widget_show (modif);*/
+	gtk_widget_show (modif);
 }
 
 
 void
 on_Med_kh_supp_confirme_button_clicked (GtkWidget       *objet,
                                         gpointer         user_data)
-{/*
+{
 GtkWidget *confirme;
 GtkWidget *aff;
 GtkWidget *tree;
 
 confirme=lookup_widget(objet,"Med_kh_confirme");
 supprimer(cap.ref);
-gtk_widget_hide (confirme);*/
+gtk_widget_hide (confirme);
 }
 
 
 void
 on_Med_kh_button_retour2_clicked       (GtkWidget       *objet,
                                         gpointer         user_data)
-{/*
+{
  GtkWidget *windowC_f;
  windowC_f=lookup_widget(objet,"Med_kh_windowC_f");
- gtk_widget_destroy(windowC_f);*/
+ gtk_widget_destroy(windowC_f);
 }
 
 
 void
 on_Med_kh_button_retour1_clicked       (GtkWidget       *objet,
                                         gpointer         user_data)
-{/*
+{
  GtkWidget *w_Rechercher;
  w_Rechercher=lookup_widget(objet,"Med_kh_w_Rechercher");
- gtk_widget_destroy(w_Rechercher);*/
+ gtk_widget_destroy(w_Rechercher);
 }
 
 
 void
 on_Med_kh_button_retour0_clicked       (GtkWidget       *objet,
                                         gpointer         user_data)
-{/*
+{
  GtkWidget *w_aff_supp;
  w_aff_supp=lookup_widget(objet,"Med_kh_w_aff_supp");
- gtk_widget_destroy(w_aff_supp);*/
+ gtk_widget_destroy(w_aff_supp);
 }
 
 //////////////////////////////////////////////////////////////////
@@ -1696,13 +1689,13 @@ void
 on_button3_tessnime_affichage_supprimer_clicked
                                         (GtkButton       *button,
                                         gpointer         user_data)
-{/*
+{
 GtkWidget *code;
 char *file="produits.txt";
 
 code=lookup_widget(button,"entry9_recherche_tesnime");
 //strcpy(f.code,gtk_entry_get_text(GTK_ENTRY(code)));
-tes_supprimer(file,gtk_entry_get_text(GTK_ENTRY(code)));*/
+tes_supprimer(file,gtk_entry_get_text(GTK_ENTRY(code)));
 }
 
 
@@ -1710,7 +1703,7 @@ tes_supprimer(file,gtk_entry_get_text(GTK_ENTRY(code)));*/
 on_button1_tesnim_affichage_ajouter_clicked
                                         (GtkButton       *button,
                                         gpointer         user_data)
-{/*
+{
 GtkWidget *fenetre_ajout;
   GtkWidget *fenetre_afficher;
   fenetre_afficher = lookup_widget(button, "tesnime_affichage");
@@ -1718,7 +1711,7 @@ GtkWidget *fenetre_ajout;
   //fenetre_ajout = lookup_widget(button, "tesnime_ajouter");
   fenetre_ajout = create_tesnime_ajouter();
   gtk_window_set_position(GTK_WINDOW(fenetre_ajout),GTK_WIN_POS_CENTER_ALWAYS);
-  gtk_widget_show(fenetre_ajout);*/
+  gtk_widget_show(fenetre_ajout);
 }
 
 
@@ -1726,7 +1719,7 @@ void
 on_button2_tesnime_affichage_modifier_clicked
                                         (GtkButton       *button,
                                         gpointer         user_data)
-{/*
+{
 produit p;
   
 
@@ -1789,7 +1782,7 @@ produit p;
     {
       gtk_toggle_button_set_active(GTK_RADIO_BUTTON(depot), 0);
       gtk_toggle_button_set_active(GTK_RADIO_BUTTON(retrait), 1);
-}*/
+}
 }
 
 
@@ -1797,7 +1790,7 @@ void
 on_button4_tesnime_affichage_rechercher_clicked
                                         (GtkButton       *button,
                                         gpointer         user_data)
-{/*
+{
 produit p;
   GtkWidget *affichage;
   GtkWidget *entry9_recherche;
@@ -1831,7 +1824,7 @@ produit p;
 
     fclose(f);
   }
-  //remove("recherche.txt");*/
+  //remove("recherche.txt");
 }
 
 
@@ -1840,13 +1833,13 @@ produit p;
 void
 on_button5_tesnime_afficher__clicked   (GtkButton       *button,
                                         gpointer         user_data)
-{/*
+{
 GtkWidget *fenetre_afficher;
   GtkWidget *treeview;
 
   //fenetre_afficher = lookup_widget(button, "tesnime_affichage");
   treeview = lookup_widget(button, "tesnime_treeview");
-  afficher(treeview);*/
+  afficher(treeview);
 }
 
 
@@ -1876,14 +1869,15 @@ on_radiobutton1_tes_ajout_depot_clicked
 void
 on_button7_tesnim_retour_clicked       (GtkButton       *button,
                                         gpointer         user_data)
-{/*
+{
+GtkWidget *fenetre_ajout;
   GtkWidget *fenetre_afficher;
   fenetre_ajout = lookup_widget(button, "tesnime_ajouter");
   gtk_widget_destroy(fenetre_ajout);
   //fenetre_afficher = lookup_widget(button, "tesnime_ajouter");
   fenetre_afficher = create_tesnime_affichage();
   //gtk_window_set_position(GTK_WINDOW(fenetre_afficher),GTK_WIN_POS_CENTER_ALWAYS);
-  gtk_widget_show(fenetre_afficher);*/
+  gtk_widget_show(fenetre_afficher);
 }
 
 
@@ -1914,7 +1908,7 @@ on_button8_valider_tes_modiffier_clicked
                                         (GtkButton       *button,
                                         gpointer         user_data)
 {
-/*
+
 produit p;
  
  
@@ -1958,7 +1952,7 @@ produit p;
 		default : strcpy(p.type,"depot");
 		break;
 	}
-  modification(file,p);*/
+  modification(file,p);
 }
 
 
@@ -1966,7 +1960,7 @@ produit p;
 void
 on_button9_retour_tes_modifier_clicked (GtkButton       *button,
                                         gpointer         user_data)
-{/*
+{
 GtkWidget *fenetre_ajout;
   GtkWidget *fenetre_afficher;
   fenetre_ajout = lookup_widget(button, "tesnime_modifier");
@@ -1974,7 +1968,7 @@ GtkWidget *fenetre_ajout;
   //fenetre_afficher = lookup_widget(button, "tesnime_modifier");
   fenetre_afficher = create_tesnime_affichage();
   gtk_window_set_position(GTK_WINDOW(fenetre_afficher),GTK_WIN_POS_CENTER_ALWAYS);
-  gtk_widget_show(fenetre_afficher);*/
+  gtk_widget_show(fenetre_afficher);
 }
 
 
@@ -1983,9 +1977,9 @@ void
 on_radiobutton1_tes_ajout_depot_toggled
                                         (GtkToggleButton *togglebutton,
                                         gpointer         user_data)
-{/*
+{
 if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(togglebutton)))
-radio_type=1;*/
+radio_type=1;
 }
 
 
@@ -1993,9 +1987,9 @@ void
 on_radiobutton2_tes_ajouter_retrait_toggled
                                         (GtkToggleButton *togglebutton,
                                         gpointer         user_data)
-{/*
+{
 if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(togglebutton)))
-radio_type=0;*/
+radio_type=0;
 }
 
 
@@ -2003,7 +1997,7 @@ void
 on_button6_tesnim_ajouter_valider_clicked
                                         (GtkButton       *button,
                                         gpointer         user_data)
-{/*
+{
 produit p;
  
  
@@ -2047,7 +2041,7 @@ produit p;
 		default : strcpy(p.type,"depot");
 		break;
 	}
-  ajout(p);*/
+  ajout(p);
 }
 
 
@@ -2056,7 +2050,7 @@ on_tesnime_treeview_row1_activated     (GtkTreeView     *treeview,
                                         GtkTreePath     *path,
                                         GtkTreeViewColumn *column,
                                         gpointer         user_data)
-{/*
+{
 produit p ;
   GtkTreeIter iter;
   gchar *categorie;
@@ -2083,12 +2077,12 @@ produit p ;
     strcpy(e, quantite);
     strcpy(f, prix);
     strcpy(g, date);
-}*/
+}
 }
 void
 on_ts_deconnect_button_clicked
                                         (GtkButton       *button,
-                                        gpointer         user_data){/*
+                                        gpointer         user_data){
   
   GtkWidget *authentification;
   GtkWidget *admin;
@@ -2097,364 +2091,5 @@ on_ts_deconnect_button_clicked
   gtk_widget_show (authentification);
   admin = lookup_widget(button, "tesnime_affichage");
   gtk_widget_hide (admin);
-                                 */     }
-
-
-
-
-
-reclamation roe;
-int x;
-int ge[2]={0,0};
-char he[20]="hebergement";
-char de[20]="restauration";
-soulofthedead poe;
-
-void
-on_houssemkh_treeview1_row_activated   (GtkTreeView     *treeview,
-                                        GtkTreePath     *path,
-                                        GtkTreeViewColumn *column,
-                                        gpointer         user_data)
-{
-int a;
-GtkTreeIter iter;
-gchar* nom;
-gchar* prenom;
-gchar* jour;
-gchar* mois;
-gchar* annee;
-gchar* ID;
-gchar* type;
-gchar* numero;
-gchar* text;
-
-GtkTreeModel *model=gtk_tree_view_get_model(treeview);
-if (gtk_tree_model_get_iter(model,&iter,path))
-{
-
-gtk_tree_model_get(GTK_LIST_STORE(model),&iter,0,&jour,1,&mois,2,&annee,3,&nom,4,&prenom,5,&ID,6,&type,7,&numero,8,&text,-1);
-strcpy(poe.jour1,jour);
-strcpy(poe.mois1,mois);
-strcpy(poe.annee1,annee);
-strcpy(poe.nom,nom);
-strcpy(poe.prenom,prenom);
-strcpy(poe.ID,ID);
-strcpy(poe.type_reclamation,type);
-strcpy(poe.numero_reclamation,numero);
-strcpy(poe.text_reclamation,text);
-
-}
-
-}
-
-
-void
-on_houssemkh_button6_aficher_clicked   (GtkButton       *button,
-                                        gpointer         user_data)
-{
-GtkWidget *treeview;
-
-treeview=lookup_widget(button,"houssemkh_treeview1");
-affich(treeview);
-}
-
-
-void
-on_houssem_buttonbaby44_clicked        (GtkButton       *button,
-                                        gpointer         user_data)
-{
-GtkWidget *windore;
-windore=create_houssem_CONFIRMATION();
-gtk_widget_show (windore);
-
-}
-
-
-void
-on_houssem_button2_ajout_clicked       (GtkButton       *button,
-                                        gpointer         user_data)
-{
-GtkWidget *windowre;
-windowre=create_houssem_ajoutdereclamation();
-gtk_widget_show (windowre);
-
-}
-
-
-void
-on_houssem_leplusreclamer_clicked      (GtkButton       *button,
-                                        gpointer         user_data)
-{
-GtkWidget *windore;
-windore=create_houssemkh_dache_bord();
-gtk_widget_show (windore);
-
-}
-
-
-void
-on_treeview2_row_activated             (GtkTreeView     *treeview,
-                                        GtkTreePath     *path,
-                                        GtkTreeViewColumn *column,
-                                        gpointer         user_data)
-{
-
-}
-
-
-void
-on_houssem_button4_mod_clicked         (GtkButton       *button,
-                                        gpointer         user_data)
-{
-GtkWidget *windowre;
-windowre=create_houssem_modification();
-gtk_widget_show (windowre);
-
-}
-
-
-void
-on_houssem_button5_rech_clicked         (GtkWidget       *objet_graphique,gpointer  user_data)
-{
-GtkWidget *treevieww;
-
-treevieww=lookup_widget(objet_graphique,"houssemkh_treeview1");
-char nq[20];
-char pq[20];
-
-GtkWidget *jouro;
-GtkWidget *rto;
-
-jouro=lookup_widget(objet_graphique,"houssem_enterderecherche");
-rto=lookup_widget(objet_graphique,"houssemkhentryderecherche2");
-strcpy(nq,gtk_entry_get_text(GTK_ENTRY(jouro)));
-strcpy(pq,gtk_entry_get_text(GTK_ENTRY(rto)));
-chercher(nq,pq,treevieww);
-
-}
-
-
-void
-on_alignment4_check_resize             (GtkContainer    *container,
-                                        gpointer         user_data)
-{
-  
-
-
-
-
-}
-
-
-void
-on_houssemkh_button_ajout_rasmi_clicked
-                                       (GtkWidget       *objet_graphique,gpointer  user_data)
-{
-
-newreclam  z;
-int e;
-char s;
-int tr;
-
-
-GtkWidget *nom, *prenom, *id, *type, *text, *numr;
-GtkWidget *jouro;
-GtkWidget *moiso;
-GtkWidget *annneo;
-nom=lookup_widget(objet_graphique,"houssemkh_entry_nom");
-prenom=lookup_widget(objet_graphique,"houssemkh_entryss_prenom");
-id=lookup_widget(objet_graphique,"houssemkh_entryrr_id");
-text=lookup_widget(objet_graphique,"houssemkh_entry_textq");
-numr=lookup_widget(objet_graphique,"houssemkh_entreyomyheart");
-jouro=lookup_widget(objet_graphique,"houssemkh_spinbutton101");
-moiso=lookup_widget(objet_graphique,"houssem_spinbutton233");
-annneo=lookup_widget(objet_graphique,"houssemkh_comboboxentry101");
-
-
-
-
-z.jour1=gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(jouro));
-z.mois1=gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(moiso));
-if(strcmp("2021",gtk_combo_box_get_active_text(GTK_COMBO_BOX(annneo)))==0)
-z.annee1=2021;
-else
-z.annee1=2022;
-
-
-
-
-
-
-strcpy(z.nom,gtk_entry_get_text(GTK_ENTRY(nom)));
-strcpy(z.prenom,gtk_entry_get_text(GTK_ENTRY(prenom)));
-strcpy(z.ID,gtk_entry_get_text(GTK_ENTRY(id)));
-strcpy(z.text_reclamation,gtk_entry_get_text(GTK_ENTRY(text)));
-strcpy(z.numero_reclamation,gtk_entry_get_text(GTK_ENTRY(numr)));
-if(x==1)
-
-{
-strcpy(z.type_reclamation,he);
-}
-else if(x==2)
-{
-strcpy(z.type_reclamation,de);
-}
-tr=verification(z);
-if(tr==0)
-ajouter_reclam(z);
-else if (tr==1)
-{
-GtkWidget *windowre;
-windowre=create_houssem_kharroubi_eroor();
-gtk_widget_show (windowre);
-
-}
-
-
-
-}
-
-void
-on_houssemkh_button7_confirmer_desuprimer_clicked
-                                        (GtkButton       *button,
-                                        gpointer         user_data)
-{
-if(ge[1]==2)
-
-supprimer_reclam(poe);
-else 
-ge[0]=1;
-}
-
-
-void
-on_checkbutton2_ssa_toggled            (GtkToggleButton *togglebutton,
-                                        gpointer         user_data)
-{
-if(gtk_toggle_button_get_active(togglebutton))
-ge[0]=1;
-}
-
-
-void
-on_checkbutton1_yess_toggled           (GtkToggleButton *togglebutton,
-                                        gpointer         user_data)
-{
-if(gtk_toggle_button_get_active(togglebutton))
-ge[1]=2;
-
-}
-
-
-void
-on_houssemkh_modification23_clicked    (GtkWidget       *objet,
-                                        gpointer         user_data)
-{
-
-
-newreclam o;
-int t;
-int x=1 ;
-char z[20] ;
-
-
-
-GtkWidget *jour,*mois,*annee,*nom, *prenom, *id, *type, *text,*numc,*calanderofthisar;
-
-nom=lookup_widget(objet,"entry1nomholy");
-prenom=lookup_widget(objet,"entry2holy");
-id=lookup_widget(objet,"entrydeid2");
-text=lookup_widget(objet,"entrykiko");
-numc=lookup_widget(objet,"entrydenumdereclam");
-
-calanderofthisar=lookup_widget(objet,"houssem_calendar1");
-o.jour1=gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(jour));
-o.mois1=gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(mois));
-gtk_calendar_get_date(GTK_CALENDAR(calanderofthisar),
-                          &o.annee1,
-                          &o.mois1,
-                          &o.jour1);
-
-       
-strcpy(o.nom,gtk_entry_get_text(GTK_ENTRY(nom)));
-strcpy(o.prenom,gtk_entry_get_text(GTK_ENTRY(prenom)));
-strcpy(o.ID,gtk_entry_get_text(GTK_ENTRY(id)));
-strcpy(o.text_reclamation,gtk_entry_get_text(GTK_ENTRY(text)));
-strcpy(o.numero_reclamation,gtk_entry_get_text(GTK_ENTRY(numc)));
-if(x==1)
-{
-strcpy(roe.type_reclamation,he);
-}
-else if(x==2)
-{
-strcpy(roe.type_reclamation,de);
-}
-
-modifier_reclam(poe,o);
-}
-
-
-void
-on_boutonderecuperationhoussem_clicked (GtkButton       *button,
-                                        gpointer         user_data)
-{
-GtkWidget *jour,*mois,*annee,*nom, *prenom, *id, *type, *text,*numc,*calanderofthisar;
-
-nom=lookup_widget(button,"entry1nomholy");
-prenom=lookup_widget(button,"entry2holy");
-id=lookup_widget(button,"entrydeid2");
-text=lookup_widget(button,"entrykiko");
-numc=lookup_widget(button,"entrydenumdereclam");
-gtk_entry_set_text(GTK_ENTRY(nom),poe.nom);
-gtk_entry_set_text(GTK_ENTRY(prenom),poe.prenom);
-gtk_entry_set_text(GTK_ENTRY(id),poe.ID);
-gtk_entry_set_text(GTK_ENTRY(text),poe.text_reclamation);
-gtk_entry_set_text(GTK_ENTRY(numc),poe.numero_reclamation);
-}
-
-
-void
-on_houssemkh_bouton_de_tache2_clicked  (GtkButton       *button,
-                                        gpointer         user_data)
-{
-GtkWidget *treeview;
-
-treeview=lookup_widget(button,"houssemkh_treeview2");
- leplusreclamer(treeview);
-}
-
-void
-on_houssemkh_bouton_fermer_clicked     (GtkButton       *button,
-                                        gpointer         user_data)
-{
-GtkWidget *confez;
-confez = lookup_widget(button,"houssemkh_bouton_fermer");
-gtk_widget_destroy(confez);
-
-}
-
+                                        }
                                         
-
-void
-on_houssem_radiobutton1_restauration_toggled
-                                        (GtkToggleButton *togglebutton,
-                                        gpointer         user_data)
-{
-if(gtk_toggle_button_get_active(togglebutton))
-x=2;
-}
-
-
-void
-on_houssemkh_radiobutton3_hebergement_toggled
-                                        (GtkToggleButton *togglebutton,
-                                        gpointer         user_data)
-{
-if(gtk_toggle_button_get_active(togglebutton))
-x=1;
-
-}
-
-
-
-

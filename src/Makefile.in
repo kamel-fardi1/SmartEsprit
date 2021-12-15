@@ -101,7 +101,7 @@ am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
 am_SmartEsprit_OBJECTS = main.$(OBJEXT) support.$(OBJEXT) \
 	interface.$(OBJEXT) callbacks.$(OBJEXT) etudiant.$(OBJEXT) \
-	capteur.$(OBJEXT) fonction.$(OBJEXT) reclamation.$(OBJEXT)
+	capteur.$(OBJEXT) fonction.$(OBJEXT)
 SmartEsprit_OBJECTS = $(am_SmartEsprit_OBJECTS)
 am__DEPENDENCIES_1 =
 SmartEsprit_DEPENDENCIES = $(am__DEPENDENCIES_1)
@@ -283,10 +283,9 @@ SmartEsprit_SOURCES = \
 	support.c support.h \
 	interface.c interface.h \
 	callbacks.c callbacks.h	\
-	etudiant.c\
+	etudiant.c \
 	capteur.c \
-	fonction.c \
-    reclamation.c
+	fonction.c
 
 SmartEsprit_LDADD = @PACKAGE_LIBS@ $(INTLLIBS)
 all: all-am
@@ -381,7 +380,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/fonction.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/interface.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/main.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/reclamation.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/support.Po@am__quote@
 
 .c.o:
