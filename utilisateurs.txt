@@ -1,10 +1,11 @@
-admin admin admin
+admin1 admin1 admin
 user user Responsable_Hebergement
-f 198765432 etudiant
 reclam reclam Responsable_de_reclamations
-stock stock Responsable|_de_stock
+stock stock Responsable_de_stock
 nutri nutri Responsable_nutritions
 cap cap Responsable_de_capteurs
 sdfsfdsfsf 15115555 etudiant
 sdfdsfsfs 35412652 etudiant
 sdfdsdfs 74863215 etudiant
+fr fr Responsable|_de_stock
+esprit 15326894 etudiant

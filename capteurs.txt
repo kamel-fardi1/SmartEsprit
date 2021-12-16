@@ -2,3 +2,4 @@
 3 capteur_de_proximite 1.000000 1.000000 1 1 1900 E1
 3 capteur_dhumidite 12.000000 10.000000 1 1 1911 E1
 3 capteur_de_temperature 1.000000 1.000000 1 1 1900 E1
+3 capteur_de_temperature 1.000000 1.000000 1 1 1900 E1

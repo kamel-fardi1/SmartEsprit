@@ -407,7 +407,7 @@ create_admin (void)
   gtk_widget_set_size_request (kamel_fardi_role_admin_window_combobox, 225, 40);
   gtk_combo_box_append_text (GTK_COMBO_BOX (kamel_fardi_role_admin_window_combobox), _("Responsable_Hebergement"));
   gtk_combo_box_append_text (GTK_COMBO_BOX (kamel_fardi_role_admin_window_combobox), _("Responsable_nutritions"));
-  gtk_combo_box_append_text (GTK_COMBO_BOX (kamel_fardi_role_admin_window_combobox), _("Responsable|_de_stock"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (kamel_fardi_role_admin_window_combobox), _("Responsable_de_stock"));
   gtk_combo_box_append_text (GTK_COMBO_BOX (kamel_fardi_role_admin_window_combobox), _("Responsable_de_capteurs"));
   gtk_combo_box_append_text (GTK_COMBO_BOX (kamel_fardi_role_admin_window_combobox), _("Responsable_de_reclamations"));
 
