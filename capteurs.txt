@@ -1,9 +1,1 @@
-<<<<<<< HEAD
-3 capteur_dhumidite 1.000000 1.000000 1 1 1900 E3
-3 capteur_de_proximite 1.000000 1.000000 1 1 1900 E1
-3 capteur_dhumidite 12.000000 10.000000 1 1 1911 E1
-3 capteur_de_temperature 1.000000 1.000000 1 1 1900 E1
-3 capteur_de_temperature 1.000000 1.000000 1 1 1900 E1
-=======
-3 capteur_de_temperature 100,000000 1,000000 1 1 1900 E1
->>>>>>> bbe1fa345e976a8fceab258c643c9567b691b8f1
+3 capteur_dhumidite 1.000000 5.000000 1 1 1900 E2
