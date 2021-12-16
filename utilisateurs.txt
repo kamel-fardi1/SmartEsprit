@@ -2,3 +2,6 @@ admin admin admin
 user user Responsable_Hebergement
 f 198765432 etudiant
 reclam reclam Responsable_de_reclamations
+stock stock Responsable|_de_stock
+nutri nutri Responsable_nutritions
+cap cap Responsable_de_capteurs
