@@ -5,3 +5,6 @@ reclam reclam Responsable_de_reclamations
 stock stock Responsable|_de_stock
 nutri nutri Responsable_nutritions
 cap cap Responsable_de_capteurs
+sdfsfdsfsf 15115555 etudiant
+sdfdsfsfs 35412652 etudiant
+sdfdsdfs 74863215 etudiant

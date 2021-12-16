@@ -117,23 +117,6 @@ void supprimer_utilisateur(char un[],char pswrd[],char role[],char file[]){
         remove(file);
         rename("temp.txt",file);
         }
-///////////////affichage///////////////////////////
-/*void afficher_etudiant(char file_etudiants[]){
-    FILE *f,*f1;
-    Etudiant etd_test;
-    f=fopen(file_etudiants,"r");
-    if(f==NULL){
-            printf("fichier n'existe pas");}
-    else
-        {
-
-    while((fscanf(f,"%s %s %s %s %s %s %s %s %d %d %d %s %s %d %d %d %s",etd_test.cin,etd_test.nom,etd_test.prenom,etd_test.classe,etd_test.sexe,etd_test.nationalite,etd_test.adress,etd_test.aderess_mail,&etd_test.date_de_naissance.jour,&etd_test.date_de_naissance.mois,&etd_test.date_de_naissance.annee,etd_test.lieu_de_naissance,etd_test.numero_telephonique,&etd_test.date_d_hebergement.jour,&etd_test.date_d_hebergement.mois,&etd_test.date_d_hebergement.annee,etd_test.chambre))!=EOF)
-            {
-                    printf("%s %s %s %s %s %s %s %s %d %d %d %s %s %d %d %d %s\n",etd_test.cin,etd_test.nom,etd_test.prenom,etd_test.classe,etd_test.sexe,etd_test.nationalite,etd_test.adress,etd_test.aderess_mail,etd_test.date_de_naissance.jour,etd_test.date_de_naissance.mois,etd_test.date_de_naissance.annee,etd_test.lieu_de_naissance,etd_test.numero_telephonique,etd_test.date_d_hebergement.jour,etd_test.date_d_hebergement.mois,etd_test.date_d_hebergement.annee,etd_test.chambre);
-            }
-        fclose(f);
-        }
-    }*/
 ///////////tache2/////////////////////
 int nombres_des_etudiant(char file_etudiants[],char nv){
     FILE *f;
@@ -150,7 +133,6 @@ int nombres_des_etudiant(char file_etudiants[],char nv){
     else{
     while((fscanf(f,"%s %s %s %s %s %s %s %d %d %d %s %d %d %d %s %s %s\n",etd.cin,etd.nom,etd.prenom,etd.classe,etd.sexe,etd.adress,etd.aderess_mail,&etd.date_de_naissance.jour,&etd.date_de_naissance.mois,&etd.date_de_naissance.annee,etd.numero_telephonique,&etd.date_d_hebergement.jour,&etd.date_d_hebergement.mois,&etd.date_d_hebergement.annee,etd.chambre,etd.services,etd.photo))!=EOF)
             {
-                //a=atoi(etd.classe[0]);
                 if(etd.classe[0]==nv) nb_etd++;
             }
 
@@ -502,8 +484,10 @@ void set_text(char size[],char color[],char text[],int ajt_sup){
       gtk_label_set_use_markup (GTK_LABEL (hintlabel), TRUE);
       gtk_widget_show (hint);
         }
-/*void set_text(char span[],char text[]){
-strcpy(chaine,span);
-strcat(chaine,text);
-strcat(chaine,"</span>");
-}*/
+
+    int alldigit(char ch[]){
+    char x[50];
+    sprintf(x,"%d",atoi(ch));
+    if(strlen(x)==strlen(ch)) return 0;
+    return 1; 
+    } 

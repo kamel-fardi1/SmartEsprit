@@ -107,22 +107,11 @@ on_treeview_empl_row_activated         (GtkTreeView     *treeview,
 {
 GtkWidget *kamel_fardi_etudiant_window,*ajout_hint,*cinentry;
     GtkWidget *kamel_fardi_afficher_window;
-    //GtkWidget *classe,*services,*img, *fixed1, *nom, *prenom, *adress, *cin, *sexe, *ntlfn, *nenfn, *wind,*mail,*dtheberg,*naissance;
     GtkTreeIter iter;
-    //char *buf1;
-    //char *buf2;
     char *fichier="utilisateurs.txt";
-    //Etudiant p;
     gchar *c1,*c2,*c3;
 
-     //ajout_hint = create_kamel_fardi_ajout_hint_window (); 
-    //kamel_fardi_etudiant_window = create_kamel_fardi_etudiant_window ();
-   
-
-    
-
-
-   GtkTreeModel *model=gtk_tree_view_get_model(treeview);
+    GtkTreeModel *model=gtk_tree_view_get_model(treeview);
     if (gtk_tree_model_get_iter(model,&iter,path))
       {
     
@@ -188,9 +177,10 @@ on_kamel_fardi_es_admin_chercher_res_button_clicked
 {
   GtkWidget *chercherentry;
   GtkWidget *treeview;
-  //char *fichier="utilisateurs.txt";  
+
   chercherentry = lookup_widget(button, "kamel_fardi_es_admin_chercher_responsable_entry");
   treeview = lookup_widget(button, "kamel_fardi_espace_admin_treeview_responsables");
+
   afficher_person(treeview,gtk_entry_get_text(GTK_ENTRY(chercherentry)));
 }
 
@@ -268,13 +258,14 @@ on_kamel_fardi_Gestion_des_etudiants_hebergee_admin_window_button_clicked
   GtkWidget *admin;
   GtkWidget *kamel_fardi_afficher_window;
   GtkWidget *treeview;
-  char *fichier="etudiants.txt";  
+  char *fichier="etudiants.txt";
+
   kamel_fardi_afficher_window = create_kamel_fardi_afficher_window ();
   gtk_widget_show (kamel_fardi_afficher_window);
   admin = lookup_widget(button, "admin");
-    gtk_widget_hide (admin);
-    treeview = lookup_widget(kamel_fardi_afficher_window, "kamel_fardi_affichage_liste_etudiant_treeview");
-    afficher_etudiant(treeview,fichier);
+  gtk_widget_hide (admin);
+  treeview = lookup_widget(kamel_fardi_afficher_window, "kamel_fardi_affichage_liste_etudiant_treeview");
+  afficher_etudiant(treeview,fichier);
 }
 
 
@@ -514,7 +505,12 @@ on_kamel_fardi_etudiant_gestion_etudiants_ajouter_button_clicked
     pisci = lookup_widget(button, "kamel_fardi_ajouter_piscine_checkbutton");
     rf = lookup_widget(button, "kamel_fardi_ajout_window_ajouter_m_radiob");
     g=gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(groupe));
+    gtk_calendar_get_date(GTK_CALENDAR(date_de_naissance_calendar),
+                                    &etd.date_de_naissance.annee,
+                                    &etd.date_de_naissance.mois,
+                                    &etd.date_de_naissance.jour);
     sprintf(grp, "%d", g);
+    ///////////////////////////////CIN VERIF////////////////////////////////////////////////////////
     if(!strlen(gtk_entry_get_text(GTK_ENTRY(cin_entry)))||!strlen(gtk_entry_get_text(GTK_ENTRY(nom_entry)))||!strlen(gtk_entry_get_text(GTK_ENTRY(prenom_entry)))||!strlen(gtk_entry_get_text(GTK_ENTRY(lieu_de_residence_entry)))||!strlen(gtk_entry_get_text(GTK_ENTRY(numero_telephonique_entry)))||!strlen(gtk_entry_get_text(GTK_ENTRY(chambre)))||!strlen(gtk_entry_get_text(GTK_ENTRY(mail)))||!strlen(gtk_combo_box_get_active_text(GTK_COMBO_BOX(classe)))||!strlen(etd.photo)||gtk_combo_box_get_active_text(GTK_COMBO_BOX(classe))==NULL){
 
       set_text("50000","red","Remplir tout les champs !!!",0);
@@ -525,60 +521,65 @@ on_kamel_fardi_etudiant_gestion_etudiants_ajouter_button_clicked
         set_text("50000","red","Cin doit avoir 8 digits!!!",0);
         
       }
+      else if(alldigit(gtk_entry_get_text(GTK_ENTRY(cin_entry)))){
+        set_text("30000","red","Cin doit avoir seulement des digits!!!",0);
+      }
       else{
-    //////////------------------------------------------------------------///////////////////////////////////////////////////////////////////////////
+         if(verif_cin(gtk_entry_get_text(GTK_ENTRY(cin_entry)),fichier)==0){
+          gtk_entry_set_text(GTK_ENTRY(cin_entry), "");
+          set_text("50000","red","Cin deja utilisee !!!",0);
+          }
+    //////////////////////////////////////------CIN VALIDE-----------/////////////////////////////////////////////////////////////////////
+        else{
+              //////////------------------------------------------------------------///////////////////////////////////////////////////////////////////////////
+              ///////////////////////////VERIF AGE//////////////////////////////////////////////////////
+              if((timeinfo->tm_year+1900-etd.date_de_naissance.annee)<17){
 
-    //////////------enregirstrer les informations dans la structure---------///////////////////////////////////////////////////////////////////////////
-    //etd.cin=gtk_entry_get_text(GTK_ENTRY(cin_entry));
-    strcpy(etd.cin, gtk_entry_get_text(GTK_ENTRY(cin_entry)));
-    strcpy(etd.nom, gtk_entry_get_text(GTK_ENTRY(nom_entry)));
-    strcpy(etd.prenom, gtk_entry_get_text(GTK_ENTRY(prenom_entry)));
-    strcpy(etd.adress, gtk_entry_get_text(GTK_ENTRY(lieu_de_residence_entry)));
-    strcpy(etd.numero_telephonique, gtk_entry_get_text(GTK_ENTRY(numero_telephonique_entry)));
-    strcpy(etd.aderess_mail, gtk_entry_get_text(GTK_ENTRY(mail)));
-    strcpy(etd.chambre, gtk_entry_get_text(GTK_ENTRY(chambre)));
-    strcpy(etd.classe, gtk_combo_box_get_active_text(GTK_COMBO_BOX(classe)));
-    strcat(etd.classe,grp);
-    
-    strcpy(etd.services, "hebergement");
-    
-    gtk_calendar_get_date(GTK_CALENDAR(date_de_naissance_calendar),
-                          &etd.date_de_naissance.annee,
-                          &etd.date_de_naissance.mois,
-                          &etd.date_de_naissance.jour);
-    if((timeinfo->tm_year+1900-etd.date_de_naissance.annee)<17){
-
-      set_text("50000","red","Age doit etre supperieur a 18 !!!",0);
-    }
-    else{
-    etd.date_d_hebergement.annee=timeinfo->tm_year+1900;
-    etd.date_d_hebergement.mois=timeinfo->tm_mon+1;
-    etd.date_d_hebergement.jour=timeinfo->tm_mday;
-    if (restau)strcat(etd.services,"+restaurant");
-    if (pisc)strcat(etd.services,"+piscine");
-  if(verif_cin(etd.cin,fichier)==0){
-  gtk_entry_set_text(GTK_ENTRY(cin_entry), "");
-  set_text("50000","red","Cin deja utilisee !!!",0);
-  }
-  else{
-    /////////--------------------------------------------------------------/////////////////////////////////////////////////////////////////////////
-    ajouter_etudiant (etd,fichier);
-    ajouter_utilisateur(etd.nom,etd.cin,"etudiant",fichier_users);
-    //1 pour ajouter
-    set_text("40000","green","Un nouveau Etudiant ajoutee !!!",1);
-    ////////--------------------reinitialisation des entrees--------------//////////////////////////////////////////////////////////////////////////
-    gtk_entry_set_text(GTK_ENTRY(nom_entry), "");
-    gtk_entry_set_text(GTK_ENTRY(prenom_entry), "");
-    gtk_entry_set_text(GTK_ENTRY(lieu_de_residence_entry), "");
-    gtk_entry_set_text(GTK_ENTRY(numero_telephonique_entry), "");
-    gtk_entry_set_text(GTK_ENTRY(cin_entry), "");
-    gtk_entry_set_text(GTK_ENTRY(mail), "");
-    gtk_entry_set_text(GTK_ENTRY(chambre), "");
-    gtk_toggle_button_set_active(GTK_RADIO_BUTTON(rf), 1);
-    gtk_toggle_button_set_active(GTK_CHECK_BUTTON(rest), 0);
-    gtk_toggle_button_set_active(GTK_CHECK_BUTTON(pisci), 0);
-    ///////-------------------------------------------------------------///////////////////////////////////////////////////////////////////////////
-}
+                set_text("50000","red","Age doit etre supperieur a 18 !!!",0);
+              }
+              ////////////////////////////AGE VALIDE/////////////////////////////////////////////////////
+              else{
+              //////////////////////NUM TELF VERIF/////////////////////////////////////////////////////
+              if(alldigit(gtk_entry_get_text(GTK_ENTRY(numero_telephonique_entry)))){
+                  set_text("10000","red","Num telephone doit avoir seulement des digits!!!",0);
+              }
+              else{
+              //////////------enregirstrer les informations dans la structure---------///////////////////////////////////////////////////////////////////////////
+              strcpy(etd.cin, gtk_entry_get_text(GTK_ENTRY(cin_entry)));
+              strcpy(etd.nom, gtk_entry_get_text(GTK_ENTRY(nom_entry)));
+              strcpy(etd.prenom, gtk_entry_get_text(GTK_ENTRY(prenom_entry)));
+              strcpy(etd.adress, gtk_entry_get_text(GTK_ENTRY(lieu_de_residence_entry)));
+              strcpy(etd.numero_telephonique, gtk_entry_get_text(GTK_ENTRY(numero_telephonique_entry)));
+              strcpy(etd.aderess_mail, gtk_entry_get_text(GTK_ENTRY(mail)));
+              strcpy(etd.chambre, gtk_entry_get_text(GTK_ENTRY(chambre)));
+              strcpy(etd.classe, gtk_combo_box_get_active_text(GTK_COMBO_BOX(classe)));
+              strcat(etd.classe,grp);
+              strcpy(etd.services, "hebergement");
+              etd.date_d_hebergement.annee=timeinfo->tm_year+1900;
+              etd.date_d_hebergement.mois=timeinfo->tm_mon+1;
+              etd.date_d_hebergement.jour=timeinfo->tm_mday;
+              if (restau)strcat(etd.services,"+restaurant");
+              if (pisc)strcat(etd.services,"+piscine");
+          
+              /////////--------------------------------------------------------------/////////////////////////////////////////////////////////////////////////
+              ajouter_etudiant (etd,fichier);
+              ajouter_utilisateur(etd.nom,etd.cin,"etudiant",fichier_users);
+              //1 pour ajouter
+              set_text("40000","green","Un nouveau Etudiant ajoute !!!",1);
+              ////////--------------------reinitialisation des entrees--------------//////////////////////////////////////////////////////////////////////////
+              gtk_entry_set_text(GTK_ENTRY(nom_entry), "");
+              gtk_entry_set_text(GTK_ENTRY(prenom_entry), "");
+              gtk_entry_set_text(GTK_ENTRY(lieu_de_residence_entry), "");
+              gtk_entry_set_text(GTK_ENTRY(numero_telephonique_entry), "");
+              gtk_entry_set_text(GTK_ENTRY(cin_entry), "");
+              gtk_entry_set_text(GTK_ENTRY(mail), "");
+              gtk_entry_set_text(GTK_ENTRY(chambre), "");
+              gtk_toggle_button_set_active(GTK_RADIO_BUTTON(rf), 1);
+              gtk_toggle_button_set_active(GTK_CHECK_BUTTON(rest), 0);
+              gtk_toggle_button_set_active(GTK_CHECK_BUTTON(pisci), 0);
+              ///////-------------------------------------------------------------///////////////////////////////////////////////////////////////////////////
+                  }
+              }
 }
 }
 }
@@ -621,7 +622,6 @@ on_kamel_fardi_etudiant_gestion_etudiants_annuler_button_clicked
     pisci = lookup_widget(button, "kamel_fardi_ajouter_piscine_checkbutton");
     rf = lookup_widget(button, "kamel_fardi_ajout_window_ajouter_m_radiob");
   ////////--------------------reinitialisation des entrees--------------//////////////////////////////////////////////////////////////////////////
-    //gtk_label_set_text(GTK_LABEL(lbl),"bien ajouter !!");
     gtk_entry_set_text(GTK_ENTRY(nom_entry), "");
     gtk_entry_set_text(GTK_ENTRY(prenom_entry),"");
     gtk_entry_set_text(GTK_ENTRY(lieu_de_residence_entry), "");
@@ -770,97 +770,77 @@ on_kamel_fardi_modifier_ajouter_button_clicked
     mail = lookup_widget(button, "kamel_fardi_modifier_email_entry");
     classe = lookup_widget(button, "kamel_fardi_modifier_classe_combobox");
     g=gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(groupe));
-    sprintf(grp, "%d", g);
-    if(!strlen(gtk_entry_get_text(GTK_ENTRY(cin_entry)))||!strlen(gtk_entry_get_text(GTK_ENTRY(nom_entry)))||!strlen(gtk_entry_get_text(GTK_ENTRY(prenom_entry)))||!strlen(gtk_entry_get_text(GTK_ENTRY(lieu_de_residence_entry)))||!strlen(gtk_entry_get_text(GTK_ENTRY(numero_telephonique_entry)))||!strlen(gtk_entry_get_text(GTK_ENTRY(chambre)))||!strlen(gtk_entry_get_text(GTK_ENTRY(mail)))||!gtk_combo_box_get_active_text(GTK_COMBO_BOX(classe))||!strlen(etd.photo)||gtk_combo_box_get_active_text(GTK_COMBO_BOX(classe))==NULL){
-
-      hint = create_kamel_fardi_ajout_hint_window ();
-      hintlabel=lookup_widget(hint,"kamel_fardi_ajout_hint_fixed_label");
-      fixed1=lookup_widget(hint,"kamel_fardi_ajout_hint_fixed");
-      strcpy(kftexthint,"<span color=\"red\"><b>Remplir tout les champs !!!</b></span>");
-      hintlabel = gtk_label_new (_(kftexthint));
-      gtk_widget_show (hintlabel);
-      gtk_fixed_put (GTK_FIXED (fixed1), hintlabel, 400, 336);
-      gtk_widget_set_size_request (hintlabel, 250, 36);
-      gtk_label_set_use_markup (GTK_LABEL (hintlabel), TRUE);
-      gtk_widget_show (hint);
-    }
-    else{
-      if(strlen(gtk_entry_get_text(GTK_ENTRY(cin_entry)))>8||strlen(gtk_entry_get_text(GTK_ENTRY(cin_entry)))<8){
-        hint = create_kamel_fardi_ajout_hint_window ();
-      hintlabel=lookup_widget(hint,"kamel_fardi_ajout_hint_fixed_label");
-      fixed1=lookup_widget(hint,"kamel_fardi_ajout_hint_fixed");
-      strcpy(kftexthint,"<span color=\"red\"><b>Cin doit avoir 8 digits!!!</b></span>");
-      hintlabel = gtk_label_new (_(kftexthint));
-      gtk_widget_show (hintlabel);
-      gtk_fixed_put (GTK_FIXED (fixed1), hintlabel, 400, 336);
-      gtk_widget_set_size_request (hintlabel, 250, 36);
-      gtk_label_set_use_markup (GTK_LABEL (hintlabel), TRUE);
-      gtk_widget_show (hint);}
-      else{
-    //////////------------------------------------------------------------///////////////////////////////////////////////////////////////////////////
-
-    //////////------enregirstrer les informations dans la structure---------///////////////////////////////////////////////////////////////////////////
-    strcpy(etd.cin, gtk_entry_get_text(GTK_ENTRY(cin_entry)));
-    strcpy(etd.nom, gtk_entry_get_text(GTK_ENTRY(nom_entry)));
-    strcpy(etd.prenom, gtk_entry_get_text(GTK_ENTRY(prenom_entry)));
-    strcpy(etd.adress, gtk_entry_get_text(GTK_ENTRY(lieu_de_residence_entry)));
-    strcpy(etd.numero_telephonique, gtk_entry_get_text(GTK_ENTRY(numero_telephonique_entry)));
-    strcpy(etd.aderess_mail, gtk_entry_get_text(GTK_ENTRY(mail)));
-    strcpy(etd.chambre, gtk_entry_get_text(GTK_ENTRY(chambre)));
-    strcpy(etd.classe, gtk_combo_box_get_active_text(GTK_COMBO_BOX(classe)));
-    strcat(etd.classe,grp);
-    strcpy(etd.sexe,"masculin");
-    //char *esm=gtk_entry_get_text(GTK_ENTRY(cin_entry));
-    strcpy(etd.services, "hebergement");
-    
     gtk_calendar_get_date(GTK_CALENDAR(date_de_naissance_calendar),
                           &etd.date_de_naissance.annee,
                           &etd.date_de_naissance.mois,
                           &etd.date_de_naissance.jour);
-    etd.date_d_hebergement.annee=p.date_d_hebergement.annee;
-    etd.date_d_hebergement.mois=p.date_d_hebergement.mois;
-    etd.date_d_hebergement.jour=p.date_d_hebergement.jour;
-    if((timeinfo->tm_year+1900-etd.date_de_naissance.annee)<17){
-
-      hint = create_kamel_fardi_ajout_hint_window ();
-      hintlabel=lookup_widget(hint,"kamel_fardi_ajout_hint_fixed_label");
-      fixed1=lookup_widget(hint,"kamel_fardi_ajout_hint_fixed");
-      strcpy(kftexthint,"<span color=\"red\"><b>Age doit etre supperieur a 18 !!!</b></span>");
-      hintlabel = gtk_label_new (_(kftexthint));
-      gtk_widget_show (hintlabel);
-      gtk_fixed_put (GTK_FIXED (fixed1), hintlabel, 400, 336);
-      gtk_widget_set_size_request (hintlabel, 250, 36);
-      gtk_label_set_use_markup (GTK_LABEL (hintlabel), TRUE);
-      gtk_widget_show (hint);
+    sprintf(grp, "%d", g);
+    if(!strlen(gtk_entry_get_text(GTK_ENTRY(cin_entry)))||!strlen(gtk_entry_get_text(GTK_ENTRY(nom_entry)))||!strlen(gtk_entry_get_text(GTK_ENTRY(prenom_entry)))||!strlen(gtk_entry_get_text(GTK_ENTRY(lieu_de_residence_entry)))||!strlen(gtk_entry_get_text(GTK_ENTRY(numero_telephonique_entry)))||!strlen(gtk_entry_get_text(GTK_ENTRY(chambre)))||!strlen(gtk_entry_get_text(GTK_ENTRY(mail)))||!gtk_combo_box_get_active_text(GTK_COMBO_BOX(classe))||!strlen(etd.photo)||gtk_combo_box_get_active_text(GTK_COMBO_BOX(classe))==NULL)
+    {
+      set_text("50000","red","Remplir tout les champs !!!",0);
     }
-    else{
-    if (restau)strcat(etd.services,"+restaurant");
-    if (pisc)strcat(etd.services,"+piscine");
-  if(verif_cin(etd.cin,fichier)==0){
-  
-    modifier_etudiant(p.cin,etd,fichier);
-    modif_etud(etd.nom,etd.cin,fichier_users);
-
-  kamel_fardi_modifier_window = lookup_widget(button, "kamel_fardi_modifier_window");
-  gtk_widget_hide (kamel_fardi_modifier_window);
-  kamel_fardi_afficher_window = create_kamel_fardi_afficher_window ();
-  treeview = lookup_widget(kamel_fardi_afficher_window, "kamel_fardi_affichage_liste_etudiant_treeview");
-  afficher_etudiant(treeview,fichier);
-  gtk_widget_show (kamel_fardi_afficher_window);
-  }
-  else{
-    /////////--------------------------------------------------------------/////////////////////////////////////////////////////////////////////////
-    gtk_entry_set_text(GTK_ENTRY(cin_entry), "");
-      hintlabel = gtk_label_new (_("<span color=\"red\"><b>Cin deja existe !!!</b></span>"));
-      gtk_widget_show (hintlabel);
-      gtk_fixed_put (GTK_FIXED (fixed1), hintlabel, 400, 336);
-      gtk_widget_set_size_request (hintlabel, 200, 36);
-      gtk_label_set_use_markup (GTK_LABEL (hintlabel), TRUE);
-      gtk_widget_show (hint);
-}
-}
-}
-}
+    else
+    {
+      if(strlen(gtk_entry_get_text(GTK_ENTRY(cin_entry)))>8||strlen(gtk_entry_get_text(GTK_ENTRY(cin_entry)))<8)
+      {
+      set_text("50000","red","Cin doit avoir 8 digits!!!",0);
+      }
+      else if(alldigit(gtk_entry_get_text(GTK_ENTRY(cin_entry))))
+          {
+              set_text("30000","red","Cin doit avoir seulement des digits!!!",0);
+          }
+          else
+            {            
+              //////////------------------------------------------------------------///////////////////////////////////////////////////////////////////////////
+              ///////////////////////////VERIF AGE//////////////////////////////////////////////////////
+              if((timeinfo->tm_year+1900-etd.date_de_naissance.annee)<17)
+              {
+                set_text("50000","red","Age doit etre supperieur a 18 !!!",0);
+              }
+              ////////////////////////////AGE VALIDE/////////////////////////////////////////////////////
+              else
+              {
+                //////////////////////NUM TELF VERIF/////////////////////////////////////////////////////
+                if(alldigit(gtk_entry_get_text(GTK_ENTRY(numero_telephonique_entry))))
+                {
+                  set_text("10000","red","Num telephone doit avoir seulement des digits!!!",0);
+                }
+                else
+                {
+                  //////////------enregirstrer les informations dans la structure---------///////////////////////////////////////////////////////////////////////////
+                  strcpy(etd.cin, gtk_entry_get_text(GTK_ENTRY(cin_entry)));
+                  strcpy(etd.nom, gtk_entry_get_text(GTK_ENTRY(nom_entry)));
+                  strcpy(etd.prenom, gtk_entry_get_text(GTK_ENTRY(prenom_entry)));
+                  strcpy(etd.adress, gtk_entry_get_text(GTK_ENTRY(lieu_de_residence_entry)));
+                  strcpy(etd.numero_telephonique, gtk_entry_get_text(GTK_ENTRY(numero_telephonique_entry)));
+                  strcpy(etd.aderess_mail, gtk_entry_get_text(GTK_ENTRY(mail)));
+                  strcpy(etd.chambre, gtk_entry_get_text(GTK_ENTRY(chambre)));
+                  strcpy(etd.classe, gtk_combo_box_get_active_text(GTK_COMBO_BOX(classe)));
+                  strcat(etd.classe,grp);
+                  strcpy(etd.sexe,"masculin");
+                  strcpy(etd.services, "hebergement");
+                  
+                  
+                  etd.date_d_hebergement.annee=p.date_d_hebergement.annee;
+                  etd.date_d_hebergement.mois=p.date_d_hebergement.mois;
+                  etd.date_d_hebergement.jour=p.date_d_hebergement.jour;
+                  if (restau)strcat(etd.services,"+restaurant");
+                  if (pisc)strcat(etd.services,"+piscine");
+                  if(verif_cin(etd.cin,fichier)==0)
+                  {
+                    modifier_etudiant(p.cin,etd,fichier);
+                    modif_etud(etd.nom,etd.cin,fichier_users);
+                    kamel_fardi_modifier_window = lookup_widget(button, "kamel_fardi_modifier_window");
+                    gtk_widget_hide (kamel_fardi_modifier_window);
+                    kamel_fardi_afficher_window = create_kamel_fardi_afficher_window ();
+                    treeview = lookup_widget(kamel_fardi_afficher_window, "kamel_fardi_affichage_liste_etudiant_treeview");
+                    afficher_etudiant(treeview,fichier);
+                    gtk_widget_show (kamel_fardi_afficher_window);
+                  }
+                }
+              }
+            }
+      }
 }
 
 
@@ -1008,13 +988,10 @@ on_kamel_fardi_affichage_liste_etudiant_treeview_row_activated
     char *buf1;
     char *buf2;
     char *fichier="etudiants.txt";
-    //Etudiant p;
     gchar *c1,*c2,*c3,*c4,*c5,*c6,*c7,*c8,*c9,*c10,*c11,*c12,*c13;
 
-     //ajout_hint = create_kamel_fardi_ajout_hint_window (); 
-    kamel_fardi_etudiant_window = create_kamel_fardi_etudiant_window ();
-   
 
+    kamel_fardi_etudiant_window = create_kamel_fardi_etudiant_window ();
     nom = lookup_widget(kamel_fardi_etudiant_window, "kamel_fardi_etudiant_window_etd_nom");
     prenom = lookup_widget(kamel_fardi_etudiant_window, "kamel_fardi_etudiant_window_etd_prenom");
     adress = lookup_widget(kamel_fardi_etudiant_window, "kamel_fardi_etudiant_window_etd_adresse");
@@ -1199,8 +1176,9 @@ on_kamel_fardi_ajout_hint_fixed_retour_button_clicked
                                         (GtkWidget       *button,
                                         gpointer         user_data)
 {
-   GtkWidget *hint;
-    GtkWidget *cin_entry;
+  GtkWidget *hint;
+  GtkWidget *cin_entry;
+
   hint = lookup_widget(button, "kamel_fardi_ajout_hint_window");
   gtk_widget_hide (hint);
 }
@@ -1438,7 +1416,6 @@ GtkWidget *modif;
   
    
    
-//modif=create_w_Modifier();
    modif=lookup_widget(objet,"Med_kh_w_Modifier");
    ref=lookup_widget(objet,"Med_kh_ref_2");
 
@@ -1536,14 +1513,11 @@ on_Med_kh_Supprimer_clicked            (GtkWidget       *objet,
 GtkWidget *Menu;
 GtkWidget *aff;
 GtkWidget *tree;
-//aff=lookup_widget(objet,"w_aff_supp");
 
 
-//Menu=lookup_widget(objet,"Med_kh_w_Menu");
 aff = create_Med_kh_w_aff_supp ();
 
 gtk_widget_show (aff);
-//gtk_widget_hide(Menu);
 }
 
 
@@ -1685,7 +1659,6 @@ on_Med_kh_Act_clicked                  (GtkWidget       *objet,
 GtkWidget *act;
 GtkWidget *aff;
 GtkWidget *tree;
-//aff=lookup_widget(objet,"w_aff_supp");
 
 
 act=lookup_widget(objet,"Med_kh_Act");
@@ -1727,16 +1700,12 @@ on_Med_kh_modif_conf_button_clicked    (GtkWidget       *button,
    mois=lookup_widget(modif,"Med_kh_mois_2");
    annee=lookup_widget(modif,"Med_kh_annee_2");
 
-   /*entry_e1=lookup_widget(objet,"checkbutton_e1");
-   entry_e2=lookup_widget(objet,"checkbutton_e2");
-   entry_e3=lookup_widget(objet,"checkbutton_e3");*/
 
 
    
 
   gtk_spin_button_set_value(GTK_SPIN_BUTTON(ref),cap.ref);
 
-  //strcpy(cap.type,gtk_combo_box_get_active_text(GTK_COMBO_BOX(type)));
 
    gtk_spin_button_set_value(GTK_SPIN_BUTTON(V_Max),cap.V_Max);
    gtk_spin_button_set_value(GTK_SPIN_BUTTON(V_Min),cap.V_Min);
@@ -1821,7 +1790,6 @@ GtkWidget *code;
 char *file="produits.txt";
 
 code=lookup_widget(button,"entry9_recherche_tesnime");
-//strcpy(f.code,gtk_entry_get_text(GTK_ENTRY(code)));
 tes_supprimer(file,gtk_entry_get_text(GTK_ENTRY(code)));
 }
 
@@ -1835,7 +1803,6 @@ GtkWidget *fenetre_ajout;
   GtkWidget *fenetre_afficher;
   fenetre_afficher = lookup_widget(button, "tesnime_affichage");
   gtk_widget_destroy(fenetre_afficher);
-  //fenetre_ajout = lookup_widget(button, "tesnime_ajouter");
   fenetre_ajout = create_tesnime_ajouter();
   gtk_window_set_position(GTK_WINDOW(fenetre_ajout),GTK_WIN_POS_CENTER_ALWAYS);
   gtk_widget_show(fenetre_ajout);
@@ -1856,7 +1823,6 @@ produit p;
   gchar *prix;
   gchar *type;
   gchar *date;
-	//char *d;
   GtkWidget *affichage;
   GtkWidget *modifier;
   GtkWidget *nomproduit;
@@ -1872,7 +1838,6 @@ produit p;
     modifier=create_tesnime_modifier();
 	affichage= lookup_widget(button,"tesnime_affichage");
     gtk_widget_hide(affichage);
-    //gtk_window_set_position(GTK_WINDOW(modifier),GTK_WIN_POS_CENTER_ALWAYS);
     gtk_widget_show(modifier);
      
     sscanf(d, "%d/%d/%d", &p.d.jour, &p.d.mois, &p.d.annee);
@@ -1951,7 +1916,6 @@ produit p;
 
     fclose(f);
   }
-  //remove("recherche.txt");
 }
 
 
@@ -1964,7 +1928,6 @@ on_button5_tesnime_afficher__clicked   (GtkWidget       *button,
 GtkWidget *fenetre_afficher;
   GtkWidget *treeview;
 
-  //fenetre_afficher = lookup_widget(button, "tesnime_affichage");
   treeview = lookup_widget(button, "tesnime_treeview");
   afficher(treeview);
 }
@@ -2001,9 +1964,7 @@ GtkWidget *fenetre_ajout;
   GtkWidget *fenetre_afficher;
   fenetre_ajout = lookup_widget(button, "tesnime_ajouter");
   gtk_widget_destroy(fenetre_ajout);
-  //fenetre_afficher = lookup_widget(button, "tesnime_ajouter");
   fenetre_afficher = create_tesnime_affichage();
-  //gtk_window_set_position(GTK_WINDOW(fenetre_afficher),GTK_WIN_POS_CENTER_ALWAYS);
   gtk_widget_show(fenetre_afficher);
 }
 
@@ -2092,7 +2053,6 @@ GtkWidget *fenetre_ajout;
   GtkWidget *fenetre_afficher;
   fenetre_ajout = lookup_widget(button, "tesnime_modifier");
   gtk_widget_destroy(fenetre_ajout);
-  //fenetre_afficher = lookup_widget(button, "tesnime_modifier");
   fenetre_afficher = create_tesnime_affichage();
   gtk_window_set_position(GTK_WINDOW(fenetre_afficher),GTK_WIN_POS_CENTER_ALWAYS);
   gtk_widget_show(fenetre_afficher);
@@ -2191,7 +2151,6 @@ produit p ;
   
  
  
-//affichage = lookup_widget(treeview, "tesnime_affichage");
   GtkTreeModel *model = gtk_tree_view_get_model(treeview);
   if (gtk_tree_model_get_iter(model, &iter, path))
   {
@@ -2578,7 +2537,6 @@ fenetre_afficher=create_naim_bouraoui_gestion_des_menus();
 gtk_widget_show(fenetre_afficher);
 gtk_widget_hide(w1);
 treeview=lookup_widget(fenetre_afficher,"naim_bouraoui_treeview");
-//vider(treeview);
 nbaffichage(treeview);
 }
 

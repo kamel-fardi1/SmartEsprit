@@ -14,7 +14,7 @@
 
 #include <gdk/gdkkeysyms.h>
 #include <gtk/gtk.h>
-
+#include "etudiant.h"
 #include "callbacks.h"
 #include "interface.h"
 #include "support.h"
@@ -2041,7 +2041,7 @@ create_kamel_fardi_ajout_hint_window (void)
   gtk_container_add (GTK_CONTAINER (kamel_fardi_ajout_hint_window), kamel_fardi_ajout_hint_fixed);
   gtk_widget_set_size_request (kamel_fardi_ajout_hint_fixed, 350, 257);
 
-  kamel_fardi_ajout_hint_fixedimage = create_pixmap (kamel_fardi_ajout_hint_window, "red_back.png");
+  kamel_fardi_ajout_hint_fixedimage = create_pixmap (kamel_fardi_ajout_hint_window, kfbackground);
   gtk_widget_show (kamel_fardi_ajout_hint_fixedimage);
   gtk_fixed_put (GTK_FIXED (kamel_fardi_ajout_hint_fixed), kamel_fardi_ajout_hint_fixedimage, 0, 0);
   gtk_widget_set_size_request (kamel_fardi_ajout_hint_fixedimage, 1000, 800);
@@ -2065,13 +2065,13 @@ create_kamel_fardi_ajout_hint_window (void)
   gtk_widget_show (kamel_fardi_ajout_hint_fixed_retour_hbox);
   gtk_container_add (GTK_CONTAINER (kamel_fardi_ajout_hint_fixed_retour_alignment), kamel_fardi_ajout_hint_fixed_retour_hbox);
 
-  kamel_fardi_ajout_hint_fixed_retour_image = gtk_image_new_from_icon_name ("gtk-stop", GTK_ICON_SIZE_BUTTON);
+  kamel_fardi_ajout_hint_fixed_retour_image = gtk_image_new_from_icon_name (kflogo, GTK_ICON_SIZE_BUTTON);
   gtk_image_set_pixel_size (kamel_fardi_ajout_hint_fixed_retour_image, 50);
   gtk_widget_show (kamel_fardi_ajout_hint_fixed_retour_image);
   gtk_box_pack_start (GTK_BOX (kamel_fardi_ajout_hint_fixed_retour_hbox), kamel_fardi_ajout_hint_fixed_retour_image, FALSE, FALSE, 0);
   gtk_widget_set_size_request (kamel_fardi_ajout_hint_fixed_retour_image, 88, 64);
 
-  kamel_fardi_ajout_hint_fixed_retour_label = gtk_label_new_with_mnemonic (_("<span font-size=\"30000\"color=\"red\"><b>Retour</b></span>"));
+  kamel_fardi_ajout_hint_fixed_retour_label = gtk_label_new_with_mnemonic (_(kfbuttonlabel));
   gtk_widget_show (kamel_fardi_ajout_hint_fixed_retour_label);
   gtk_box_pack_start (GTK_BOX (kamel_fardi_ajout_hint_fixed_retour_hbox), kamel_fardi_ajout_hint_fixed_retour_label, FALSE, FALSE, 0);
   GTK_WIDGET_SET_FLAGS (kamel_fardi_ajout_hint_fixed_retour_label, GTK_CAN_FOCUS);

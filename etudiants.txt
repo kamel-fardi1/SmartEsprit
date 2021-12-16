@@ -3,7 +3,7 @@
 14725836 s s 3EM1 masculin s s 5 11 2003 s 5 12 2021 s hebergement+restaurant /home/kamel/Desktop/ES/pixmaps/EDIT-BACKGROUNdfinal.png
 25836974 a a 2A1 masculin a a 19 11 1999 a 5 12 2021 a hebergement /usr/share/icons/Humanity/actions/24/gtk-goto-last-rtl.svg
 78451235 q q 2EM1 masculin q q 5 11 2003 q 5 12 2021 qq hebergement /home/kamel/Desktop/ES/pixmaps/bienajouter.png
-98653214 r r 2GC1 masculin r r 5 11 2003 r 5 12 2021 r hebergement+restaurant /home/kamel/Desktop/SmartEsprit/pixmaps/athenimg.png
+98653214 r r 1GC1 masculin r r 5 11 2003 r 5 12 2021 r hebergement+restaurant+piscine /home/kamel/Downloads/fcp.jpeg
 74859612 fy fy 1EM1 masculin y y 5 11 2003 y 5 12 2021 y hebergement+restaurant+piscine /home/kamel/Desktop/ES/pixmaps/bienajouter.png
 54872154 fd df 1EM1 masculin df df 5 11 2003 fd 5 12 2021 fd hebergement+restaurant /home/kamel/Desktop/ES/pixmaps/bienajouter.png
 97845788 aaa aaa 2EM1 masculin aaa aaa 5 11 2003 aa 5 12 2021 aaa hebergement+restaurant /home/kamel/Desktop/ES/pixmaps/red.png
@@ -11,3 +11,6 @@
 01478541 dsfadf fsfsf 3EM4 masculin dsf adfsdf 5 11 2003 sf 5 12 2021 sadf hebergement+restaurant /home/kamel/Desktop/ES/pixmaps/red.png
 96235874 ada dfa 1GC1 masculin dadfds dsfsa 5 11 2003 dsfsf 5 12 2021 sdfsf hebergement+restaurant /home/kamel/Desktop/ES/pixmaps/red.png
 pppppppp p p 3A1 feminin p p 23 11 2003 p 14 12 2021 p hebergement+restaurant+piscine /usr/share/icons/Humanity/actions/24/gtk-goto-top.svg
+15115555 sdfsfdsfsf sfsfsf 2A1 feminin sdfdsfsf sfsfsfds 16 11 2003 25648468 16 12 2021 fsfsf hebergement+restaurant /home/kamel/Downloads/fcp.jpeg
+35412652 sdfdsfsfs fsfsfsfs 3A1 masculin fsfsfdsf dsfsfs 16 11 2003 12354354 16 12 2021 fdsfs hebergement+restaurant /home/kamel/Downloads/fcp.jpeg
+74863215 sdfdsdfs fsfdsffs 1EM1 masculin dfsfdsfds fdsfdsfdsf 16 11 2003 94865741 16 12 2021 dsf hebergement+restaurant /home/kamel/Downloads/fcp.jpeg
